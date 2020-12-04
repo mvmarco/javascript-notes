@@ -81,6 +81,14 @@ const wesTaxRate = 0.3;
 const myTotal3 = calculateBill(wesTotal, wesTaxRate);
 console.log(myTotal3);
 
+// you could also run an expression:
+const myTotal4 = calculateBill(20 + 200 + 20, 0.15);
+console.log(myTotal4);
+
+const kait = 200000000;
+const myTotal5 = calculateBill(kait + 200 + 20, 0.15);
+console.log(myTotal5);
+
 // another example with a function definition.
 /* if you dont declare the value to be returned anywhere inside the fuction 
 the function is gonna look outside and has to be before the function !! */
@@ -102,3 +110,12 @@ otherwise you get undefined */
 const saySurname = (surname) => `${surname}`;
 const greetingsSurname = saySurname('corapi');
 console.log(greetingsSurname);
+
+/* another example, yes variable cannot be repeated
+but parameters yes - the name in doctorize is confined in its function
+and would not ever colloid with the name inside yell (and viceversa)
+ */
+const doctorize = (name) => `Dr. ${name}`;
+const yell = (name) => `hey ${name.toUpperCase()}`;
+const phrase = yell(doctorize('marco'));
+console.log(phrase);
