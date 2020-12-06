@@ -1,4 +1,12 @@
-// (for interview) types are: SNOBUSN - string, number, object, boolean, undefined, string, null
+/// /////////////////////////////////////////////////////////////////////////
+// INTERVIEW TOPIC INTERVIEW TOPIC INTERVIEW TOPIC INTERVIEW TOPIC BETWEEN //
+/// /////////////////////////////////////////////////////////////////////////
+
+/* types are: SNOBUSN - string, number, object, boolean, undefined, string, null */
+
+/// /////////////////////////////////////////////////////////////////////////
+// INTERVIEW TOPIC INTERVIEW TOPIC INTERVIEW TOPIC INTERVIEW TOPIC BETWEEN //
+/// /////////////////////////////////////////////////////////////////////////
 
 // ##################################################################################################################
 // STRING SECTION ----- STRING SECTION ----- STRING SECTION ----- STRING SECTION ----- STRING SECTION

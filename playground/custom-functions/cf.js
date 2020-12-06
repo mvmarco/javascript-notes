@@ -49,7 +49,9 @@ calculateBill();
 /* if you console.log the "total" variable outside of the block it would give error: 
 console.log(the total is ${total}); or just console.log(total);
 because we need to capture the result of the fuction or the return value (return total)
-// inside a variable: in a different way. */
+inside a variable: in a different way. */
+
+// careful that everything after the return will be unreachable and will never run
 
 // const myTotal = calculateBill();
 // console.log(`your totatl is ${myTotal}`);
@@ -117,5 +119,32 @@ and would not ever colloid with the name inside yell (and viceversa)
  */
 const doctorize = (name) => `Dr. ${name}`;
 const yell = (name) => `hey ${name.toUpperCase()}`;
+/* brackets goes first, so it returns first the value of -doctorize- "Dr. marco"
+and then it passes to -yell- its value (as a whole argument). it goes "HEY DR. MARCO"
+because the parameter name, in yell, is transformed all uppercase Dr. goes to DR. */
 const phrase = yell(doctorize('marco'));
 console.log(phrase);
+// if you pass the opposite yell and doctorize later. it goes " Dr. hey MARCO "
+const phraseOne = doctorize(yell('marco'));
+console.log(phraseOne);
+
+// default values
+const yellTwo = (name = 'Olivia') => `hey ${name.toUpperCase()}`;
+/* so if i don pass anything in yellTwo 
+I dont get error "cannot read toUpperCase, because there is not an argument"
+if you pass something the default value will be replaced. */
+const phraseThree = yellTwo();
+
+console.log(phraseThree);
+
+/* so if you have multiple parameters and some of them are set as defaults and some not
+when you call the function and you wanna get the default ones you need to pass them 
+inside the call function as 'undefined' otherwise you get error. 
+because in order to get the default values you need to pass them inside the function,
+what do you pass otherwise????? */
+const colors = (colorOne = 'blue', ColorTwo, ColorThree = 'yellow') =>
+  `Hey check your colors: ${colorOne}, ${ColorTwo}, ${ColorThree}`;
+const printingColors = colors(undefined, 'red', undefined);
+console.log(printingColors);
+/* if you put just one color it will take the place of blue, undefined and yellow
+ in other words the order matters, convenience is to put the default values as last thing */
