@@ -21,6 +21,10 @@ hoisting */
 // INTERVIEW TOPIC INTERVIEW TOPIC INTERVIEW TOPIC INTERVIEW TOPIC BETWEEN //
 /// /////////////////////////////////////////////////////////////////////////
 
+// ##################################################################################################################
+// ARROW FUNCTIONS SECTION ----- ARROW FUNCTIONS SECTION ----- ARROW FUNCTIONS SECTION ----- ARROW FUNCTIONS SECTION ----- ARROW FUNCTIONS SECTION
+// ##################################################################################################################
+
 /* arrow functions are by definition anonymus stored into a variable.Using fat arrows => 
 (skinny arrow are -> just for info) */
 
@@ -88,6 +92,10 @@ const babyMadeThree = makeABabyThree('Bjorn', 'svanholm');
 console.log(babyMadeThree);
 // even though sometimes the two lines function is better, like makeABabyTwo
 
+// ##################################################################################################################
+// IIFE FUNCTIONS SECTION ----- IIFE FUNCTIONS SECTION ----- IIFE FUNCTIONS SECTION ----- IIFE FUNCTIONS SECTION ----- IIFE FUNCTIONS SECTION
+// ##################################################################################################################
+
 // the IIFE = Immediately Invoked (or RUN) Function Expression is another type of function
 /* since the parentesis run first you can put a function inside the ()
 and call the (); afterwards */
@@ -118,8 +126,82 @@ in other words the name of the function is inherited by the property/key
 */
 const marco = {
   name: 'marco svanholm',
-  sayHi: () => 'hey marco:-)',
+  sayHi: () => console.log('hey marco:-)'),
 };
 /* you can call on the console marco.sayHi(); method to marco getting hey marco:-)
 while if you do marco.name you get marco svanholm */
 console.log(marco);
+
+// you can also write a method like this (the most common)
+const marcoShort = {
+  name: 'marco',
+  // method
+  sayHiShort() {
+    // this is calling everything inside the object, this call the object
+    // this is not working in the arrow methods !!!!!!!IMPORTANT!!!!!!!!!!
+    // so if you console.log (`hey ${this.name}`) you get hey marco
+    console.log(this);
+    console.log('hey marcooo');
+  },
+};
+console.log(marcoShort);
+
+// ##################################################################################################################
+// CALLBACKS FUNCTIONS SECTION ----- CALLBACKS FUNCTIONS SECTION ----- CALLBACKS FUNCTIONS SECTION ----- CALLBACKS FUNCTIONS SECTION ----- CALLBACKS FUNCTIONS SECTION
+// ##################################################################################################################
+
+/*  callback functions are regular function named like this because are used when
+ something happens when something is done.
+ example when someone click this run this 
+ or
+ when this time passes do this
+ */
+
+// clickCallBack function
+
+// here you get the class of the button from the document
+const button = document.querySelector('.clickMe');
+// here you test if it appears in the console
+console.log(button);
+/* now you need to listen for the 'click' for that button (there are many other events)
+and you associate the function you want as reference */
+button.addEventListener('click', marcoShort.sayHiShort);
+/* now everytime you click it is gonna say hey marcooo (line 144) with the event click and
+a call back function marcoShort, the browser call the function when someone click
+the button. */
+
+// callback functions can be declared outside in two ways:
+const handleClick = () => {
+  console.log('Great clicking!');
+};
+button.addEventListener('click', handleClick);
+
+function handleClickTwo() {
+  console.log('Great clicking!');
+}
+button.addEventListener('click', handleClickTwo);
+
+// or declared inside the event listener with an anonymus callback function
+button.addEventListener('click', function () {
+  console.log('nice job');
+});
+
+// this was not cover by wes but it does work
+button.addEventListener('click', () => {
+  console.log('trying job');
+});
+/* timer call back function, it is a function you wanna run after a certain amount of time
+first you declare the function and then duration in milliseconds, in other words
+after how long shall we run this -> 1000 millisecond is a second */
+setTimeout(marco.sayHi, 1000);
+
+// or in the other way
+
+setTimeout(function () {
+  console.log('done');
+}, 1000);
+
+// this was not cover by wes but it does work
+setTimeout(() => {
+  console.log('trying done');
+}, 1000);
