@@ -2,6 +2,7 @@
 // FUNCTIONS SECTION ----- FUNCTIONS SECTION ----- FUNCTIONS SECTION ----- FUNCTIONS SECTION ----- FUNCTIONS SECTION
 // ##################################################################################################################
 
+// functins are first class citizen, they can be stored into a variable and passed to other functions
 // functions let us to group together a set of statements such as setting a variable, run variables
 /* function can take in also data known as arguments, passing in data inside a function is an argument
  eg: when you call the method Math.floor(12.44)* the number is the argument */
