@@ -49,3 +49,50 @@ heading.insertAdjacentText('beforeend', ' olivia');
 // ############################
 // CLASSES SECTION
 // ############################
+
+const pic = document.querySelector('.nice');
+// console.log(pic.classList); it will give an array of all the classes associated to that image
+/* if you check the prototype inside the console from classList you can see 
+all the methods to be used with the class pic */
+
+// you can add more classes or remove or toggle
+pic.classList.add('open');
+pic.classList.remove('open');
+pic.classList.toggle('round'); // it will add it if it is not there or remove it if is there check CSS
+// paste the class above in the console
+console.log(pic.classList);
+
+// we can try this
+
+function toggleRound() {
+  pic.classList.toggle('round');
+}
+
+pic.addEventListener('click', toggleRound);
+
+// to check if the toggle is active or other state you can use pic.classList.contains('round')
+
+// ############################
+// ATTRIBUTES SECTION
+// ############################
+
+pic.alt = 'cute pup'; // setter
+console.log(pic.alt); // getter
+console.log(pic.naturalWidth); // getter - but doesnt work here but in the console yes. Because the picture has to load first
+
+// to let the picture load and then the call the method you have to create an event listener
+
+pic.addEventListener('load', function () {
+  console.log(pic.naturalWidth);
+});
+
+// pic.width is a setter instead
+
+pic.width = 200; // setter
+
+// to set getters or setters in JS you can also do:
+
+console.log(pic.getAttribute('alt')); // getter
+pic.setAttribute('alt', 'Really cute pup'); // setter
+console.log(pic.getAttribute('alt')); // getter updated
+// in this way above you change also the name of the standard attribute, not a good practice
