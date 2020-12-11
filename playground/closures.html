@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../base.css">
+</head>
+<body>
+  <script>
+    /* closures are the ability to access a parent level scope from a child scope
+    even after the parent function has been terminated */
+
+    /* function outer() {
+      const outerVar = 'hey I am the outer Var!';
+      function inner() {
+        const innerVar = 'hey I am the inner Var!';
+        console.log(innerVar);
+        console.log(outerVar); // this is run because it is not found inside the same block but outside in the parent block
+      }
+      return inner;
+    } 
+    */
+
+    /* when you call a function not inside their on blocks but outside and store it
+    into a variable, you can access the child of that function too (that is a closure): 
+    */
+
+    /* 
+    const innerFn = outer();
+    innerFn(); 
+    */
+
+    // the outside function is the outer scope, the inside function is the inner scope
+    function createGreeting(greeting = '') {
+      const myGreet = greeting.toUpperCase(); // this variable is accessed to a lower scope
+      return function (name) {
+        return `${myGreet} ${name}`; // lower scope, or child function
+      };
+    }
+    // because the variable of the outerscope is accessed to the inner scope function is a closure
+    // this can be accessed even after the outer function has been run/or closed check down.
+
+    const sayHelllo = createGreeting('hello');
+    const sayHi = createGreeting('hey');
+    console.log(sayHelllo('marco'));
+    console.log(sayHelllo('olivia'));
+    console.log(sayHi('marco'));
+
+    // another type is to create a private variable
+    function createGame(gameName) {
+      let score = 0;
+      return function win() {
+        // eslint-disable-next-line no-plusplus
+        score++;
+        return `your name ${gameName} score is ${score}`;
+      };
+    }
+
+    /* since it has been created two games each of them store their own win function
+     with its increase. Try to call them in the console.
+    */
+    const hockeyGame = createGame('hockey');
+    const soccerGame = createGame('soccer');
+  </script>
+
+</body>
+</html>

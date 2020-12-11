@@ -6,8 +6,8 @@
 
 /* a global variable is a variable not inside of a function, a module or a if statement
  and you can access on any js that is running the page (console, script or file itself).
- in the console the global variable is called the window.
- if you click window, you can see everything attached to the global scope (like methods)
+ in the console the global variables are declared with the window object.
+ if you click window, you can see everything attached to the global scope (like methods and variables)
  */
 
 const first = 'marco';
@@ -96,9 +96,12 @@ because it is declared inside the function and not inside the block
 // ############################
 
 /* 
+Lexical scoping means the variable cares where it is defined and not where it is run.
+in this case lapo is gonna run because because it cares where it is defined (logDog())
+)and not where it runs (dogTwo()). In other words the order is:
 
-in this case lapo is gonna run because because it cares where it is defined and not where
-it runs.  first it search for dog outside and lapo comes. then 
+from dogTwo(); goes to logDog function search for dog outside and takes lapo, 
+then it brings back lapo to logDog in dogTwo and print it
 
 const dog = 'lapo';
 
@@ -113,4 +116,44 @@ const dogTwo = () => {
 17777777777777
 dogTwo(); 
 
+
+
+but if you do like this, it will run emma because it is equal to pass a string as argument:
+
+const dog = 'lapo';
+
+const logDog = (dog) => {
+  console.log(dog);
+};
+
+const dogTwo = () => {
+  const dog = 'emma';
+  logDog('emma');
+};
+17777777777777
+dogTwo();
 */
+
+// ############################
+// FUNCTIONS SCOPING
+// ############################
+
+/* just like variables functions are going to be scoped to the parent function
+
+const sayHi = () => {
+  yell = () = {
+    console.log(name.toUpperCase());
+  }
+  yell();
+}
+
+if you call yell(); outside is gonna be undefined
+
+
+*/
+
+// ############################
+// BEST PRACTICES
+// ############################
+
+// don't create global variables
