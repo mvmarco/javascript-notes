@@ -96,3 +96,5 @@ console.log(pic.getAttribute('alt')); // getter
 pic.setAttribute('alt', 'Really cute pup'); // setter
 console.log(pic.getAttribute('alt')); // getter updated
 // in this way above you change also the name of the standard attribute, not a good practice
+/* when you have data-name on a photo, data-last in another is ok to use this way so you
+ can associate event listener */
