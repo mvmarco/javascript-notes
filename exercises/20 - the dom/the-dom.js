@@ -82,9 +82,9 @@ console.log(pic.naturalWidth); // getter - but doesnt work here but in the conso
 
 // to let the picture load and then the call the method you have to create an event listener
 
-pic.addEventListener('load', function () {
-  console.log(pic.naturalWidth);
-});
+// pic.addEventListener('load', function () {
+//   console.log(pic.naturalWidth);
+// });
 
 // pic.width is a setter instead
 
