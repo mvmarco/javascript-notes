@@ -15,3 +15,21 @@ console.log(marco.lastElementChild); // will give you the last child inside the 
 console.log(marco.previousElementSibling); // will give you the element before what is included/outside in the class
 console.log(marco.nextElementSibling); // will give you the element after what is included/outside in the class
 console.log(marco.parentElement);
+
+/* for nodes we use:
+el.childNodes
+el.firstChild
+el.lastChild
+el.previousSibling
+el.nextSibling
+el.parentNode
+*/
+
+// for removing element you can use element.remove();
+
+const p = document.createElement('p');
+p.textContent = 'I will be removed';
+document.body.appendChild(p);
+p.remove();
+
+console.log(p); // you can still see it in the JS console

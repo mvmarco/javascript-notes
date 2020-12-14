@@ -11,7 +11,7 @@ const myHtml = `
   <img src="${src}" alt="${desc}">
 </div>
 `;
-item.innerHTML = myHtml;
+item.innerHTML = myHtml; // this create html or replace what you have. if you put += will add it at the end
 console.log(item.innerHTML); // getter
 
 /* myHtml is not an element, it's a string so we cannot add classes to it such as:
@@ -35,3 +35,10 @@ const myFragment = document.createRange();  // a range is a collection or part o
 then we can do myFragment.querySelector('img');
 or document.body.appendChild(myfragment)
 */
+
+/* Using appendChild adds a new DOM element to the end of the parent node.
+
+Using innerHTML += takes the existing DOM content of the parent node, 
+serialises it to HTML in a string, adds some more HTML to the end of the string, 
+erases the existing elements in the parent node, 
+generates DOM elements from that string, then appends the new nodes to the parent node. */
