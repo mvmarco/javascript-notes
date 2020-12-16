@@ -70,8 +70,41 @@ const logEvent = (event) => {
   console.log(event.currentTarget.value); // gives us the event name and what the user typed
 };
 
-signUpForm.name.addEventListener('keyup', logEvent); // all the tiple you type you get a keyup
-signUpForm.name.addEventListener('keydown', logEvent); // it tells the key entered before
+signUpForm.name.addEventListener('keyup', logEvent); //  fires when any key is released, fires last, and the browser processes the key.
+signUpForm.name.addEventListener('keydown', logEvent); // fires when any key is pressed down
 signUpForm.name.addEventListener('focus', logEvent); // when you click inside the element
 signUpForm.name.addEventListener('blur', logEvent); // when you click outside of the element
 // focus and blur are used to show styling or to understand how long people spend on stuff
+
+// ############################################
+// ACCESSIBILITY
+// ############################################
+
+// make the website accessibile to people with disabilities
+// with JS it is easy to make the html less accessible
+
+/* 
+
+dont mix up the following:
+buttons: used for actions that happens inside application
+links: used to change page
+
+dont use links where buttons are, example:
+
+if you do <a href="#"> save</a>
+
+and then make an event listener that does not go anywhere (another page) with prevent default 
+it is not a link. But you can if you put pop up a message saying sign up. That leads to another page
+*/
+
+const photo = document.querySelector('.photo');
+
+const handlePhotoClick = (event) => {
+  if (event.type === 'click' || event.key === 'Enter') {
+    console.log('you clicked the photo'); // if the user doesnt have a mouse you can give the html a role=button
+  }
+  console.log(event.key); // visit: https://keycode.info
+};
+
+photo.addEventListener('click', handlePhotoClick);
+photo.addEventListener('keyup', handlePhotoClick);
