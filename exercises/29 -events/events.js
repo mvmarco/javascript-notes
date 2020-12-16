@@ -124,7 +124,7 @@ const sellButtons = document.querySelectorAll('button.sell');
 
 // if here you add an argument event (which stores all the info about each event)
 const handleSellClick = (event) => {
-  console.log('you are selling');
+  console.log('you are selling!!!!');
   //  and if you console.log(event)
   console.log(event);
   // you get a mouse event (can be click or touches inside the category pointer event)
@@ -165,7 +165,7 @@ const handleSellClick = (event) => {
   attached to the event listener, only the button is 
   */
 
-  event.stopPropagation();
+  // event.stopPropagation();
   /* as result when you click the window you get the window event and
 if you click the button you get only the button event check line 201: */
 };
@@ -182,26 +182,48 @@ sellButtons.forEach(eventSellClickFunction);
 
 // if you do apply an event lister to the window(browser)
 
-window.addEventListener('click', () => {
-  console.log('you clicked the window');
-});
+window.addEventListener(
+  'click',
+  (event) => {
+    console.log('you clicked the window!!!!');
+    event.stopPropagation(); // will allow to stop the propagation from top to bottom (capturing - see below)
+  },
+  { capture: true } // capturing see below
+);
 
 // you can see that if you click the window you get the event
 // if you click the button you get both of the event the button and the window event
 
 /* 
 after getting the button event it checks outside at higher level on the page 
-if there is any other event, like the one applied to the window. This is bubbling which means
+if there is any other event, like the one applied to the window. This is bubbling, which means
 that the event is first captured and handled by the innermost element 
 and then propagated to outer elements.
 */
 
 /* 
 to prevent this you can use propagation (stop an event to bubbling up)
+for our example the button has only its onw event and not the window one
  inside the function handleSellClick ----> event.stopPropagation();
 */
 
 /* as result when you click the window you get the window event and
 if you click the button you get only the button event check line: 168 */
 
-// 16:22
+// ############################################
+// CAPTURING ---- interview question
+// ############################################
+
+/* it is the opposite of bubbling if you click a button the browser tries
+to capture the button by checking first the document
+then the html, the body until reaching your button from top to down. so if you
+add an object to your window function  { capture: true } you will see that by clicking
+the button first you get the window console log and then the button one. Before was the opposite.
+Meaning, now everything goes fom top to bottom.
+
+you can still use  event.stopPropagation(); to stop propagating from top to bottom. in this case
+the button will never run again because we stop at the window level (which is the highest)
+
+ */
+
+/* to stop the browser going */
