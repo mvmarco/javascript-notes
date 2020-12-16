@@ -165,7 +165,7 @@ const handleSellClick = (event) => {
   attached to the event listener, only the button is 
   */
 
-  // event.stopPropagation();
+  event.stopPropagation();
   /* as result when you click the window you get the window event and
 if you click the button you get only the button event check line 201: */
 };
@@ -186,9 +186,11 @@ window.addEventListener(
   'click',
   (event) => {
     console.log('you clicked the window!!!!');
-    event.stopPropagation(); // will allow to stop the propagation from top to bottom (capturing - see below)
-  },
-  { capture: true } // capturing see below
+    // event.stopPropagation(); // will allow to stop the propagation from top to bottom (capturing - see below)
+    console.log(event.bubbles); // check if this event is going to bubble up whether you called stop progation or not
+    console.log(event.type); // check the type of event
+  }
+  // { capture: true } // capturing see below
 );
 
 // you can see that if you click the window you get the event
@@ -224,6 +226,28 @@ Meaning, now everything goes fom top to bottom.
 you can still use  event.stopPropagation(); to stop propagating from top to bottom. in this case
 the button will never run again because we stop at the window level (which is the highest)
 
- */
+*/
 
-/* to stop the browser going */
+// ############################################
+// THE WORD THIS
+// ############################################
+
+const photoEl = document.querySelector('.photo');
+
+const handlePhoto = (event) => {
+  console.log(event.currentTarget);
+  // console.count(event.currentTarget); // it will tell you how many times something has fired
+  console.log(this);
+
+  /* 
+  
+  with this,
+  you reference the actual element that event is called against, 
+  it refers to what there is before the dot in an event listener. 
+  With an arrow function inside the add event listener this will not work (because cannot get the name of the function)
+  it is better not using it in event listener
+  
+  */
+};
+// photoEl.addEventListener('mousemove', handlePhoto); // it will check all the movement inside the element
+photoEl.addEventListener('mouseenter', handlePhoto); // it will check all the time you enter the element
