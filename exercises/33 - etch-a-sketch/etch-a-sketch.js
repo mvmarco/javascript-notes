@@ -42,8 +42,8 @@ console.log(width, height);
 // create a random x and y starting points on the canvas
 // #####################################################
 
-const x = Math.floor(Math.random() * width); // math floor does if a number is 10.22 it gets 10, math random gives random number from 0 to 0.99 by myltiplying to something you get this number increased
-const y = Math.floor(Math.random() * height);
+let x = Math.floor(Math.random() * width); // math floor does if a number is 10.22 it gets 10, math random gives random number from 0 to 0.99 by myltiplying to something you get this number increased
+let y = Math.floor(Math.random() * height);
 
 // ######################################################
 // setup our canvas for drawing
@@ -85,9 +85,29 @@ const draw = ({ key }) => {
   /* example but not what we need
   x -= MOVE_AMOUNT; // x = x - 10
   y -= MOVE_AMOUNT;
-   */
+  */
 
-  cxt.moveTo(x, y); // it will start to move the marker at spefic position
+  /* we need switch statement, which say take in a variable (the key) and depending on which key 
+the user choose (up left down right) we have different outcome. Switch says considered these
+4 different outcome do the following 
+  */
+
+  switch (key) {
+    case 'ArrowUp':
+      y -= MOVE_AMOUNT;
+      break; // this will stop the switch from running after doing the above and go to whater is after the switch
+    case 'ArrowRight':
+      x += MOVE_AMOUNT;
+      break;
+    case 'ArrowDown':
+      y += MOVE_AMOUNT;
+      break;
+    case 'ArrowLeft':
+      x -= MOVE_AMOUNT;
+      break;
+    default:
+      break; // the default means if the arrowUp is not showing do this
+  }
   cxt.lineTo(x, y);
   cxt.stroke();
 };
