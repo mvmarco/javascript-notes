@@ -6,21 +6,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Etch A Sketch</title>
   <link rel="stylesheet" href="../../base.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
 </head>
 
 <body>
+  <h1>Pleasant Path</h1>
   <div class="canvasWrap">
     <canvas width="1600" height="1000" id="etch-a-sketch"></canvas>
     <div class="buttons">
-      <button id='btn' class="shake">Shake!</button>
+      <button id='btn' class="shake">Shake Me</button>
     </div>
 
   </div>
   <script src="etch-a-sketch.js"></script>
 
   <style>
+    h1 {
+      font-family: 'Major Mono Display', monospace;
+      margin: 20px;
+      font-size: 6rem;
+    }
+    
+    .buttons {
+      text-align: center;
+      margin-top: 10px;
+    }
     a.button, button, input[type="button"] button #btn {
-      color: red;
+      font-family: 'Major Mono Display', monospace;
+      background-color: #48BFE3;
+      padding: 1.5rem;
+      font-size: 2.5rem;    }
+    .buttons :focus {
+      outline-color: #006D6A;
     }
     body {
       min-height: 100vh;
@@ -28,6 +48,7 @@
       align-items: center;
       justify-items: center;
       background: white;
+      background: url('bg.jpg');
       background-size: cover;
     }
 
