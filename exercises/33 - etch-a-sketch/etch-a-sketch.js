@@ -52,6 +52,10 @@ let y = Math.floor(Math.random() * height);
 cxt.lineJoin = 'round'; // it is when a line bend to make it round on the bending
 cxt.lineCap = 'round'; // it is the line top and bottom rounded
 cxt.lineWidth = MOVE_AMOUNT; // the line width by default is 1px
+
+// changing colors of the line
+let hue = 0;
+cxt.strokeStyle = `hsl(${hue}, 100%, 50%)`; // check the starting color on mothereffing HSL website
 // if put in the console ctx you get a set of properties you can set or get
 cxt.beginPath(); // it will start the drawing - put the marker on the page
 cxt.moveTo(x, y); // it will start to move the marker at spefic position
@@ -76,6 +80,8 @@ cxt.stroke();
 // possible also to write it like with object descruturing (properties renamed into property variables):
 
 const draw = ({ key }) => {
+  hue += 10;
+  cxt.strokeStyle = `hsl(${hue}, 100%, 50%)`;
   console.log('hhhhh');
   console.log(key);
 
@@ -132,9 +138,20 @@ const handleKey = (event) => {
 // ######################################################
 // clear or shake function
 // ######################################################
-
+const clearCanvas = () => {
+  canvas.classList.add('shake');
+  cxt.clearRect(0, 0, width, height); // start 0 - 0 , in the top left corner and go for 500, 500 bottom right
+  canvas.addEventListener(
+    'animationend',
+    function () {
+      canvas.classList.remove('shake');
+    },
+    { once: true } // it will run the eventListener only once
+  );
+};
 // ######################################################
 // listen for arrow keys
 // ######################################################
 
 window.addEventListener('keydown', handleKey);
+shakeButton.addEventListener('click', clearCanvas);
