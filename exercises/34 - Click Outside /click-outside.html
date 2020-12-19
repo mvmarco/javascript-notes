@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="../../base.css">
+</head>
+
+<body>
+  <div class="cards">
+    <div class="card" data-description="Marco is cool">
+      <img src="https://picsum.photos/200?random=1" alt="random photos">
+      <h2>Marco</h2>
+      <button>Learn more →</button>
+    </div>
+    <div class="card" data-description="Lapo is neat!">
+      <img src="https://picsum.photos/200?random=2" alt="random photos">
+      <h2>Lapo</h2>
+      <button>Learn more →</button>
+    </div>
+    <div class="card" data-description="Olivia is beautiful!">
+      <img src="https://picsum.photos/200?random=3" alt="random photos">
+      <h2>Olivia</h2>
+      <button>Learn more →</button>
+    </div>
+    <div class="card" data-description="Snickers is a dog!">
+      <img src="https://picsum.photos/200?random=4" alt="random photos">
+      <h2>Snickers the dog</h2>
+      <button>Learn more →</button>
+    </div>
+
+  </div>
+
+  <div class="modal-outer"> <!-- it is the shading on top of the cards -->
+    <div class="modal-inner">
+      <p>TEsting 123</p>
+    </div>
+  </div>
+
+  <style>
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-gap: 20px;
+      padding: 2rem;
+    }
+
+    .card {
+      background: white;
+      padding: 1rem;
+      border-radius: 2px;
+    }
+
+    .card img {
+      width: 100%;
+    }
+
+    .card h2 {
+      color: black;
+    }
+
+    .modal-outer {
+      display: grid;
+      background: hsla(50, 100%, 50%, 0.7);
+      position: fixed;
+      height: 100vh;
+      width: 100vw;
+      top: 0;
+      left: 0;
+      justify-content: center;
+      align-items: center;
+      /* Hide this modal until we need it */
+      opacity: 0; /* this will let the modal be present (with opacity 0) but you cannot click anything behing like the buttons */
+      pointer-events: none; /* this will tell the browser to ignore any events that comes to that modal, so if you click the buttons will still work */
+      transition: opacity 0.2s; /* once you apply the opacity 1 this will come up */
+    }
+
+    .modal-outer img {
+      width: 100%;
+    }
+
+    /* when the modal has a class of open you will do the opposite, see the modal and all the event blocked */
+    .modal-outer.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-inner {
+      max-width: 600px;
+      min-width: 400px;
+      padding: 2rem;
+      border-radius: 5px;
+      min-height: 200px;
+      background: white;
+      transform: translateY(-200%);
+      transition: transform 2s;
+    }
+
+    .modal-outer.open .modal-inner {
+      transform: translateY(0);
+    }
+  </style>
+  <script src="click-outside.js"></script>
+</body>
+
+</html>
