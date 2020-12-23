@@ -63,7 +63,6 @@
  the reason why you dont do >== and <== is because > and < are used only with number
  so >= and <= is enough
 */
-
 // ############################
 // EQUALS
 // ############################
@@ -80,15 +79,22 @@
       console.log('SUPER COOL AWESOME NAME');
     }
 
-    function nameIsAwesome(name) {
-      return 'awesome'.includes(name);
-    }
+    const nameIsAwesome = (nameAgain) => 'awesome'.includes(nameAgain);
+    console.log(nameIsAwesome('wes')); // this will return true
 
-    if (nameIsAwesome('wes')) {
+    if (nameIsAwesome('marco')) {
       console.log('COOL NAME WES');
+    } else {
+  console.log('marco is not included in awesome');
     }
 
     const dog = '';
+    /*  
+    an empty string is not returning true or false but an empty string still works as false
+    because and IF statement will take in a number of different values and will try to
+    coerce them, in other words, try to convert them in trutly or falsy values. So if they are not
+    it wil still work
+    */
 
     if (dog) {
       console.log('you have a dog');
@@ -130,7 +136,7 @@ const values = [
     });
     console.groupEnd();
 
-    console.clear();
+    // console.clear();
 
     const isCool = true;
 
@@ -191,3 +197,8 @@ const values = [
 </body>
 
 </html>
+
+
+
+
+<!-- 20:43 -->
