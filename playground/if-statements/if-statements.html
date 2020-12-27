@@ -88,9 +88,12 @@
   console.log('marco is not included in awesome');
     }
 
+    // ############################
+    // COERCION
+    // ############################
     const dog = '';
     /*  
-    an empty string is not returning true or false but an empty string still works as false
+    an empty string is not returning true or false, but an empty string still works as true or false
     because and IF statement will take in a number of different values and will try to
     coerce them, in other words, try to convert them in trutly or falsy values. So if they are not
     it wil still work
@@ -101,6 +104,72 @@
     } else {
       console.log('you dont have a dog');
     }
+
+// ############################
+// TRUTHY OR FALSY VALUES
+// ############################
+
+/* 
+// ############################
+// TRUTHY VALUES
+// ############################
+
+------------------------------------------------------------------------------------------------
+  * 1 
+------------------------------------------------------------------------------------------------
+  * -10
+
+     const score = -10;
+
+    if (score) {
+      console.log('There is a score already');
+    } else {
+      console.log('No score yet'); <-------------------------------------- what u get
+    }
+
+------------------------------------------------------------------------------------------------
+  * full string
+------------------------------------------------------------------------------------------------
+  * a string of "0" is truty because it is a string, like any other strings. Only an empty string is falsy
+------------------------------------------------------------------------------------------------
+  * an array is also truthy for instance: let score = [1, 2, 1234543] but also an empty one let score = [];
+------------------------------------------------------------------------------------------------
+  * an empty object is the same as an empty array: truthy
+------------------------------------------------------------------------------------------------
+// ############################
+// FALSY VALUES
+// ############################
+
+------------------------------------------------------------------------------------------------
+  * 0
+
+    const score = 0;
+
+    if (score) {
+      console.log('There is a score already');
+    } else {
+      console.log('No score yet'); <-------------------------------------- what u get
+    }
+
+------------------------------------------------------------------------------------------------
+
+  * undefined variable
+
+      let score
+
+    if (score) {
+      console.log('There is a score already');
+    } else {
+      console.log('No score yet'); <-------------------------------------- what u get
+    }
+------------------------------------------------------------------------------------------------
+  * Variable set to null
+------------------------------------------------------------------------------------------------
+  * a variable set to the substraction of different types (`"hello" - 10`) you get NaN
+------------------------------------------------------------------------------------------------
+  * empty string is always falsy, it is the only one that is falsy
+------------------------------------------------------------------------------------------------
+*/
 
     const score = {};
 
@@ -138,37 +207,75 @@ const values = [
 
     // console.clear();
 
-    const isCool = true;
+    // ############################
+    // COERCION
+    // ############################
+    /* 
+    a bang ! can coearce a value that is not a boolean to a boolean, if in the console we do:
+    name = 'marco'
+    !marco
+    false
 
+    while if you use double bang !! on something that already exist we get the value of its existece:
+    !!name
+    true
+
+    another example if we do:
+    let middle = ""
+    !middle
+    true
+    !!middle
+    false
+    */
+
+    const isCool = true;
     if (!isCool) {
       console.log('You are not cool');
     }
 
-    // ternary
-    const count = 5234234;
-    // let word;
-    // if (count === 1) {
-    //   word = 'item';
-    // } else {
-    //   word = 'items';
-    // }
+// ############################
+// TERNARY
+// ############################
+// needs three things:
 
-    // 1. Condition
-    // 2. what to do if true
-    // 3. what to do if false
-    const word = count === 1 ? 'item' : 'items';
-    const sentenceOne = `You have ${count} item${
+// 1. Condition
+// 2. what to do if true
+// 3. what to do if false
+
+/* 
+const count = 2;
+let word;
+
+if (count === 1) {
+  word = 'item';
+} else {
+  word = 'items'
+}
+*/
+
+// a ternary is a short if else statement
+/* 
+const count = 2;
+const word = count === 1 ? 'item' : 'items';
+const sentence = `you have ${count} ${word} in your cart`;
+console.log(sentence);
+ */
+
+// we can also do the ternary inside the interpolation where if it is true do nothing otherwise add an s
+const count = 200;
+const sentenceOne = `You have ${count} item${
   count === 1 ? '' : 's'
 } in your cart`;
-    console.log(sentenceOne);
+console.log(sentenceOne);
 
+// we an also use ternary to run functions
     function showAdminBar() {
       console.log('Showing admin bar');
     }
-    const isAdmin = false;
-    // isAdmin ? showAdminBar() : null;
+    const isAdmin = true;
+    // isAdmin ? showAdminBar() : null; // null will not show anything
 
-    // AND AND TRICK!
+// if we have multiple element we an use AND AND TRICK but also to avoid to put null in line 276 - check lines 298 and 299!
     function check1() {
       console.log('Running check 1');
       return true;
@@ -187,18 +294,18 @@ const values = [
     } else {
       console.log('Some checks failed');
     }
-    // isAdmin ? showAdminBar() : null;
-    isAdmin && showAdminBar();
 
+    // isAdmin ? showAdminBar() : null; same as:
+    // isAdmin && showAdminBar();
     if (isAdmin) {
   showAdminBar();
 }
+
+//   if (isAdmin)
+// showAdminBar();
   </script>
 </body>
 
 </html>
 
 
-
-
-<!-- 20:43 -->
