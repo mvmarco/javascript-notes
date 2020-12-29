@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Intervals and Timers</title>
+  <link rel="stylesheet" href="../../base.css">
+</head>
+
+<body>
+  <script>
+// ############################
+// TIME-OUT
+// ############################
+
+// if you wanna run something after some time (eg 5 seconds) you use a time-out
+
+// setTimeout(); is a global variable on window or a method. Better no to use window.setTimeout();
+// you can just call setTimeout(); it is automatic on the browser
+
+/* setTimeout(callback, 100ms) has two argument, a callback and the milliseconds you wanna call that callback function  */
+
+setTimeout(() => {
+  console.log('i am running after half a second or 500ms');
+}, 500);
+
+// you can also set the time-out callback function outside
+
+console.log('starting');
+const buzzer = () => {
+  console.log('eeeeeeeeeeeng im a buzzer sound after a second');
+};
+setTimeout(buzzer, 1000);
+console.log('starting');
+
+// ############################
+// INTERVALS
+// ############################
+
+// if you wanna run something every time (eg every 5 seconds) you use a intervals
+  </script>
+</body>
+
+</html>
