@@ -32,22 +32,64 @@ setTimeout(() => {
 // ############################
 
 /* 
-  JS
+  JS says I log from top to bottom and if there is something in the middle to run with a timer, I will
+  keep run the rest, and then when the time of the timer function arises i will run it. So i dont
+  waste time. that is also why it is call callback. We call it at a later point in time 
 */
 
-// console.log('starting'); <-------- this guy is indipendent from the buzzer, doesnt wait
+console.log('starting'); // RUN 1ST <-------- this guy is indipendent from the buzzer, doesnt wait
 const buzzer = () => {
-  console.log('eeeeeeeeeeeng im a buzzer sound after a second');
+  console.log('eeeeeeeeeeeng im a buzzer sound after a second or two'); // RUN 3RD
 };
 setTimeout(buzzer, 1000);
-// console.log('finishing'); <-------- this guy is indipendent from the buzzer, doesnt wait
+// console.log('finishing'); RUN 2ND <-------- this guy is indipendent from the buzzer, doesnt wait
 
 // ############################
 // INTERVALS
 // ############################
 
 // if you wanna run something every time (eg every 5 seconds) you use a intervals
-  </script>
+// it is the same as the timer on the way of building it
+const interval = () => {
+  console.log('im a running this each 2 second, I am an interval'); // RUN 3RD
+};
+setInterval(interval, 2000);
+
+/* 
+if you wanna run the first interval without waiting the first two seconds (eg)
+before anything. you can build up your own interval.
+*/
+
+// const setImmediateInterval = (funcToRun, ms) => {};
+
+const setImmediateInterval = (funcToRun, ms) => {
+  // right away call that function to be run
+  funcToRun();
+  // run the regular interval
+  return setInterval(funcToRun, ms);
+};
+
+setImmediateInterval(buzzer, 2000);
+
+// ############################
+// CLEARING INTERVALS
+// ############################
+
+const destroy = () => {
+  document.body.innerHTML = `<p>DESTROYED</p>`;
+};
+
+setTimeout(destroy, 5000);
+
+/*  
+if somebody does not click in 5 seconds we gonna run destroy
+but if someone does click we gonna clear it
+*/
+const handleClick = () => console.log('You clicked! you saved the world');
+window.addEventListener('click', handleClick);
+</script>
 </body>
 
 </html>
+
+<!-- 9,33 -->
