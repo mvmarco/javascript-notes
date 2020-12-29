@@ -25,14 +25,22 @@ setTimeout(() => {
   console.log('i am running after half a second or 500ms');
 }, 500);
 
-// you can also set the time-out callback function outside
+// you can also set the time-out callback function outside check below
 
-console.log('starting');
+// ############################
+// ASYNCRONOUS NATURE OF JS
+// ############################
+
+/* 
+  JS
+*/
+
+// console.log('starting'); <-------- this guy is indipendent from the buzzer, doesnt wait
 const buzzer = () => {
   console.log('eeeeeeeeeeeng im a buzzer sound after a second');
 };
 setTimeout(buzzer, 1000);
-console.log('starting');
+// console.log('finishing'); <-------- this guy is indipendent from the buzzer, doesnt wait
 
 // ############################
 // INTERVALS
