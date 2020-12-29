@@ -72,21 +72,39 @@ const setImmediateInterval = (funcToRun, ms) => {
 setImmediateInterval(buzzer, 2000);
 
 // ############################
-// CLEARING INTERVALS
+// CLEARING TIMERS
 // ############################
 
 const destroy = () => {
   document.body.innerHTML = `<p>DESTROYED</p>`;
 };
 
-setTimeout(destroy, 5000);
-
+const bombTimer = setTimeout(destroy, 5000); // set a variable in order to stop the timer later in time
+console.log(bombTimer); // we get 7, which are all the current timer on the page
 /*  
-if somebody does not click in 5 seconds we gonna run destroy
-but if someone does click we gonna clear it
+if somebody does not click in 5 seconds we gonna run a function 
+but if someone does click we gonna clear it (stop the timer)
 */
-const handleClick = () => console.log('You clicked! you saved the world');
+const handleClick = () => {
+  console.log('You clicked! you saved the world');
+  // how to stop the timer to run
+  clearTimeout(bombTimer); // stop the timer from running
+};
+
 window.addEventListener('click', handleClick);
+
+// ############################
+// CLEARING INTERVALS
+// ############################
+
+const emoticonInterval = setInterval(() => {
+  console.log('🌞');
+}, 10);
+
+// clear after 5 seconds
+setTimeout(() => {
+  clearInterval(emoticonInterval);
+}, 3000);
 </script>
 </body>
 
