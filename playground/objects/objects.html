@@ -60,16 +60,16 @@ const age = 100;
 const person = {
   age,
   name: 'marco',
-  '777': true,
+  '777': true, // the number will be corrected without a string
   'really cool': false,
   'test-property-with-dash': 'testing',
 };
 
 console.log(person);
-
 */
 
-/* 
+// we can also add sub-properties with an object nested inside the main object
+// we can also add functions
 const age = 100;
 const wes = {
   age,
@@ -79,19 +79,56 @@ const wes = {
   'really cool': false,
   777: true,
   dog: 'snicker',
+  // sub-properties with an object
   clothing: {
     shirts: 10,
     pants: 2,
   },
+  // functions properties
   sayHello(greeting = 'Hey') {
     return `${greeting} ${this.name}`;
   },
 };
 
-wes.job = 'Web Developer';
-wes.age = 50;
+// ############################
+// ACCESS PROPERTIES
+// ############################
 
-console.log(wes.age);
+// how to add new property or update
+wes.job = 'Web Developer';
+wes.age = 50; // age is a costant but you can update its value and not create another age const. That is what costants are
+console.log(wes.clothing);
+console.log(wes); // you get the whole object
+
+/*
+you can also access properties with
+console.log(wes['age']);
+but prettier fix it: console.log(wes.age);
+
+but it is for explaining that if you do:
+*/
+const propertyToCheck = prompt('What do you wanna check');
+
+/* 
+it will replace the input string of the prompt with whatever property you have in wes
+it means that strings are converted in properties
+you use square brakets when the property to check is an input from the user for instance
+and you are not sure what that would be
+or when you have to console.log the properties with custom names '777' or 'cool-dude' or 'really cool'
+*/
+
+console.log(wes[propertyToCheck]);
+
+there is a way of let an object stays with its properties and dont let anyone change them
+the way is to use freeze.
+
+const wesFroze = Object.freeze(wes)
+
+now if you go in the console and try to update: wesFroze.age = 100
+calling wesFroze will tell you again that the age is 50
+
+*/
+
 // const properyToCheck = prompt('What do you want to check?');
 // console.log(properyToCheck);
 // console.log(wes[properyToCheck]);
@@ -166,7 +203,7 @@ function doStuff2(data) {
   console.log(data);
 }
 
-doStuff2(inventory); */
+doStuff2(inventory);
   </script>
 </body>
 
