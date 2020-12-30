@@ -82,12 +82,19 @@ therefore is a good practice use === */
 // OBJECTS SECTION ----- OBJECTS SECTION ----- OBJECTS SECTION ----- OBJECTS SECTION ----- OBJECTS SECTION
 // ##################################################################################################################
 
+/* 
+
+there are different types of objects: array, object, functions, date and more
+
+*/
+
 // objects is everything is {} brakes
 const person = {
   first: 'wes',
   last: 'bos',
   age: 10,
 };
+console.log(person);
 // order doesnt matter in an object, for that use array. To get the value you use:
 // person.first;
 // person.last;
@@ -137,3 +144,7 @@ teller.last = null;
 const isDrawing = false;
 const age1 = 18;
 const ageOf = 19;
+
+console.log(isDrawing);
+console.log(age1);
+console.log(ageOf);

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="../../base.css">
+</head>
+
+<body>
+  <input type="text" name="first" value="wes">
+
+  <script src="https://unpkg.com/lodash"></script>
+  <script>
+// ############################
+// OBJECTS
+// ############################
+
+/* 
+
+everything in JS is an object. Objects allow us to group together properties (or keys) and values.
+the function is to store data or create a custom type. What is important is that object are used where
+the order of property does not matter. Never rely on the order of the property in an object to be 
+mainteined in the same way. Different browser have different orders.
+
+the object literal syntax convention to write object is: 
+
+const person = {
+  age: 100,
+  name: 'marco',
+};
+
+property on the left and value on the right. The value can be any type (number, boolean, numbers
+variables, arrays a etc etc check the lesson types)
+
+// as mentioned above you can also pass a vaiable as an object
+
+const age = 100;
+const person = {
+  age = age,
+  name: 'marco',
+};
+
+// if you pass a variable with the same name as the value you can just do:
+
+const age = 100;
+const person = {
+  age,
+  name: 'marco',
+};
+
+
+// if you wanna include a property with dashes or number or spaces has to be passed as a string
+the console will read is a property. Otherwise wont work. you cannot have variables with dashes
+but you can have properties. Also as mentioned you cannot trust the order, in fact 777 in the console
+will be on top. NEVER TRUST THE ORDER. ALWAYS PUT THE COMMA ALSO ON THE LAST ONE, GOOD PRACTICE
+
+const age = 100;
+const person = {
+  age,
+  name: 'marco',
+  '777': true,
+  'really cool': false,
+  'test-property-with-dash': 'testing',
+};
+
+console.log(person);
+
+*/
+
+/* 
+const age = 100;
+const wes = {
+  age,
+  name: 'wes',
+  properyToCheck: 'NEVER',
+  'cool-dude': true,
+  'really cool': false,
+  777: true,
+  dog: 'snicker',
+  clothing: {
+    shirts: 10,
+    pants: 2,
+  },
+  sayHello(greeting = 'Hey') {
+    return `${greeting} ${this.name}`;
+  },
+};
+
+wes.job = 'Web Developer';
+wes.age = 50;
+
+console.log(wes.age);
+// const properyToCheck = prompt('What do you want to check?');
+// console.log(properyToCheck);
+// console.log(wes[properyToCheck]);
+
+const nameInput = document.querySelector('[name="first"]');
+const name = nameInput ? nameInput.value : '';
+console.log(name);
+
+// console.log(delete wes.job);
+// wes.age = undefined;
+// wes.age = null;
+
+let name1 = 'wes';
+let name2 = 'wes';
+
+console.log(name1 === name2);
+name1 = 'scott';
+console.log(name1 === name2);
+// update name1 to be what is name2
+name1 = name2;
+console.log(name1 === name2);
+name2 = name1;
+name2 = 'westopher';
+
+const person1 = {
+  first: 'wes',
+  last: 'bos',
+  clothing: {
+    shirts: 10,
+    pants: 2,
+  },
+};
+const person2 = {
+  first: 'wes',
+  last: 'bos',
+};
+
+// const person3 = person1;
+// person3.first = 'Larry';
+// console.log(person3.first);
+// console.log(person1.first);
+// const person3 = { ...person1 };
+const person3 = _.cloneDeep(person1);
+person3.first = 'Larry';
+
+person3.clothing.shirts = 100;
+
+const meatInventory = {
+  bacon: 2,
+  sausage: 3,
+  oyster: 10,
+};
+
+const veggieInventory = {
+  lettuce: 5,
+  tomatoes: 3,
+  oyster: 15,
+};
+
+const inventory = {
+  ...meatInventory,
+  ...veggieInventory,
+};
+
+function doStuff(data) {
+  data = 'something else';
+  console.log(data);
+}
+
+function doStuff2(data) {
+  data.tomatoes = 10000000000;
+  console.log(data);
+}
+
+doStuff2(inventory); */
+  </script>
+</body>
+
+</html> 
