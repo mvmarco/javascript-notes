@@ -275,40 +275,87 @@ so if you wanna take a copy of another object you can with the spread
 // SPREAD
 // ############################
 
-// const person3 = { ...person1 };
+/*
+ spread is a three dot operator (...) and it is used to take every single item/value in an object
+and spread it into a new object
+
+// const person3 = { ...person1 }; which takes everything inside person1 and spread it into person3
+
+the previous way was assigning to an empy object the one you wanted to copy, then copy it inside the new one: 
+// const person 3 = Object.assign({}, person1);
+
+so now if we do: 
+person3.first = 'Larry';
+person1.first // we get wes
+person3.first // we get Larry
+
+*/
+
+// another example:
+
+const person1 = {
+  first: 'wes',
+  last: 'bos',
+  clothing: {
+    shirts: 10,
+    pants: 1,
+  },
+};
+
+const person3 = { ...person1 };
+console.log(person3); // we get the same as person one
+
+/*
+ but if we wanna update a nested object we get the same problem as the beginning
+the spread works only for the first child and not the nested ones. the updating
+goes deep one level, the first level then the reference problem persist
+ */
+
+person3.clothing.shirts = 100;
+console.log(person1); // the person one has now 100 shirts
+
+/*   
+
+in order to update a nested object we need to do a deep clone all object properties.
+we can do that in two ways: the utility library or lowdash library
+with lodash is important to put the script  <script src="https://unpkg.com/lodash"></scrupt> 
+in the HTML and then do:
+
 const person3 = _.cloneDeep(person1);
 person3.first = 'Larry';
 
-person3.clothing.shirts = 100;
+person3.clothing.shirts = 100; // this will not change the shirts value on person1
 
-const meatInventory = {
-  bacon: 2,
-  sausage: 3,
-  oyster: 10,
-};
+*/
 
-const veggieInventory = {
-  lettuce: 5,
-  tomatoes: 3,
-  oyster: 15,
-};
+// const meatInventory = {
+//   bacon: 2,
+//   sausage: 3,
+//   oyster: 10,
+// };
 
-const inventory = {
-  ...meatInventory,
-  ...veggieInventory,
-};
+// const veggieInventory = {
+//   lettuce: 5,
+//   tomatoes: 3,
+//   oyster: 15,
+// };
 
-function doStuff(data) {
-  data = 'something else';
-  console.log(data);
-}
+// const inventory = {
+//   ...meatInventory,
+//   ...veggieInventory,
+// };
 
-function doStuff2(data) {
-  data.tomatoes = 10000000000;
-  console.log(data);
-}
+// function doStuff(data) {
+//   data = 'something else';
+//   console.log(data);
+// }
 
-doStuff2(inventory);
+// function doStuff2(data) {
+//   data.tomatoes = 10000000000;
+//   console.log(data);
+// }
+
+// doStuff2(inventory);
   </script>
 </body>
 
