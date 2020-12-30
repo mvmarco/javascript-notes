@@ -84,7 +84,7 @@ const wes = {
     shirts: 10,
     pants: 2,
   },
-  // functions properties
+  // functions properties or methods. it is not an arrow function
   sayHello(greeting = 'Hey') {
     return `${greeting} ${this.name}`;
   },
@@ -175,35 +175,106 @@ you will delete them, but instead means you just update their value and they are
 // METHODS
 // ############################
 
+// methods are functions that lives inside of an object
+
+/* 
+
+const wes = {
+  age,
+  name: 'wes',
+  //  methods
+  sayHello(greeting = 'Hey') {
+    return `${greeting} ${this.name}`;
+  },
+};
+
+if in the console you do wes.sayHello you get 'Hey wes'
+this refers to what is before the dot which is wes
+
+you use the word this to refer to the main object name and if you have multiple
+objects you can just use this instead writing the name wes.name and another name and another name
+for each main objects 
+
+arrow function dont have access to this, but instead the parent element will inherit 
+automatically the this, but you can do this:
+
+const wes = {
+  age,
+  name: 'wes',
+  //  methods
+  sayHello: (greeting = 'Hey') => {
+    return `${greeting} ${name}`;
+  },
+};
+
+
+in sum when you have a function that lives inside of an objects that is what is referred as a method
+
+
+*/
+
+// ############################
+// OBJECT REFERENCE VS VALUES
+// ############################
+
 let name1 = 'wes';
 let name2 = 'wes';
 
-console.log(name1 === name2);
+console.log(name1 === name2); // we get true
 name1 = 'scott';
-console.log(name1 === name2);
+console.log(name1 === name2); // we get false
+
 // update name1 to be what is name2
 name1 = name2;
-console.log(name1 === name2);
+console.log(name1 === name2); // we get true
 name2 = name1;
-name2 = 'westopher';
+console.log(name1 === name2); // we get true
+name2 = 'westopher'; // name1 is still wes
+
+/* 
+one equal is just update the left value with the value of the right one. 
+Without changing the right value. For objects is as follow: 
 
 const person1 = {
   first: 'wes',
   last: 'bos',
-  clothing: {
-    shirts: 10,
-    pants: 2,
-  },
 };
+
 const person2 = {
   first: 'wes',
   last: 'bos',
 };
 
-// const person3 = person1;
-// person3.first = 'Larry';
-// console.log(person3.first);
-// console.log(person1.first);
+console.log(person1 === person2);  // we get false 
+
+We get false because when we compare objects we reference the object itself
+and not the values inside of it. If there are two separate objects even though 
+they may have the same content inside. They are still different. So it is different
+than a string, because a string can only have a value while objects have multiple.
+No matter if two objects have the same values, objects are different.
+
+
+if we do:
+const person3 = person1;
+person3.first = 'Larry';
+console.log(person3.first); // we get Larry
+console.log(person1.first); // we get Larry 
+
+if we do person3.last = 'Cool'
+also the person1.last will be equal to 'Cool'
+
+this is because objects and array are copied by reference which means
+that when we did const person3 = person1; we are taking a variable (person3)
+that reference to the original one (person1) instead of making a copy of it
+
+so if you wanna take a copy of another object you can with the spread
+
+*/
+
+// ############################
+// SPREAD
+// ############################
+
 // const person3 = { ...person1 };
 const person3 = _.cloneDeep(person1);
 person3.first = 'Larry';
