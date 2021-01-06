@@ -9,6 +9,7 @@
 </head>
 
 <body>
+  <ul class="prizes"></ul>
   <script>
   /* 
     similar to an object. Here we learn: 
@@ -16,6 +17,20 @@
     2 what does it do 
     3 why you wanna use it instead of an object, when map or object
   */
+
+// ##############################
+// KEY DIFFERENCES FOR INTERVIEWS
+// ##############################
+
+/* with map() 
+
+    1 key and values can be any types
+    2 the order of how you put the things is the order of how they are presented. In other words
+    each object order matters, that is why you can call the index. 
+    for instance if you gotta loop over a map the order matters, when you get what you need stops
+    if you loop an object it can stop even before the right result
+
+*/
 
   const myMap = new Map();
 
@@ -38,10 +53,8 @@
   
    
     age = 100 will be not added to the set key value such as on line 29 (entries)
-    but it will be just a property of the map. In other words,
-    Entries is an array where each position(index) is a set of key value pair inside
-    an object like line 29 (that  has been set with .set() for istance). if you do myMap.age = 100 
-    you just add to an array the property age: 100 and not an object so there is no way of calling it
+    but it will be just a property of the map. if you do myMap.age = 100 
+    you just add the property age: 100 and not an object so there is no way of calling it
     as you would with an index but instead with entries.age
   */
 
@@ -76,6 +89,37 @@
   prizes.set(300, 'car');
   console.log(prizes.get(score));
 
+  /* 
+    another thing is that the order of how you put the data is the order of how they are presented.
+    In other words
+    each object order matters, that is why you can call the index 
+
+    for instance if you gotta loop over a map the order matters, when you get what you need 
+    (eg. 1 2 3 4) stops. imagining to adding to something a value until the 4th result.
+    it includes everything before 4.
+    if you loop an object it can stop even before the right result because there is no order
+    (eg. 2 4 1 3) stops.
+    it includes only 2.
+  */
+
+  const ul = document.querySelector('.prizes');
+
+  prizes.forEach((prize) => {
+    console.log(prize);
+  });
+
+  /* 
+    since we call prize just the first value of the forEach we get the values
+    prizes.forEach((value, key) => {
+    console.log(key, value);;
+    });  
+  */
+
+  // an alternative
+  for (const prize of prizes) {
+    console.log(prize);
+  }
+
 // ############################
 // .has()
 // ############################
@@ -87,3 +131,6 @@
 </body>
 
 </html>
+
+
+<!-- 8:00 -->
