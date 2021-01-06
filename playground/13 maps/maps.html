@@ -66,6 +66,16 @@
 
   // to get some values from myMap you do:
   console.log(myMap.get(person1));
+
+  // so another example:
+
+  const score = 300; // so if you change this you get different prizes in line 77
+  const prizes = new Map();
+  prizes.set(100, 'bear');
+  prizes.set(200, 'duck');
+  prizes.set(300, 'car');
+  console.log(prizes.get(score));
+
 // ############################
 // .has()
 // ############################
