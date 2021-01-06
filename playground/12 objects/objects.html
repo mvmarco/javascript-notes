@@ -319,44 +319,101 @@ console.log(person1); // the person one has now 100 shirts
 in order to update a nested object we need to do a deep clone all object properties.
 we can do that in two ways: the utility library or lowdash library
 with lodash is important to put the script  <script src="https://unpkg.com/lodash"></scrupt> 
+
+(check the page)
+
 in the HTML and then do:
 
 const person3 = _.cloneDeep(person1);
 person3.first = 'Larry';
 
 person3.clothing.shirts = 100; // this will not change the shirts value on person1
-
 */
 
-// const meatInventory = {
-//   bacon: 2,
-//   sausage: 3,
-//   oyster: 10,
-// };
+// ##############################################################################
+// SPREAD MULTIPLE OBJECTS/MERGING THEM TOGETHER OR COPY THE INFO LIKE A VARIABLE
+// ##############################################################################
 
-// const veggieInventory = {
-//   lettuce: 5,
-//   tomatoes: 3,
-//   oyster: 15,
-// };
+const meatInventory = {
+  bacon: 2,
+  sausage: 3,
+  oyster: 10, // double
+};
 
-// const inventory = {
-//   ...meatInventory,
-//   ...veggieInventory,
-// };
+const veggieInventory = {
+  lettuce: 5,
+  tomatoes: 3,
+  oyster: 15, // double
+};
 
-// function doStuff(data) {
-//   data = 'something else';
-//   console.log(data);
-// }
+const inventory = {
+  ...meatInventory,
+  ...veggieInventory,
+  // you can also add a new key value set after the comma by doing: oysters: 10,
+  // but only the value with the 15 will be taken if not added here. Because come after
+  // if you add 10, then 10 will be present as value for oyster
+};
 
-// function doStuff2(data) {
-//   data.tomatoes = 10000000000;
-//   console.log(data);
-// }
+console.log(inventory); // this will give an inventory containing veggie and meat inventory
 
-// doStuff2(inventory);
-  </script>
+// ########################################
+// OBJECT REFERENCE VS VALUES FOR FUNCTIONS
+// ########################################
+
+const example = 'marco';
+
+const changingName = (renaming) => {
+  // eslint-disable-next-line no-param-reassign
+  renaming = 'new name';
+  console.log(renaming);
+};
+
+console.log(changingName(example)); // here you get new name and not marco, it works as it is supposed to
+console.log(example); // here it still runs marco
+
+// but if you do it with functions that are taking objects:
+
+const doStuff2 = (data) => {
+  data.tomatoes = 10000000000;
+  console.log(data);
+};
+
+console.log(doStuff2(inventory)); // this one will return the inventory with tomatoes: 10000000000;
+console.log(inventory); // this still will return with tomatoes: 10000000000;
+
+/* 
+meaning that if you pass an object in a function and you modify it, the external object
+will also be updated. Not the case for booleans, numbers, strings and variables. But it is 
+the case for objects and arrays
+*/
+</script>
+
+
 </body>
 
 </html> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
