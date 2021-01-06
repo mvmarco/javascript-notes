@@ -19,7 +19,7 @@
 
   const myMap = new Map();
 
-  // in order to add items to a map we have: .set(); .has() .delete();
+  // in order to build or to add items to a map we have: .set(); .has() .delete();
 
 // ############################
 // .set()
@@ -27,12 +27,45 @@
   
   // .set(); set key and value, first key and second the value
   myMap.set('name', 'wes');
-  
-/*  
-  in the console if you call myMap you get myMap(1) because there is only one set of
-  key value
-*/
 
+  // if you do:
+  myMap.age = 100;
+  console.log(myMap);
+
+  /*  
+    By the way: in the console if you call myMap you get myMap(1) because there is only one set of
+    key value so far
+  
+   
+    age = 100 will be not added to the set key value such as on line 29 (entries)
+    but it will be just a property of the map. In other words,
+    Entries is an array where each position(index) is a set of key value pair inside
+    an object like line 29 (that  has been set with .set() for istance). if you do myMap.age = 100 
+    you just add to an array the property age: 100 and not an object so there is no way of calling it
+    as you would with an index but instead with entries.age
+  */
+
+  /* 
+   with set() you can set any type or format as a key or value. Numbers, variables, or even arrays or boolean
+
+   This would be useful when using dictionaries
+  
+    dictionaries is a way to store additional metadata (data that describes other data) 
+    to something else, check the example below of person1 the dictionary, with object the word
+  */
+  const person1 = {
+    name: 'wes',
+    age: 200,
+  };
+
+  // numbers
+  myMap.set(100, 'This is a number');
+  // or variables or objects
+  myMap.set(person1, 'Really Cool');
+  console.log(myMap);
+
+  // to get some values from myMap you do:
+  console.log(myMap.get(person1));
 // ############################
 // .has()
 // ############################
