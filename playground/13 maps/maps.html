@@ -146,7 +146,8 @@
 
   /* 
     we can also destructuring: taking the array and instead of referencing value by their own 
-    indexes we can create variables that store their indexes
+    indexes we can create variables that store their indexes. notice that for..of takes first keys
+    and then values. foreach does the opposite
   */
 
   for (const [points, prize] of prizes) {
@@ -157,6 +158,12 @@
 // ############################
 // .has()
 // ############################
+
+  /* 
+  The has() function of the map object accepts a key in string format and returns a boolean value 
+  of true if the specified key exists.
+  Otherwise, the function returns false.
+  */
 
 // ############################
 // .delete()
