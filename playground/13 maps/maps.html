@@ -25,10 +25,29 @@
 /* with map() 
 
     1 key and values can be any types
+
     2 the order of how you put the things is the order of how they are presented. In other words
     each object order matters, that is why you can call the index. 
     for instance if you gotta loop over a map the order matters, when you get what you need stops
     if you loop an object it can stop even before the right result
+    (IF YOU WANNA MAINTAIN THE ORDER OF THE ITEMS MAP IS THE CHOICE)
+
+    3 with Map() there is not literal, aka we need to create a new Map() and then .set() items in it
+    however you can also create it with an array of an array like: 
+    new Map([['name', 'marco']['age', 29]]); - first element key and second value
+
+    4 you can put functions inside of an object we call them methods, with maps you can.
+    they are just used to store data.
+
+    5 JSON: if we have an object or an array and we have to send/transfer it to someone/server 
+    we need to convert it to text because it is easier. and we do it with JSON.stringify(person)
+    in case we have const person = {name: 'marco', age: 1000} and you can even email the
+    string to someone and they can convert it back to an object with 
+    JSON.parse("{name: 'marco', age: 1000}") - json stands for JavaScript Object Notation,
+    every language uses it though. JSON does not handle maps.  All the methods will get error
+    or get back an empy object. So if you have a map and you want to send it to someone you gotta
+    convert it to an object. with: Object.fromEntries(myMap) but if you use an object as a key
+    the convertion is gonna create problems
 
 */
 
@@ -113,11 +132,26 @@
     prizes.forEach((value, key) => {
     console.log(key, value);;
     });  
+
+    with forEach iterate a Map object getting its elements in insertion order — 
+    with a for...of loop returns an array of [key, value] for each iteration
+    so we can do also:
   */
 
-  // an alternative
   for (const prize of prizes) {
-    console.log(prize);
+    console.log(prize); // we get the arrays [100, 'bear'],[200, 'duck'],[300, 'car']
+    // so we can also call the indexes and get the individual values:
+    console.log(prize[0], prize[1]);
+  }
+
+  /* 
+    we can also destructuring: taking the array and instead of referencing value by their own 
+    indexes we can create variables that store their indexes
+  */
+
+  for (const [points, prize] of prizes) {
+    const li = `<li>${points} - ${prize}</li>`;
+    ul.insertAdjacentHTML('beforeend', li);
   }
 
 // ############################
@@ -127,6 +161,8 @@
 // ############################
 // .delete()
 // ############################
+
+// for deleting you have just to do myMap.delete('name') (example)
   </script>
 </body>
 
