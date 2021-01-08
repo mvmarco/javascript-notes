@@ -161,6 +161,64 @@ console.log(array);
 const arrayTwo = array.slice(0, 1);
 console.log(arrayTwo); // it will take only marco. starting from 0 excluding position 1
 
+// in react it is really used to remove items from an array.
+
+// lets say you have an array where each item is an object
+
+const comments = [
+  // eslint-disable-next-line prettier/prettier
+  { text: 'Cool Beans', id: 123 },
+  { text: 'Love this', id: 133 },
+  { text: 'Neato', id: 233 },
+  { text: 'good bikes', id: 333 },
+  { text: 'so good', id: 433 },
+];
+
+// function taken the id and the comments array
+// const = deleteComment(id, comments) => {
+  // first find the index of the item in the array with findIndex
+
+  /* 
+  taking this array
+  const namess = ['wes', 'kait', 'snickers'];
+
+  to get the index of kait we cannot just simple do:
+  
+  const kaitIndex = names.findIndex('kait');
+
+  because it needs to be a function and not a string. so we need to loop over somehow
+  but with a function, like this:
+
+  const kaitIndex = names.findIndex(name => {
+    if(name === 'kait') {
+      return true;
+    } else {
+      return false;
+    }
+  });
+ 
+  */
+
+const namess = ['wes', 'kait', 'snickers'];
+
+const kaitIndex = namess.findIndex((name) => {
+  if (name === 'kait') {
+      return true;
+    } else {
+  return false;
+};
+
+console.log(kaitIndex); // you get 1 because it is the index (with findIndex) and not true
+// you can get also the value if you just use find
+
+  // const commentIndex = comments.findIndex((comment) => comment.id === id);
+  // // make a new array without that item in it
+  // return [
+  //     ...comments.slice(0, commentIndex),
+  //     ...comments.slice(commentIndex + 1),
+  // ];
+  // return our new array
+// }
 // #################################
 // ARRAYS: SPLICE, MUTABLE METHOD
 // #################################
@@ -173,39 +231,19 @@ you want to remove including the starting index in order to mutate the original 
 better using slice so you are safe to dont mutate the original array
   */
 
-const numbersTwo = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-console.log(numbersTwo);
-numbersTwo.splice(3, 2);
-console.log(numbersTwo); // your array mutated will be with [1, 2, 3, 6, 7, 8, 9];
+// const numbersTwo = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// console.log(numbersTwo);
+// numbersTwo.splice(3, 2);
+// console.log(numbersTwo); // your array mutated will be with [1, 2, 3, 6, 7, 8, 9];
 
-const comments = [
-  // eslint-disable-next-line prettier/prettier
-  { text: 'Cool Beans', id: 123 },
-  { text: 'Love this', id: 133 },
-  { text: 'Neato', id: 233 },
-  { text: 'good bikes', id: 333 },
-  { text: 'so good', id: 433 },
-];
-
-function deleteComment(id, comments) {
-  // first find the index of the item in the array
-  const commentIndex = comments.findIndex((comment) => comment.id === id);
-  // make a new array without that item in it
-  return [
-      ...comments.slice(0, commentIndex),
-      ...comments.slice(commentIndex + 1),
-  ];
-  // return our new array
-}
-
-const kaitIndex = names.findIndex((name) => name === 'kait');
-const newNamesWithOutKait = [
-  // get everything up to kait index
-  ...names.slice(0, kaitIndex),
-  // everything after Kait index
-  ...names.slice(kaitIndex + 1),
-];
-console.log(newNamesWithOutKait);
+// const kaitIndex = names.findIndex((name) => name === 'kait');
+// const newNamesWithOutKait = [
+//   // get everything up to kait index
+//   ...names.slice(0, kaitIndex),
+//   // everything after Kait index
+//   ...names.slice(kaitIndex + 1),
+// ];
+// console.log(newNamesWithOutKait);
 
 // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -225,7 +263,10 @@ console.log(newNamesWithOutKait);
 // const pizzaSlice = numbers.slice(2, 5);
 // console.log(pizzaSlice);
 // console.log(numbers);
-  </script>
+</script>
 </body>
 
 </html>
+
+
+// 25:00
