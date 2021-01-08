@@ -12,73 +12,111 @@
 
 <body>
   <script>
-    const names = ['wes', 'kait', 'snickers'];
+  // ############################
+  // ARRAYS
+  // ############################
 
-    console.log(names[0]);
-    console.log(names.length); // you get 3
-    console.log(names[names.length - 1]); // you get 2
+  /* 
+    arrays are used to hold list of items in [] brackets, where the order matters.
+    The thing inside is an item and the position is the index. 
+    The number of items in an array is called length and 
+    the items in an array can be any types. 
+    to define an array you do: 
+    const names = []; which is a array literal (literal means value)
+    or you can do the less used: const names = new Array();
 
-    names.push('lux');
-    console.log(names);
-    const names2 = [...names, 'lux'];
-    names.unshift('poppy');
-    console.log(names);
-    const names3 = ['poppy', ...names];
-    console.log(names3);
+    the main different between an array and an object is that
+    an array does not have keys. but indexes. if you do:
+    typeof names the result in the console is 'object' because
+    it holds data and it is not a type. if you wanna check if an array is really an array
+    i dont know why but you can do Array.isArray(names); you get true.
 
-    const bikes = ['bianchi', 'miele', 'panasonic', 'miyata'];
-    const newBikes = [...bikes.slice(0, 2), 'benotto', ...bikes.slice(2)];
 
-    const newBikes2 = [...newBikes.slice(0, 3), ...newBikes.slice(4)];
-    console.log(newBikes2);
+  */
 
-    //
-    const comments = [
-      { text: 'Cool Beans', id: 123 },
-      { text: 'Love this', id: 133 },
-      { text: 'Neato', id: 233 },
-      { text: 'good bikes', id: 333 },
-      { text: 'so good', id: 433 },
-    ];
+// eslint-disable-next-line prettier/prettier
+const names = ['wes', 'kait', 'snickers', 'kait', 'snickers', 'kait', 'last one'];
 
-    function deleteComment(id, comments) {
-      // first find the index of the item in the array
-      const commentIndex = comments.findIndex((comment) => comment.id === id);
-      // make a new array without that item in it
-      return [
-        ...comments.slice(0, commentIndex),
-        ...comments.slice(commentIndex + 1),
-      ];
-      // return our new array
-    }
+// how to access from an array. with classic object we would do names.wes but with array is different:
+console.log(names[0]);
+console.log(names.length); // you get 3 (for maps you use .size) does not consider the 0
+/* 
+  to get the last element of an array you take the last item of an array you have to
+  take the size of the array and do minus one index to get the last result . 
+*/
+console.log(names[names.length - 1]);
 
-    const kaitIndex = names.findIndex((name) => name === 'kait');
-    const newNamesWithOutKait = [
-      // get everything up to kait index
-      ...names.slice(0, kaitIndex),
-      // everything after Kait index
-      ...names.slice(kaitIndex + 1),
-    ];
-    console.log(newNamesWithOutKait);
+  // ############################
+  // METHODS
+  // ############################
 
-    // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  /* 
+    if you call names on the console (the array), and click proto you see all the methods
+    associated with an array. Here below the most frequent
+  */
 
-    // console.log(numbers);
-    // numbers.splice(3, 2);
-    // console.log(numbers);
+names.push('lux'); // you insert the name lux
+console.log(names);
+const names2 = [...names, 'lux'];
+names.unshift('poppy');
+console.log(names);
+const names3 = ['poppy', ...names];
+console.log(names3);
 
-    // // Mutation Methods - DO CHANGE THE ORIGINAL DATA
-    // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    // // anytime you want to use a mutation method and NOT mutate the orignal array
-    // // we need to take a copy of the array
-    // const numbersReversed = [...numbers].reverse();
-    // console.log(numbersReversed);
-    // // numbers.reverse();
-    // console.log(numbers);
-    // // Immutable - THEY DO NOT CHANGE THE ORIGINAL DATA
-    // const pizzaSlice = numbers.slice(2, 5);
-    // console.log(pizzaSlice);
-    // console.log(numbers);
+const bikes = ['bianchi', 'miele', 'panasonic', 'miyata'];
+const newBikes = [...bikes.slice(0, 2), 'benotto', ...bikes.slice(2)];
+
+const newBikes2 = [...newBikes.slice(0, 3), ...newBikes.slice(4)];
+console.log(newBikes2);
+
+//
+const comments = [
+  // eslint-disable-next-line prettier/prettier
+  { text: 'Cool Beans', id: 123 },
+  { text: 'Love this', id: 133 },
+  { text: 'Neato', id: 233 },
+  { text: 'good bikes', id: 333 },
+  { text: 'so good', id: 433 },
+];
+
+function deleteComment(id, comments) {
+  // first find the index of the item in the array
+  const commentIndex = comments.findIndex((comment) => comment.id === id);
+  // make a new array without that item in it
+  return [
+      ...comments.slice(0, commentIndex),
+      ...comments.slice(commentIndex + 1),
+  ];
+  // return our new array
+}
+
+const kaitIndex = names.findIndex((name) => name === 'kait');
+const newNamesWithOutKait = [
+  // get everything up to kait index
+  ...names.slice(0, kaitIndex),
+  // everything after Kait index
+  ...names.slice(kaitIndex + 1),
+];
+console.log(newNamesWithOutKait);
+
+// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+// console.log(numbers);
+// numbers.splice(3, 2);
+// console.log(numbers);
+
+// // Mutation Methods - DO CHANGE THE ORIGINAL DATA
+// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// // anytime you want to use a mutation method and NOT mutate the orignal array
+// // we need to take a copy of the array
+// const numbersReversed = [...numbers].reverse();
+// console.log(numbersReversed);
+// // numbers.reverse();
+// console.log(numbers);
+// // Immutable - THEY DO NOT CHANGE THE ORIGINAL DATA
+// const pizzaSlice = numbers.slice(2, 5);
+// console.log(pizzaSlice);
+// console.log(numbers);
   </script>
 </body>
 
