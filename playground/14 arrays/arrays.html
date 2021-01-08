@@ -74,34 +74,110 @@ console.log(numbers); // the original array data has been mutated
 
   /* 
     anytime you want to use a mutation method and NOT mutate the original array
-    you gotta make a copy
+    you gotta make a copy of the original array. for instance with spread
+
+
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    
+    const numbersReversed = [...numbers];
+    numbersReversed.reverse();
+    console.log(numbersReversed);
+
+    numbers will still be from 1 to 9 
+    and 
+    numbersReversed will be now from 9 to 1
+
+    we can also do it in one line: const numbersReversed = [...numbers].reverse();
 
   */
 
-  // ############################
-  // IMMUTABLE METHODS
-  // ############################
+  // ###############################
+  // IMMUTABLE METHODS (most of them)
+  // ###############################
+
+  // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]; it is above
 
   // the arguments of slice are the index you start included. the index you stop excluded
-  const pizzaSlice = numbers.slice(2, 4); // take a portion off of an array and put it in a new one.
-  console.log(pizzaSlice); // you get an array with [3, 4]
+  const pizzaSlice = numbers.slice(2, 4); // take a portion off of an array and create new one.
+  console.log(pizzaSlice); // you get a new array with [3, 4]
   console.log(numbers); // it is still numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]; immutated
 
-names.push('lux'); // you insert the name lux
-console.log(names);
+  // ############################
+  // ARRAYS MANIPULATION
+  // ############################
+
+const namesNew = [...names]; // made a copy, spread
+console.log(namesNew);
+
+namesNew.push('lux'); // you insert/push the name lux. Push is a mutable method
+console.log(namesNew);
+
+// we could also spread/make a copy and add a new items together (at the end)
+// with the spread/copy:
 const names2 = [...names, 'lux'];
+console.log(names2);
+
+// if you want to add an item in front of an array and not at the end like push(); you do:
 names.unshift('poppy');
 console.log(names);
-const names3 = ['poppy', ...names];
+
+// we could also spread/make a copy and add a new items together (at the beginning)
+// with the spread/copy:
+const names3 = ['poppytwo', ...names];
 console.log(names3);
 
-const bikes = ['bianchi', 'miele', 'panasonic', 'miyata'];
-const newBikes = [...bikes.slice(0, 2), 'benotto', ...bikes.slice(2)];
+// #############################
+// ARRAYS: SLICE, IMMUTABLE METHOD
+// #############################
 
+/* 
+the arguments of slice are the index you start included. the index you stop excluded
+in order to take a portion off of an array and create new one.
+*/
+
+const bikes = ['bianchi', 'miele', 'panasonic', 'miyata'];
+console.log(bikes);
+// there is not a method to push an item in the middle, you gotta do it manually
+const newBikes = [...bikes.slice(0, 2), 'benotto', ...bikes.slice(2)];
+// you put two because is from the position you wanna start including an item
+// and nothing else that stops (the other number) so it goes until the end and including 'miyata'
+console.log(newBikes);
+/* 
+here you take bikes array and create a new one wiht only bianchi, miele, benotto, panasonic and miyata
+in this order:
+newBikes = ['bianchi', 'miele', 'benotto', 'panasonic', 'miyata']
+*/
 const newBikes2 = [...newBikes.slice(0, 3), ...newBikes.slice(4)];
 console.log(newBikes2);
+/*
+here you take newBikes array and you mutate it with bianchi, miele, and benotto and then miyata
+in this order newBikes2 =  ['bianchi', 'miele', 'benotto', 'miyata']
+it is a way to remove an item from an array and create a new one
+*/
 
-//
+// another example. if you dont put the array.slice() into a variable wont work.
+const array = ['marco', 'olivia', 'lapo'];
+console.log(array);
+const arrayTwo = array.slice(0, 1);
+console.log(arrayTwo); // it will take only marco. starting from 0 excluding position 1
+
+// #################################
+// ARRAYS: SPLICE, MUTABLE METHOD
+// #################################
+
+/* 
+the arguments of splice are the index you start removing included. and how many items
+you want to remove including the starting index in order to mutate the original array
+
+
+better using slice so you are safe to dont mutate the original array
+  */
+
+const numbersTwo = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+console.log(numbersTwo);
+numbersTwo.splice(3, 2);
+console.log(numbersTwo); // your array mutated will be with [1, 2, 3, 6, 7, 8, 9];
+
 const comments = [
   // eslint-disable-next-line prettier/prettier
   { text: 'Cool Beans', id: 123 },
