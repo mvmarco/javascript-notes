@@ -55,6 +55,38 @@ console.log(names[names.length - 1]);
     associated with an array. Here below the most frequent
   */
 
+  /*
+    there are two main types of arrays' methods: mutable and unmutable
+
+    mutable: are the ones that mutate the array changing the original values
+    unmutable: they dont change the original results data but they simple return a new array
+  */
+
+  // ############################
+  // MUTATION METHODS
+  // ############################
+
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const numbersBackwards = numbers.reverse();
+// the variable numbersBackwards is also useless: you can just do numbers.reverse(); and it will mutate
+console.log(numbersBackwards);
+console.log(numbers); // the original array data has been mutated
+
+  /* 
+    anytime you want to use a mutation method and NOT mutate the original array
+    you gotta make a copy
+
+  */
+
+  // ############################
+  // IMMUTABLE METHODS
+  // ############################
+
+  // the arguments of slice are the index you start included. the index you stop excluded
+  const pizzaSlice = numbers.slice(2, 4); // take a portion off of an array and put it in a new one.
+  console.log(pizzaSlice); // you get an array with [3, 4]
+  console.log(numbers); // it is still numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]; immutated
+
 names.push('lux'); // you insert the name lux
 console.log(names);
 const names2 = [...names, 'lux'];
