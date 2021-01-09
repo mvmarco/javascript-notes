@@ -12,6 +12,22 @@
 
 <body>
   <script>
+    // check https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+    /* 
+      
+      there are different types of methods: 
+
+        1: static methods -> Static methods are the methods in JS that can be called 
+        without creating an object of class. not available on every single array as the instance methods
+        2: instance or prototype methods (because are on the prototype) -> Instance method are methods
+        which require an object of its class to be created before it can be called 
+        (aka the array you created).
+        They can be used on top of any array you created, when you create one 
+        you get also the array prototype with its method to be used
+
+    */
+
     const toppings = [
   'Mushrooms ',
   'Tomatoes',
@@ -51,21 +67,70 @@
       { comment: 'I DONT LIKE BURGERS', rating: 1 },
     ];
 
-    /*
-      Static Methods
+    // ############################
+    // STATIC METHODS
+    // ############################
+
+// -------------------------------------------------------------------------------------------------
+    // Array.of();
+// -------------------------------------------------------------------------------------------------
+    /* 
+      not really common. You use it to create an array. for instance
+
+      Array.of('wes, 'marco')  you get  ['wes', 'marco']  I mean you could just do it manually
+      but in some cases can be useful. You can also use it to do:
+      Array.of(...'wes') getting ['w', 'e', 's'] which it does the same thing
+    */
+// -------------------------------------------------------------------------------------------------
+    // Make a function that creates a range from x to y with:
+    // Array.from();
+// -------------------------------------------------------------------------------------------------
+    /* 
+      Array.from({length: 10}) takes something that has a length and return an empty array 
+      with that length. Handy if you want an array of 10 or 15 eg items and loop over
+
+      you gotta add the function there too
     */
 
-    // Array.of();
+    const range = Array.from({ length: 10 }, function () {
+      return 'marco';
+    });
 
-    // Make a function that creates a range from x to y with Array.from();
+    console.log(range); // you can an array with 10 times 'marco'
 
-    // Check if the last array you created is really an array with Array.isArray();
+    const rangeTwo = Array.from({ length: 10 }, function (item, index) {
+      return index; // the value is undefined
+    });
+
+    console.log(rangeTwo); // you get an array with indexes from 0 to 9
+    /* 
+      if you put _item it will not work, but it is a way to show what is doing 
+      even if you dont put any arguments: implicitily will take the item
+     */
+
+    // following the exercise with the method:
+    
+    const createRange = (start, end) => {
+      const ranges = Array.from(
+        { length: end - start + 1 },
+        function (item, index) {
+          return index + start;
+        }
+  );
+      return ranges;
+    };
+
+    console.log(createRange(1, 10));
+// -------------------------------------------------------------------------------------------------
+    // Check if the last array you created is really an array with:
+    // Array.isArray();
+// -------------------------------------------------------------------------------------------------
 
     // Take the meats object and make three arrays with Object.entries(), Object.keys, Object.values()
 
-    /*
-      Instance Methods
-    */
+    // ############################
+    // INSTANCE METHODS
+    // ############################
 
     // Display all bun types with " or " - use join()
 
@@ -85,9 +150,9 @@
     // add it if it's not
     // flip those toppings around with reverse()
 
-    /*
-      Callback Methods
-    */
+    // ############################
+    // CALLBACK METHODS
+    // ############################
 
     // find the first rating that talks about a burger with find()
     // find all ratings that are above 2 with filter()
@@ -100,10 +165,13 @@
     // sort the order totals from most expensive to least with .sort()
     // Sort the prices with sort()
 
-    /*
-      Looping Methods (next)
-    */
+    // ############################
+    // LOOPING METHODS
+    // ############################
   </script>
 </body>
 
 </html>
+
+
+<!-- 9.14 -->
