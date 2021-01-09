@@ -161,64 +161,82 @@ console.log(array);
 const arrayTwo = array.slice(0, 1);
 console.log(arrayTwo); // it will take only marco. starting from 0 excluding position 1
 
-// in react it is really used to remove items from an array.
-
-// lets say you have an array where each item is an object
-
-const comments = [
-  // eslint-disable-next-line prettier/prettier
-  { text: 'Cool Beans', id: 123 },
-  { text: 'Love this', id: 133 },
-  { text: 'Neato', id: 233 },
-  { text: 'good bikes', id: 333 },
-  { text: 'so good', id: 433 },
-];
-
-// function taken the id and the comments array
-// const = deleteComment(id, comments) => {
-  // first find the index of the item in the array with findIndex
-
-  /* 
-  taking this array
-  const namess = ['wes', 'kait', 'snickers'];
-
-  to get the index of kait we cannot just simple do:
-  
-  const kaitIndex = names.findIndex('kait');
-
-  because it needs to be a function and not a string. so we need to loop over somehow
-  but with a function, like this:
-
-  const kaitIndex = names.findIndex(name => {
-    if(name === 'kait') {
-      return true;
-    } else {
-      return false;
-    }
-  });
- 
-  */
-
+// another example: taking this array
 const namess = ['wes', 'kait', 'snickers'];
 
-const kaitIndex = namess.findIndex((name) => {
-  if (name === 'kait') {
-      return true;
-    } else {
-  return false;
-};
+// to get the index of kait we cannot just simple do:
+  
+// const kaitIndex = names.findIndex('kait');
 
+  /* 
+  because it needs to be a function and not a string. so we need to loop over somehow
+  but with a function, like this:
+ */
+
+  const kaitIndex = namess.findIndex((name) => {
+    if (name === 'kait') {
+      return true;
+    }
+    return false;
+  });
+
+// better version is (with explicit return):
+
+/* 
+    const kaitIndex = namess.findIndex((name) => {
+    return name === 'kait'
+  });
+*/
+
+// or another version is (with implicit return):
+// const kaitIndex = namess.findIndex((name) => name === 'kait');
+console.log(namess);
 console.log(kaitIndex); // you get 1 because it is the index (with findIndex) and not true
 // you can get also the value if you just use find
 
-  // const commentIndex = comments.findIndex((comment) => comment.id === id);
-  // // make a new array without that item in it
-  // return [
-  //     ...comments.slice(0, commentIndex),
-  //     ...comments.slice(commentIndex + 1),
-  // ];
-  // return our new array
-// }
+// now if we want a new array without kait we do:
+
+const newNamesWithoutKait = [
+    // everything before kait
+    ...namess.slice(0, kaitIndex),
+    // everything after kait
+    ...namess.slice(kaitIndex + 1),
+];
+
+console.log(newNamesWithoutKait);
+
+  // in react it is really used to remove items from an array.
+
+  // lets say you have an array where each item is an object
+
+  const comments = [
+    { text: 'Cool Beans', id: 123 },
+    { text: 'Love this', id: 133 },
+    { text: 'Neato', id: 233 },
+    { text: 'good bikes', id: 333 },
+    { text: 'so good', id: 433 },
+  ];
+
+/*
+  so if we want to delete some comments we gotta make a fuction that takes
+  the id and the comments array.
+  because we need to find the index of what we need to delete
+  if the comment.id === id then return the comment index.
+*/
+
+// eslint-disable-next-line no-shadow
+const deleteComment = (id, comments) => {
+    // first find the index of the item in the array with findIndex
+    const commentIndex = comments.findIndex((comment) => comment.id === id);
+
+    // then make a new array without that item in it
+    return [
+      ...comments.slice(0, commentIndex),
+      ...comments.slice(commentIndex + 1),
+    ];
+};
+console.log(comments);
+console.log(deleteComment(233, comments));
 // #################################
 // ARRAYS: SPLICE, MUTABLE METHOD
 // #################################
