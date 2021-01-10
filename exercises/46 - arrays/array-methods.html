@@ -202,7 +202,7 @@
     console.log(string.split(',')); // if you dont put the comma, it will split every letter
 
 // -------------------------------------------------------------------------------------------------
-    // take the last item off toppings with pop()
+    // take the last item off toppings with pop() - REMOVE ITEMS AT THE END
 // -------------------------------------------------------------------------------------------------
 
 /* 
@@ -226,7 +226,7 @@
     // IT IS A MUTABLE METHODS
 
 // -------------------------------------------------------------------------------------------------
-    // add it back with push()
+    // add it back with push() - PUT ITEMS AT THE END
 // -------------------------------------------------------------------------------------------------
 
     console.log(toppings.push('Cheese')); // you get 11 because when you push a new item to an array
@@ -234,7 +234,7 @@
     console.log(toppings);
 
 // -------------------------------------------------------------------------------------------------
-    // take the first item off toppings with shift()
+    // take the first item off toppings with shift() - REMOVE ITEMS AT THE BEGINNING
 // -------------------------------------------------------------------------------------------------
 
     console.log(toppings); // 11 items
@@ -243,28 +243,82 @@
     // IT IS A MUTABLE METHOD
 
 // -------------------------------------------------------------------------------------------------
-    // add it back in with unshift()
+    // add it back in with unshift() - PUT ITEMS AT THE BEGINNING
+// -------------------------------------------------------------------------------------------------
+    console.log(toppings); // 10 items
+    console.log(toppings.unshift('Mushrooms')); // you get 11 the length of the array
+    console.log(toppings); // 11 items
+// -------------------------------------------------------------------------------------------------
+    // take the last four exercises ,with an immutable method (with spreads and new variables)
 // -------------------------------------------------------------------------------------------------
 
-// -------------------------------------------------------------------------------------------------
-    // Do the last four,but immutable (with spreads and new variables)
-// -------------------------------------------------------------------------------------------------
-
+    // here you remove the last items from toppings while creating a new array
+    let newToppings = [...toppings.slice(0, toppings.length - 1)];
+    console.log(newToppings);
+    // here you add the last items from toppings back to the newToppings array
+    newToppings = [...newToppings, toppings[toppings.length - 1]];
+    console.log(newToppings);
+    // here you remove the first item from toppings while creating a new array
+    console.log(toppings); // original array
+    let newToppingsTwo = [...toppings.slice(1)];
+    console.log(newToppingsTwo); // remove mushrooms
+    newToppingsTwo = [toppings[0], ...newToppingsTwo]; // put it back
+    console.log(newToppingsTwo);
 // -------------------------------------------------------------------------------------------------
     // Make a copy of the toppings array with slice()
 // -------------------------------------------------------------------------------------------------
+    console.log(toppings);
+    const toppingsSlice = toppings.slice(0);
+    console.log(toppingsSlice);
 
 // -------------------------------------------------------------------------------------------------
     // Make a copy of the toppings array with a spread
 // -------------------------------------------------------------------------------------------------
-
+    const copyToppings = [...toppings];
+    console.log(copyToppings);
 // -------------------------------------------------------------------------------------------------
     // take out items 3 to 5 of your new toppings array with splice()
 // -------------------------------------------------------------------------------------------------
-
+    const newArraySpliced = [...toppings.splice(0, 2), ...toppings.splice(3)];
+    console.log(newArraySpliced);
 // -------------------------------------------------------------------------------------------------
     // find the index of Avocado with indexOf() / lastIndexOf()
 // -------------------------------------------------------------------------------------------------
+    const toppingsNewVersion = [
+      'Mushrooms ',
+      'Tomatoes',
+      'Eggs',
+      'Chili',
+      'Lettuce',
+      'Avocado',
+      'Chiles',
+      'Bacon',
+      'Pickles',
+      'Onions',
+      'Cheese',
+    ];
+
+    console.log(toppingsNewVersion);
+    const avoIndex = toppingsNewVersion.indexOf('Avocado');
+    console.log(avoIndex); // you get 5
+    // if there are multiple avocado you get the first index that matches
+    // if you wanna get the last you use lastIndexOf()
+    console.log(toppingsNewVersion);
+    const avoIndexTwo = toppingsNewVersion.lastIndexOf('Avocado');
+    console.log(avoIndexTwo); // still 5 because there is only one avocado
+
+    /* 
+      in case we have:
+      const wes = {name: 'wes'};
+      const people = [{name: 'scott'}, wes];
+      if you do:
+      people.indexOf(wes) you get 1
+      but if you do: people.indexOf({name: 'scott'}) you get -1 because
+      same as: {name: 'wes'} === wes is FALSE, it is not the same thing
+      const wes2 = {name: 'wes'};
+      it is like saying wes2 === wes they are the same but in code they are not the same thing
+
+    */
 
 // -------------------------------------------------------------------------------------------------
     // Check if hot sauce is in the toppings with includes()
