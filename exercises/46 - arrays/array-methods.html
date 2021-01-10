@@ -314,23 +314,55 @@
       if you do:
       people.indexOf(wes) you get 1
       but if you do: people.indexOf({name: 'scott'}) you get -1 because
-      same as: {name: 'wes'} === wes is FALSE, it is not the same thing
-      const wes2 = {name: 'wes'};
-      it is like saying wes2 === wes they are the same but in code they are not the same thing
-
+      as same as: {name: 'wes'} === wes is FALSE, it is not the same thing.
+      if you have: const wes2 = {name: 'wes'};
+      it is like saying wes2 === wes they are the same but not the same variable.
+      so to find out the name of scott or an object you do:
     */
+
+const wes = { name: 'wes' };
+const people = [{ name: 'scott' }, { name: 'jhon' }, wes];
+console.log(people);
+
+const indexOfScott = people.findIndex((person) => person.name === 'jhon');
+console.log(indexOfScott);
 
 // -------------------------------------------------------------------------------------------------
     // Check if hot sauce is in the toppings with includes()
 // -------------------------------------------------------------------------------------------------
 
+const isInToppings = toppingsNewVersion.includes('Hot Sauce'); // it is not case sensitive
+// you gotta be precise with includes or conver all the array lower case and then what you push in
+
+console.log(isInToppings); // you get false it is not present
+
 // -------------------------------------------------------------------------------------------------
     // add it if it's not
 // -------------------------------------------------------------------------------------------------
 
+toppingsNewVersion.push('Hot sauce');
+console.log(toppingsNewVersion);
+
+// or you can do:
+
+if (!isInToppings) {
+  toppingsNewVersion.push('Hot Sauce');
+}
+console.log(toppingsNewVersion);
+
 // -------------------------------------------------------------------------------------------------
-    // flip those toppings around with reverse()
+    // flip those toppings around with reverse() - MUTATABLE METHOD
 // -------------------------------------------------------------------------------------------------
+
+const flippedToppings = toppingsNewVersion.reverse();
+console.log(flippedToppings);
+
+// -------------------------------------------------------------------------------------------------
+    // flip those toppings around with spread and reverse() - IMMUTATABLE METHOD
+// -------------------------------------------------------------------------------------------------
+
+const flippedToppingsImmutable = [...toppingsNewVersion.reverse()];
+console.log(flippedToppingsImmutable);
 
     // ############################
     // CALLBACK METHODS
