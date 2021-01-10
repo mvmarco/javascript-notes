@@ -99,7 +99,7 @@
     console.log(range); // you can an array with 10 times 'marco'
 
     const rangeTwo = Array.from({ length: 10 }, function (item, index) {
-      return index; // the value is undefined
+      return index; // the value is undefined because the array it is empty
     });
 
     console.log(rangeTwo); // you get an array with indexes from 0 to 9
@@ -120,21 +120,85 @@
       return ranges;
     };
 
-    console.log(createRange(1, 10));
+    const myRange = createRange(1, 10);
+    console.log(myRange);
 // -------------------------------------------------------------------------------------------------
     // Check if the last array you created is really an array with:
     // Array.isArray();
 // -------------------------------------------------------------------------------------------------
+    
+    console.log(Array.isArray(myRange)); // should return true (or false in other cases) - in the console
+    /*  
+    typeof nameOfTheArray in the console will give as result in the console 'object' because
+    it holds data and it is not a type. if you wanna check if an array is really an array
+    you can do Array.isArray(names);
+    */
 
+// -------------------------------------------------------------------------------------------------
     // Take the meats object and make three arrays with Object.entries(), Object.keys, Object.values()
+// -------------------------------------------------------------------------------------------------
+
+    // Object.entries(), turns an object into an array, keys, values or both
+
+    console.log(Object.entries(meats)); // here you get an array with 3 nested arrays containing
+    // each item and corresponding keys and values
+    console.log(Object.keys(meats)); // here you get the keys into one array
+    console.log(Object.values(meats)); // here you get the values into one array
+
+    // a common way to use these guys is to loop them over:
+
+    Object.values(meats).forEach((valuesQuantities) => {
+      console.log('meat quantities value:');
+      console.log(valuesQuantities);
+    });
+
+    // you can do the same with the keys
+
+    Object.keys(meats).forEach((keysTypeOfMeat) => {
+      console.log('meat type key:');
+      console.log(keysTypeOfMeat);
+    });
+
+    Object.entries(meats).forEach((entryArray) => {
+      console.log('meat entry array:');
+      console.log(entryArray);
+      console.log('here you just take key and value not in an array');
+      const key = entryArray[0];
+      const value = entryArray[1];
+      /* 
+        to male these above two line in one (destructuring)
+        you do: const [key, value] = entry 
+        where it takes the first item and put into the key const and the second item to the second
+        const value.
+
+        a step further would be to, maybe the easiest: 
+
+        Object.entries(meats).forEach((key, value) => {
+          console.log(key, value);
+        };
+      
+      */
+      console.log(key, value);
+    });
 
     // ############################
     // INSTANCE METHODS
     // ############################
 
-    // Display all bun types with " or " - use join()
+    // methods that lives inside each array
 
-    // We have a string "hot dogs,hamburgers,sausages,corn" - use split() to turn it into a string
+// -------------------------------------------------------------------------------------------------
+    // Display all bun types with " or " - use join()
+// -------------------------------------------------------------------------------------------------
+
+    console.log(buns.join()); // turns the array into a string
+    console.log(buns.join(' or ')); // this will divide each item of the array with or
+    // and put it together into a string
+// -------------------------------------------------------------------------------------------------
+    // We have a string "hot dogs,hamburgers,sausages,corn" - use split() to turn it into an array
+// -------------------------------------------------------------------------------------------------
+    const string = 'hot dogs,hamburgers,sausages,corn';
+    console.log(string.split(',')); // if you dont put the comma, it will split every letter
 
     // take the last item off toppings with pop()
     // add it back with push()
