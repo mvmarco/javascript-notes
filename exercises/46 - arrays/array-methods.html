@@ -550,6 +550,18 @@ console.log(burg);
 // -------------------------------------------------------------------------------------------------
     // check if there is at least 5 of one type of meat with some()
 // -------------------------------------------------------------------------------------------------
+    /* 
+      const meats = {
+        beyond: 10,
+        beef: 5,
+        pork: 7,
+      };
+    */
+    // first conver the object into array, as some() is an array method
+    const meatArray = Object.values(meats);
+    console.log(meatArray);
+    const checkQuantities = meatArray.some((meatValue) => meatValue >= 5);
+    console.log(checkQuantities);
 
 // -------------------------------------------------------------------------------------------------
     // make sure we have at least 3 of every meat with every()
