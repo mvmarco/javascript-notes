@@ -368,22 +368,185 @@ console.log(flippedToppingsImmutable);
     // CALLBACK METHODS
     // ############################
 
+// called like that because most of the times they take as argument a callback function
+// check here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+
 // -------------------------------------------------------------------------------------------------
     // find the first rating that talks about a burger with find()
 // -------------------------------------------------------------------------------------------------
 
+/*  from here:
+    const feedback = [
+      { comment: 'Love the burgs', rating: 4 },
+      { comment: 'Horrible Service', rating: 2 },
+      { comment: 'Smoothies are great, liked the burger too', rating: 5 },
+      { comment: 'Ambiance needs work', rating: 3 },
+      { comment: 'I DONT LIKE BURGERS', rating: 1 },
+    ];
+  */
+
+// the argument of find takes a callback function that return true or false
+
+const found = feedback.find((element) => element.comment.includes('burgs'));
+console.log(found);
+
+// this is a function that can be put in above, takes also optional arguments: index and array
+// this function can be used in multiple arrays.
+
+/*
+  const findBurgerRating = (eachElement, index, array) => {
+    if (eachElement.comment.includes('burg')) {
+          return true; // only the value that matches
+    }
+    return false;
+  }; 
+*/
+
+// to make it shorter since includes already return true
+const findBurgerRating = (eachElement) => eachElement.comment.includes('burg');
+
+const foundTwo = feedback.find(findBurgerRating);
+console.log(foundTwo);
+
+/* 
+  you can also put a function inside an object that makes it a method
+  in a way you can just pass method.find() and get the burger rating like below:
+
+  const util = {
+    findRating: (eachFeedback) => {
+      return eachFeedback.comment.includes('burg');
+    }
+  }
+
+  const burgRating = feedback.map(util.findBurgRating);
+  or
+  const burgRating = feedback.find(util.findBurgRating);
+
+  util is an object you made that contains a method named findRating -
+  you could use it to keep multiple utility functions on an object.
+  It would likely be better to create them as separate functions 
+  and import them individually from a separate JavaScript file.
+
+*/
+
+// if you wanna make another function to search for another word: eg. smoothie
+// you gotta duplicate findBurgerRating = (eachElement) => eachElement.comment.includes('burg');
+
+const findSmoothieRating = (eachElement) =>
+  eachElement.comment.includes('Smoothie');
+
+// as well as const foundTwo = feedback.find(findBurgerRating);
+const foundThree = feedback.find(findSmoothieRating);
+console.log(foundThree);
+
+// but it is weird to create functions for every single word so alternatively
+
+/* WITH ARROW FUNCTIONS:
+
+const findWord = (word) => {
+  return (singleFeedbackOk) => {
+    return singleFeedbackOk.comment.includes(word)
+  }
+} 
+
+FORMATTED: 
+const findWord = (word) => (singleFeedbackOk) =>
+singleFeedbackOk.comment.includes(word);
+
+
+BETTER WITH FUNCTIONS:
+*/
+
+function findWord(word) {
+  return function (singleFeedbackOk) {
+        return singleFeedbackOk.comment.includes(word);
+  };
+}
+
+const smoothie = feedback.find(findWord('Smoothies'));
+console.log(smoothie);
+const burg = feedback.find(findWord('burg'));
+console.log(burg);
+
 // -------------------------------------------------------------------------------------------------
     // find all ratings that are above 2 with filter()
 // -------------------------------------------------------------------------------------------------
+    // it will return a new array
+    const handleFindAboveTwo = (eachElement) => eachElement.rating > 2;
+    const findAboveTwo = feedback.filter(handleFindAboveTwo);
+    console.table(findAboveTwo);
 
+    // to make a general one we can always use:
+    const handleFindAbove2 = (minRating) => (rate) => rate.rating > minRating;
+    // min rating is what the user put
+    // rate is a new function that takes each element of the array
+    // since each element is an object you do rate.rating where rating is the key
+    const findAbove2 = feedback.filter(handleFindAbove2(3));
+    console.table(findAbove2);
+    
 // -------------------------------------------------------------------------------------------------
     // find all ratings that talk about a burger with filter()
 // -------------------------------------------------------------------------------------------------
 
+    /* 
+      const feedback = [
+      { comment: 'Love the burgs', rating: 4 },
+      { comment: 'Horrible Service', rating: 2 },
+      { comment: 'Smoothies are great, liked the burger too', rating: 5 },
+      { comment: 'Ambiance needs work', rating: 3 },
+      { comment: 'I DONT LIKE BURGERS', rating: 1 },
+      ];
+    */
+
+    const handleRatingsBurger = (word) => (item) => item.comment.includes(word);
+
+    const findBurgerComment = feedback.filter(handleRatingsBurger('burg'));
+    console.log(findBurgerComment);
+
+    // we can also do it like this:
+    function singleFeedback(comment) {
+      return comment.comment.includes('burg');
+    }
+    const burgRatings = feedback.filter(singleFeedback);
+    console.table(burgRatings);
+
+    // or like this where di argumnent of the an arrow function is feedback
+    const findingCommentBurger = feedback.filter((eachfeedbackItem) =>
+      eachfeedbackItem.comment.includes('burg')
+    );
+    console.log(findingCommentBurger);
+
+    // we can also reuse the find word function
+    const findingCommentBurgerTwo = feedback.filter(findWord('burg'));
+    console.log(findingCommentBurgerTwo);
 // -------------------------------------------------------------------------------------------------
     // Remove the one star rating however you like!
 // -------------------------------------------------------------------------------------------------
+    /*
+        const feedback = [
+        { comment: 'Love the burgs', rating: 4 },
+        { comment: 'Horrible Service', rating: 2 },
+        { comment: 'Smoothies are great, liked the burger too', rating: 5 },
+        { comment: 'Ambiance needs work', rating: 3 },
+        { comment: 'I DONT LIKE BURGERS', rating: 1 },
+        ];
+      */
 
+    /* 
+        There are different methods and techniques you can use to remove elements from JavaScript arrays:
+        pop - Removes from the End of an Array
+        shift - Removes from the beginning of an Array
+        splice - removes from a specific Array index
+        filter - allows you to programatically remove elements from an Array
+    */
+
+    // const removeLowRating = feedback.splice(0, 4);
+    // console.log(removeLowRating);
+
+    // removing the rating that is equal to 1
+    const removeFunction = (item) => item.rating !== 1;
+    const removeOneRating = feedback.filter(removeFunction);
+    console.table(removeOneRating);
 // -------------------------------------------------------------------------------------------------
     // check if there is at least 5 of one type of meat with some()
 // -------------------------------------------------------------------------------------------------
