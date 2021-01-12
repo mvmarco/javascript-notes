@@ -181,6 +181,82 @@
       That is also why when we pass the function directly into the forEach 
       there is no need to give a name to the function. The argument is the one that counts 
     */
+
+    /* 
+      by default the forEach takes into consideration the first argument as a value
+      of the array, the second index and the third the array
+    */
+
+    console.log(
+      'HERE WE CONSOLE EACH TOPPING, INDEX AND ARRAY WITH AN INSIDE FUNCTION'
+    );
+
+    toppings.forEach((topping, index, array) => console.log(topping, index, array));
+    // check the console.
+
+    /* 
+      // a small exercise would be:
+      // log the topping
+      // log the prev topping if there is one
+      // log the next topping if there is one
+      // if its the last item in the array, say good bye
+    */
+    console.log('☪☪☪☪☪☪☪☪☪☪☪ EXERCISE PRACTICE ☪☪☪☪☪☪☪☪☪☪☪');
+
+    toppings.forEach((topping, index, originalArray) => {
+      // log the topping
+      console.log('loggin each topping');
+      console.log(topping);
+
+      // log the next topping if there is one
+      const nextTopping = originalArray[index + 1];
+      if (nextTopping) {
+        console.log('loggin next topping');
+        console.log(originalArray[index + 1]);
+        console.log(
+          '--division line--🍕first and next topping🍕--division line-- '
+        );
+      }
+
+      /* 
+        we can also use a ternary: 
+        nextTopping ? console.log(originalArray[index + 1]) : null;
+
+      */
+    
+      // log the prev topping if there is one
+      const prevTopping = originalArray[index - 1];
+
+      console.log('loggin previous topping from the original result');
+      // eslint-disable-next-line no-unused-expressions
+      prevTopping ? console.log(originalArray[index - 1]) : null;
+
+      // if its the last item in the array, say good bye
+
+      /* 
+      const last = originalArray.length - 1;
+      console.log('logging the last item of the array and replace it with goodbye');
+      last ? console.log('goodbye') : null;
+
+      this is not completely right because I will get the last result 
+      at each single iteration of the array. If you wanna get goodbye only
+      at the last iteration (last item too) the index (of each iteration)
+      has to be equal to the last item of the array, only then you say goodnbye
+      like as follow:     
+      */
+    
+      const lastIterationItem = index === originalArray.length - 1;
+      // eslint-disable-next-line no-unused-expressions
+      lastIterationItem ? console.log('goodbye') : console.log('nextitem');
+    
+      /*
+        you can also abuse of the conditional &&
+        if the first condition is true it will keep going
+        if not it will stop
+
+        // index === originalArray.length && console.log('Goodbye');
+      */
+    });
       </script>
 </body>
 
