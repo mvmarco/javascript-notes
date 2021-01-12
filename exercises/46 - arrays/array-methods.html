@@ -562,22 +562,111 @@ console.log(burg);
     console.log(meatArray);
     const checkQuantities = meatArray.some((meatValue) => meatValue >= 5);
     console.log(checkQuantities);
-
+    
+    /* 
+      some() method in JavaScript is used to check whether 
+      at least one of the elements of the array satisfies the given condition or not.
+    */
 // -------------------------------------------------------------------------------------------------
     // make sure we have at least 3 of every meat with every()
 // -------------------------------------------------------------------------------------------------
-// 21:00
+    // every() method will return true if all predicate are true
+    // loop over the items and check if each items meet the criteria
+    const isThereEnoughOfEveryMeat = meatArray.every((meatValue) => meatValue >= 3);
+    console.log(isThereEnoughOfEveryMeat); // it gives us true
 // -------------------------------------------------------------------------------------------------
     // sort the toppings alphabetically with sort()
 // -------------------------------------------------------------------------------------------------
+    
+    // The default sort order alphabetically
+    
+    // sort will take an array eg.:
+    const ArrayNumbers = [1, 2, 100];
+    const numbersSorted = ArrayNumbers.sort(); // will be queal to [1, 100, 2]
+    console.log(numbersSorted);
+    // because it converts then first into string and then sort it alphabetically.
+    
+    /* 
+      in order to sort numbers in ascending order, we gotta pash to sort() a
+      comparing function with two argument that will tell 3 things based on the result
+      of a substraction:
+
+      if the result is <0 (negative): the number will go before it
+      if the result is 0 (neutral): the number will stay in place/unchanged
+      if the result is >0 (positive): the number will go after/ahead of it
+    */
+    
+    const ArrayNumbersTwo = [1, 2, 100, 3, 200, 400, 155];
+    const numbersSortedTwo = ArrayNumbersTwo.sort(
+      (firstItem, secondItem) => firstItem - secondItem
+    );
+
+    console.log(numbersSortedTwo); // this will sort ascending.
+    // if you wanna sort descending you do secondItem - firstItem
+
+    const sortAlphabetically = toppings.sort();
+    console.log(sortAlphabetically);
 
 // -------------------------------------------------------------------------------------------------
     // sort the order totals from most expensive to least with .sort()
 // -------------------------------------------------------------------------------------------------
+    
+    // const orderTotals = [342, 1002, 523, 34, 634, 854, 1644, 2222];
+    /*
+      const sortOrderTotals = orderTotals.sort((a, b) => a - b);
+      console.log(sortOrderTotals); 
+    */
+
+    // a better idea would be to creat a sortNumbersAscending function so you can always use it
+
+    function sortNumbersAscending(a, b) {
+      return a - b;
+    }
+
+    console.log(orderTotals.sort(sortNumbersAscending));
 
 // -------------------------------------------------------------------------------------------------
     // Sort the prices with sort()
 // -------------------------------------------------------------------------------------------------
+    /*    
+      const prices = {
+        hotDog: 453,
+        burger: 765,
+        sausage: 634,
+        corn: 234,
+      }; 
+    */
+
+    /*
+      first you convert the object into an array with Object.entries(prices)
+      where we get an array with inside items, where each item is an array
+      with string and number eg. ['hotDog', 456] 
+    */
+
+    /*
+      in this case a and b are hotdog and burger (example): if you make a normal function
+      and put debugger. In the consle under scope and then under local you see that the
+      a and b are burger and hotdog. Since the first index of the each array is a string
+      and the second is the number.  So what we can do is taking the second index value
+      for both a and b.
+    */
+
+    const sortPrices = Object.entries(prices).sort((a, b) => {
+      const aPrice = a[1];
+      const bPrice = b[1];
+      return aPrice - bPrice;
+    });
+
+    console.table(sortPrices);
+    // now if we wanna return it into an object we could do
+    const sortedPricesObject = Object.fromEntries(sortPrices);
+    console.log(sortedPricesObject);
+
+    /* 
+      JS added a new feature where objects, even though the order does not matter,
+      if you set them with an order they stay like that. However, only if the keys
+      are not numbers.    
+    */
 
     // ############################
     // LOOPING METHODS
