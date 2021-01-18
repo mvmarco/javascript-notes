@@ -272,12 +272,19 @@
     /* 
       forEach is handy when you wanna loop over some data and do something
       with each piece of data, whether is to log the value, index or the array itself
-      or associating an event listener. This things are often associated to something called
-      side effects. A *SIDE EFFECT* is: when you are inside a function and you reach outside
-      of a function and you do something else. 
+      or associating an event listener. In some cases when you manipulate the data
+      we fall of in a category called SIDE EFFECTS. 
+      
+      A *SIDE EFFECT* is: when you are inside a function (can be a forEach but not always)
+      and you reach outside of a function, like an array, and you do something else. 
+
+      A side-effect is when a function mutates (changes) something that doesn't exist inside the function.
+
+      "reaching outside" just means that the function accesses or 
+      changes something that doesn't exist in the function declaration.
 
       The are other loops that are taking in data, do something with that data and then returning
-      that data that has modified. Which are the following:
+      that data that has modified as a new output. Which are the following:
     */
 
     // ########################################
@@ -285,10 +292,10 @@
     // ########################################
 
     /* 
-      loops that are taking in data, do something with that data and then returning
-      that data that has modified. Examples can be
-      filtering data, looking for something that you want (find).
-      These guys are defined pure functions: taking data and returning data. And do reach
+      map, filter and reduce are loops that are taking in data, do something with that data and 
+      then returning that data that has modified without mutating the original. 
+      Examples can be filtering data, looking for something that you want (find).
+      These guys are defined pure functions: taking data and returning data. And do not reach
       outside of themselves to do that
     */
 
@@ -304,7 +311,33 @@
     // const faces = ['😃', '🤠', '🤡', '🤑', '😵', '🌞', '🐶', '😺'];
 
     const addArms = (face) => `👋 ${face} 👋 `;
-    addArms('😋 ');
+    console.log(addArms('😋'));
+
+    const toys = faces.map(addArms);
+    /* 
+      Arguments are forwarded automatically in JavaScript. 
+      .map will call the function and pass the arguments.
+    */
+    console.log(toys);
+
+    // another example
+
+    const names = ['marco', 'olivia', 'lapo'].map((name) => `${name} wow`);
+    // the argument of map is each item of the array, wow is added to each ot them
+    console.log(names);
+
+    // another example were we create the function outside
+    const wowify = (name) => `${name} wow`;
+    // here we want also the first letter upperCase();
+    const toUppercase = (word) => word[0].toUppercase() + word.slice(1);
+    // we do word.slice(1) because before we took only the first letter and now
+    // we need to add the rest of each word, starting from index 1
+    // we can add multiple map
+    const namesTwo = ['mmmmarco', 'oooolivia', 'llllapo']
+      .map(wowify)
+      .map(toUppercase); // notice only one semicolon ; at the end of the last map
+    console.log(namesTwo);
+    // now we want of namesTwo the first letter capital
 
     // ###############
     // FILTER
