@@ -145,7 +145,7 @@
       over an array. Most of the loopings work in the same
       way, we use a method that lives in our array and we pass
       a callback function. The callback function runs once for
-      every item of the array giving acces to each individual
+      every/each item of the array giving acces to each individual
       item
     */
 
@@ -240,7 +240,7 @@
 
       this is not completely right because I will get the last result 
       at each single iteration of the array. If you wanna get goodbye only
-      at the last iteration (last item too) the index (of each iteration)
+      at the last iteration (last item) the index (current index or index of each iteration)
       has to be equal to the last item of the array, only then you say goodnbye
       like as follow:     
       */
@@ -269,9 +269,50 @@
       it does some work for every item that is in that array.
     */
 
+    /* 
+      forEach is handy when you wanna loop over some data and do something
+      with each piece of data, whether is to log the value, index or the array itself
+      or associating an event listener. This things are often associated to something called
+      side effects. A *SIDE EFFECT* is: when you are inside a function and you reach outside
+      of a function and you do something else. 
+
+      The are other loops that are taking in data, do something with that data and then returning
+      that data that has modified. Which are the following:
+    */
+
     // ########################################
     // THE BIG THREE: MAP, FILTER AND REDUCE
     // ########################################
+
+    /* 
+      loops that are taking in data, do something with that data and then returning
+      that data that has modified. Examples can be
+      filtering data, looking for something that you want (find).
+      These guys are defined pure functions: taking data and returning data. And do reach
+      outside of themselves to do that
+    */
+
+    // ###############
+    // MAP
+    // ###############
+
+    /* 
+      MAP is a machine in a factory is taking in data, perform an operation and spits out the output
+      to the other side. Map produce out always the same length of the array has started with.
+    */
+
+    // const faces = ['😃', '🤠', '🤡', '🤑', '😵', '🌞', '🐶', '😺'];
+
+    const addArms = (face) => `👋 ${face} 👋 `;
+    addArms('😋 ');
+
+    // ###############
+    // FILTER
+    // ###############
+    
+    // ###############
+    // REDUCE
+    // ###############
   </script>
 </body>
 
