@@ -329,7 +329,12 @@
     // another example were we create the function outside
     const wowify = (name) => `${name} wow`;
     // here we want also the first letter upperCase();
-    const toUppercase = (word) => word[0].toUppercase() + word.slice(1);
+    
+    /* 
+      const toUppercase = (word) => word[0].toUpperCase() + word.slice(1);
+      not a good practice because of the + used to addition and not interpolation
+    */
+    const toUppercase = (word) => `${word[0].toUpperCase()}${word.slice(1)}`;
     // we do word.slice(1) because before we took only the first letter and now
     // we need to add the rest of each word, starting from index 1
     // we can add multiple map
@@ -337,7 +342,39 @@
       .map(wowify)
       .map(toUppercase); // notice only one semicolon ; at the end of the last map
     console.log(namesTwo);
-    // now we want of namesTwo the first letter capital
+
+    // another example: const orderTotals = [342, 1002, 523, 34, 634, 854, 1644, 2222];
+    // adding tax to it:
+    
+    /*  
+      const orderTotalWithTax = orderTotals.map((total) => 1);
+      console.log(orderTotalWithTax); 
+
+      this will replace everything with 1 into a new array
+    */
+    
+    // adding tax to it properly:
+    const orderTotalWithTax = orderTotals.map((total) => total + 1.13);
+    console.log(orderTotalWithTax);
+    
+    /*     
+      EXAMPLE TO HOW TO USE MAP AND FOREACH TO BUILD A COWBOY
+      array(3).fill fill 3 times what you pass
+
+      function attachBody(face, body) {
+          return `
+        ${face}
+        ${body.repeat(3)}
+        ${Array(3).fill(body).join(' ')}
+        👇🏽 ${body.repeat(2)}👇🏽
+        ${Array(2).fill(body).join('   ')}
+        ${Array(2).fill(body).join('   ')}
+        👢👢
+              `;
+      }
+      
+      faces.map((face) => attachBody(face, '🍟')).forEach((body) => console.log(body)); 
+    */
 
     // ###############
     // FILTER
@@ -350,3 +387,6 @@
 </body>
 
 </html>
+
+
+<!-- 12:00 -->
