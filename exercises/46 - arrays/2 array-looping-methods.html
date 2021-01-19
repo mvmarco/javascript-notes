@@ -376,10 +376,130 @@
       faces.map((face) => attachBody(face, '🍟')).forEach((body) => console.log(body)); 
     */
 
+    // map can be used also for objects specifically in the case of APIs with JSON
+
+    /* 
+      const people = [
+        {
+          birthday: 'April 22, 1993',
+          names: {
+            first: 'Keith',
+            last: 'Buckley',
+          },
+        },
+        {
+          birthday: 'January 3, 1975',
+          names: {
+            first: 'Larry',
+            last: 'Heep',
+          },
+        },
+        {
+          birthday: 'February 12, 1944',
+          names: {
+            first: 'Linda',
+            last: 'Bermeer',
+          },
+        },
+      ]; 
+    */
+    const cleanPeople = people.map((person) => {
+      console.log(person); // you get each object
+      // get their birthday
+      // if you dont pass anything to date you get the today's date
+      // getTime(); is a method that retrives the date and convert it in millisecond
+      const birthday = new Date(person.birthday).getTime();
+      // if you do console.dir(birthday) you can see all the methods that exist on a Date Object
+      console.dir(birthday);
+      // figure out how old they are using the date of today too
+      const now = new Date(); // here we get date of today
+      console.log(now);
+      /* 
+        in order to make the substraction we need to take:
+        the date of today - the milliseconds of the birthday = age in milliseconds
+        we need to convert it in years:
+        age in milliseconds/ divided per how many milliseconds there are in a year:
+        1000 millisecond in a second *
+        60 second in a minute *
+        60 min in a hour *
+        24 hour in a day *
+        365 days in a year  =
+
+        31,536,000,000 millisecond in a year
+      */
+      const age = Math.floor((now - birthday) / 31536000000);
+      console.log(age);
+      // check https://date-fns.org/ to figure out time between dates in  a different way
+    
+      /* 
+        if you do: now.getTime() you get the numbers of milliseconds from when the heart was created
+        you can go here: https://epoch.now.sh/ you can convert any date to any time stamp     
+      */
+      // return their full name and bday in an object
+      return {
+        age, // a refactored version of age: age,
+        name: `${person.names.first} ${person.names.last}`,
+      };
+    });
+
+    console.table(cleanPeople);
+
+    // in sum map takes data that does not look how you like it, you change it and spit out back
+
     // ###############
     // FILTER
     // ###############
+
+    /* 
+      filter is a way of finding the data that you need.
+      For instance finding people that are older than 40 years old
+    */
+
+    const over40 = cleanPeople.filter((person) => person.age > 40);
+    console.log(over40); // you looped over each person and get the results
+    // if there are no people you will get an empty array
+
+    if (over40) {
+      console.log('there are people over 40');
+    }
+
+    /* 
+      find() works in the same exact way of filter() with the only exeption that
+      find() returns only one item that you are looking for and not all of them
+      like with filter().
+
+      filter() will return an array
+      find() the actual item/value you where looking for
+    */
+
+    // example to find the student with ID of 565a
+    const student565a = students.find((studentt) => studentt.id === '565a');
+    console.log(student565a);
+
+    // we could also make it with a higher order function: to use it for everyID
+
+    const findID = (id) =>
+      // eslint-disable-next-line no-unused-vars
+      function isStudent(stud) {
+        return stud.id === id;
+      };
+
+    const student = students.find(findID('565a'));
+    console.log(student);
+
+    // log the json/object student
+    console.log(students);
+
+    // find a function that find by firstname and lastname
+    const findByProp = (property, propertyWeAreLookingFor) =>
+      function isStudent(studenttt) {
+        return studenttt[property] === propertyWeAreLookingFor;
+      };
     
+    const student2 = students.find(findByProp('id', '565a'));
+    const student3 = students.find(findByProp('first_name', 'Micki'));
+    console.log(student2);
+    console.log(student3);
     // ###############
     // REDUCE
     // ###############
