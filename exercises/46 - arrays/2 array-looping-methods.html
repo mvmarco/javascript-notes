@@ -491,8 +491,10 @@
     console.log(students);
 
     // find a function that find by firstname and lastname
+    // it takes a key and a value
     const findByProp = (property, propertyWeAreLookingFor) =>
       function isStudent(studenttt) {
+        // we use [] and not a .property because what we are looking for is passed as a variable
         return studenttt[property] === propertyWeAreLookingFor;
       };
     
@@ -503,10 +505,23 @@
     // ###############
     // REDUCE
     // ###############
-  </script>
+
+    /* 
+      map() will take in items and return a transformed version
+      filter() will take in items return a subset of those items
+      while reduce() it is the trickiest because it does multiple things 
+      and can be used in different contexts. In sum it takes in an array 
+      and return to us a result or a single value
+    */
+
+    // an example using: const orderTotals = [342, 1002, 523, 34, 634, 854, 1644, 2222];
+
+    let total = 0;
+    orderTotals.forEach((eachTotal) => (total += eachTotal));
+ </script>
 </body>
 
 </html>
 
 
-<!-- 12:00 -->
+<!-- 1.44 -->
