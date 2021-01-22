@@ -354,7 +354,7 @@
     */
     
     // adding tax to it properly:
-    const orderTotalWithTax = orderTotals.map((total) => total + 1.13);
+    const orderTotalWithTax = orderTotals.map((totall) => totall + 1.13);
     console.log(orderTotalWithTax);
     
     /*     
@@ -517,7 +517,36 @@
     // an example using: const orderTotals = [342, 1002, 523, 34, 634, 854, 1644, 2222];
 
     let total = 0;
-    orderTotals.forEach((eachTotal) => (total += eachTotal));
+    orderTotals.forEach((eachTotal) => (total += eachTotal)); // you get the sum of every number
+
+    /* 
+      this is kind of messy because the method (forEach) is using an external variable to make
+      the sum. This is a side effect: updating a variable that is outside of the function
+      and it is not the best way apparently.
+
+      reduce() will loop over every single item in that array and keep running a total of these
+      numbers. Try to google in google image: map filter reduce. From there you see that
+      reduce takes an array of items and compile this items in a reduced version. 
+      
+      Making a reduction in cooking is cooking a bunch of stuff, let it simmer for a while
+      until it becomes one thick thing. Reduce means reducing something smaller than the original
+      value.
+    */
+    
+    /* 
+      reduce() needs a call back function that takes in 2 arguments
+      an accumulator: the thing that has been handed to you from the last instance of the loop
+      the currentValue: the current item taken from the array
+    */
+
+    // here callback function that will run once for every single item in the array for the reduce method
+    const tallyNumbers = (tally, currentTotal) => {
+      console.log(`the current tally is ${tally}`);
+      console.log(`the currentTotal (value) is ${currentTotal}`);
+      console.log('------------');
+    };
+
+    const AllOrders = orderTotals.reduce(tallyNumbers);
  </script>
 </body>
 
