@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Reduce!</title>
+  <link rel="stylesheet" href="../../base.css">
+</head>
+
+<body>
+  <script>
+    // Grab all the text from a web page
+    const text = `
+      Wes Bos is a Full Stack Developer, 
+      Speaker and Teacher from Canada. He works as an independent
+      web developer and teaches as a lead instructor with HackerYou and 
+      Ladies Learning Code. Wes has taught over 500 students in 200+ classes and 
+      spoken at dozens of conferences around the world.
+      Wes is the author of ES6.io, Sublime Text Power User,
+      which together have sold over 10,000 copies, and the creator of Flexbox.io, 
+      Command Line Power User, Learn Redux and hundreds of YouTube Tutorials.
+    `;
+    // convert it into an array:
+    const everythingArray = text.split('');
+    console.log(everythingArray);
+    // now get rid of spaces or everything that is not a-zA-Z0-9
+    // we can use match method which takes a regex in
+    const validCharacter = (character) => character.match(/[a-zA-Z0-9]/);
+    // check regexr.com to see how to do it
+    // (/[a-z0-9]/i)); like this will be also consider the uppercase
+    // to make it shorter: const result = text.split('').filter(validCharacter);
+    // now we want everything lowerCase
+    const lowerCase = (character) => character.toLowerCase();
+    // Count how many times each letter and number occurs
+    const counting = (acc, item) => {
+      // eslint-disable-next-line no-unused-expressions
+      if (acc[item]) {
+        // eslint-disable-next-line operator-assignment
+        acc[item] = acc[item] + 1;
+      } else {
+        acc[item] = 1;
+      }
+      return acc;
+    };
+    // don't put semicolons in the middle because JS interprets that we end something
+    const result = everythingArray
+      .filter(validCharacter)
+      .map(lowerCase)
+      .reduce(counting, {});
+    console.log(result);
+
+    // sort the letters/numbers by the least popular one
+    // first convert the object into array that has key and value
+    const sortedItems = Object.entries(result).sort((a, b) => a[1] - b[1]);
+    console.log(sortedItems);
+
+    const inventory = [
+      { type: 'shirt', price: 4000 },
+      { type: 'pants', price: 4532 },
+      { type: 'socks', price: 234 },
+      { type: 'shirt', price: 2343 },
+      { type: 'pants', price: 2343 },
+      { type: 'socks', price: 542 },
+      { type: 'pants', price: 123 },
+      { other: 'glasses', price: 2000 }, // this is undefined
+    ];
+    console.log(inventory);
+    const handleCount = (acc, item) => {
+      acc[item.type] = acc[item.type] + 1 || 1;
+      return acc;
+    };
+    const countType = inventory.reduce(handleCount, {});
+    console.log(countType);
+  </script>
+</body>
+
+</html>

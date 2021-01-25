@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>For Loops</title>
+  <link rel="stylesheet" href="../../base.css">
+</head>
+
+<body>
+  <script>
+    const numbers = [2, 34, 3, 23, 42, 3, 1, 65, 364, 5, 645, 6];
+
+    const name = 'Wes Bos';
+
+    // ###############
+    // FOR
+    // ###############
+
+    /* 
+      it requires 3 things:
+      1 an initial expression: where the loops starts
+      2 a condition: runs each time before each loops run
+        if the condition is true the loops run until it's false,
+        when it's false it stops runnung
+      3 an increment expression: it increments the initial expression
+    */
+    // eslint-disable-next-line no-plusplus
+    console.log('example 1');
+    for (let i = 0; i <= 10; i++) {
+      // we use let because you cannot increment a const
+      console.log(i); // you get numbers from 1 to 10
+    }
+
+    // you can also increment by different numbers
+    console.log('example 2');
+    for (let i = 100; i <= 120; i += 2) {
+      console.log(i); // you get numbers from 1 to 10
+    }
+
+    // the old way would be to use array.length
+    console.log('example 3');
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < numbers.length; i++) {
+      console.log(i); // you get numbers from 1 to 11 because there are 12 numbers
+      // if you want the individual numbers
+      console.log(numbers[i]);
+    }
+
+    // much easier with a forEach
+
+    // ###############
+    // FOR OF
+    // ###############
+
+    /* 
+      it is relatively new and it is used to loop over iterable (something that has
+      a length, a number or a string)
+    */
+
+    // const name = 'Wes Bos';
+
+    for (const letter of name) {
+      console.log(letter); // it will give us the letter of the name
+    }
+
+    // 10:00
+
+    // ###############
+    // FOR IN
+    // ###############
+
+    // ###############
+    // WHILE
+    // ###############
+  </script>
+</body>
+
+</html>

@@ -538,19 +538,83 @@
       an accumulator: the thing that has been handed to you from the last instance of the loop
       the currentValue: the current item taken from the array
     */
-
+    console.log(orderTotals);
     // here callback function that will run once for every single item in the array for the reduce method
     const tallyNumbers = (tally, currentTotal) => {
       console.log(`the current tally is ${tally}`);
       console.log(`the currentTotal (value) is ${currentTotal}`);
       console.log('------------');
+      // whichever value you return here is gonna be the accumulator
+      return tally + currentTotal;
     };
 
-    const AllOrders = orderTotals.reduce(tallyNumbers);
+    // eslint-disable-next-line no-unused-vars
+    const AllOrders = orderTotals.reduce(tallyNumbers, 0); // zero is means that the first tally start at 0
+    // if you don't pass anything (we passed the zero) it will take first number
+
+    /* 
+      in sum reduce will loop over items in an array and every single time you loop over you have
+      the option to return a value that can be used to accumulate values, or to put them into a 
+      single value.
+
+      now if we want the total we can console log AllOrders:
+    */
+
+    console.log(AllOrders);
+
+    /* 
+      another example would be using inventory which is an array of objects: 
+      const inventory = [
+        { type: 'shirt', price: 4000 },
+        { type: 'pants', price: 4532 },
+        { type: 'socks', price: 234 },
+        { type: 'shirt', price: 2343 },
+        { type: 'pants', price: 2343 },
+        { type: 'socks', price: 542 },
+        { type: 'pants', price: 123 },
+      ];
+    */
+
+    /*
+      here we find out how many pants or shirts there are (really common in JS)
+      and what is the total price 
+    */
+
+    const inventoryReducer = (totall, item) => {
+      console.log(`loop over ${item.type}`);
+      // find out how many items per category we have
+      // so first we need to check if the item exist in the object that we start with
+      if (totall[item.type]) {
+        totall[item.type] += 1;
+      } else {
+        totall[item.type] = 1;
+      }
+      return totall;
+      // you can also do it in one line
+      // totall[item.type] = totall[item.type] + 1 || 1;
+    };
+
+    const inventoryCounts = inventory.reduce(inventoryReducer, {});
+    /* 
+        instead of the empty array we could pass:
+        { 
+          type: 'shirt', price: 0,
+          type: 'pants', price: 0,
+          type: 'socks', price: 0
+        }
+        but does make much sense because sometimes we have to much data to add
+        so we add an empty array
+    */
+    console.log(inventoryCounts);
+    const totalInventoryPrice = inventory.reduce(
+      (acc, item) => acc + item.price,
+      0
+    );
+    // it returns for each item, the item plus the previous one starting from 0. the total
+    console.log(totalInventoryPrice);
  </script>
 </body>
 
 </html>
 
 
-<!-- 1.44 -->
