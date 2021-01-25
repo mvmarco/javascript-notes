@@ -29,6 +29,7 @@
     */
     // eslint-disable-next-line no-plusplus
     console.log('example 1');
+    // eslint-disable-next-line no-plusplus
     for (let i = 0; i <= 10; i++) {
       // we use let because you cannot increment a const
       console.log(i); // you get numbers from 1 to 10
@@ -66,11 +67,48 @@
       console.log(letter); // it will give us the letter of the name
     }
 
-    // 10:00
+    /*
+      it is better than a forEach because it takes in emoji and it is also shorter:
+    */
 
+    const names = ['marco😇', 'lapo🐕'];
+
+    for (const letter of names) {
+      console.log(letter);
+    }
+
+    // eslint-disable-next-line no-unused-vars
+    const namesSplitted = names.forEach((element) => {
+      console.log(element.split(''));
+    });
+
+    console.log([...names]); // this will give us emoji
+
+    /* 
+      another use case of for of loop is using promises: we did not cover it yet but if
+      you need to sequence a bunch of data. Meaning you have to do one thing after another
+      in a loop the for of loop will allow us to use the 'await' inside of it. We will learn
+      with promises. For of is handy for sequences in promises
+
+      the for of loop can also be used with an array:
+    */
+    
+    for (const number of numbers) {
+      console.log(number);
+    }
+
+    /* 
+      the dowside of using for of is that you get the values of the array and not the index
+      or does not allow us to filter
+    */
     // ###############
     // FOR IN
     // ###############
+
+    /* 
+      for in works similar to for of but it gives us the key of an object.
+      in other words is used to loop over keys of an object
+    */
 
     // ###############
     // WHILE
@@ -79,3 +117,6 @@
 </body>
 
 </html>
+
+
+<!-- 13,04 -->
