@@ -29,7 +29,7 @@
     */
     // eslint-disable-next-line no-plusplus
     console.log('example 1');
-    // eslint-disable-next-line no-plusplus
+    // eslint-disable-next-line no-plusplus,no-shadow
     for (let i = 0; i <= 10; i++) {
       // we use let because you cannot increment a const
       console.log(i); // you get numbers from 1 to 10
@@ -37,13 +37,14 @@
 
     // you can also increment by different numbers
     console.log('example 2');
+    // eslint-disable-next-line no-shadow
     for (let i = 100; i <= 120; i += 2) {
       console.log(i); // you get numbers from 100 to 120 with an increment of 2
     }
 
     // the old way would be to use array.length
     console.log('example 3');
-    // eslint-disable-next-line no-plusplus
+    // eslint-disable-next-line no-plusplus,no-shadow
     for (let i = 0; i < numbers.length; i++) {
       console.log(i); // you get numbers from 1 to 11 because there are 12 numbers
       // if you want the individual numbers
@@ -139,26 +140,71 @@
       head: 1,
     };
 
-    const wes = {
-      name: 'wes',
-      age: 100,
-      cool: true,
-    };
-
     function Human(namee) {
       this.name = namee;
     }
-
+    Human.prototype = baseHumanStats; // has to be be here before the comment the order matter
+    // if you put it later like in the comment you get only the initial object keys
     const wes2 = new Human('wes');
     console.log(wes2); // it is an object of key 'name' and value 'wes'
     // if you do wes.arms is offcourse undefined
 
-    Human.prototype = baseHumanStats; // doing that wes is still the same but somehow........
-    // ................inerith
+    // Human.prototype = baseHumanStats; // doing that wes is still the same but somehow........
+    // .......inerith or reference the property of baseHumanStats so if you do wes.arms you get 2
+    console.log(wes2);
+    /* 
+      what happens is that wes2 is referencing the values from the prototype. What happens
+      with the prototype is that when you try to access a property first check on the 
+      object itself for the property on that and if it is not on there it will look up
+      on the prototype chain object.
 
-    // ###############
-    // WHILE
-    // ###############
+      if you console.log(wes2); you can see in the console other than the key value set
+      __proto__: Object, opening that you see the other properties chained up 
+
+      the exception I was talking about between for in and Object.entries is:
+
+    */
+
+    console.log(Object.entries(wes2)); // you get only name (key) and wes(value)
+
+    /* 
+      but if you gonna use for in:
+
+      for (const prop in wes2) {
+        console.log(prop); // you get name, feet, arms, eyes, and head as keys
+      }
+    */
+
+    // ###############################################################
+    // WHILE - not so common but there are situation were it is useful
+    // ###############################################################
+
+    /* 
+      while will take a conditition and run it infinitely until that condition
+      is not true anymore
+    */
+    
+    let cool = true;
+    let i = 1; // this is a variable to let the while loop stop when it is false
+    while (cool === true) {
+      console.log('You are cool');
+      // eslint-disable-next-line no-plusplus
+      i++;
+      if (i > 100) {
+        cool = false;
+      }
+    }
+    // ##################################################################
+    // DO WHILE - not so common but there are situation were it is useful
+    // ##################################################################
+
+    /* 
+      the only difference between a while loop and a do while loop is that
+      there is a do {} while() - do will run first and then check the condition
+      (the while one) after the first run.
+
+      the while loop check the confition before the first run and then do it
+    */
   </script>
 </body>
 
