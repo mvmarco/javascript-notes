@@ -38,7 +38,7 @@
     // you can also increment by different numbers
     console.log('example 2');
     for (let i = 100; i <= 120; i += 2) {
-      console.log(i); // you get numbers from 1 to 10
+      console.log(i); // you get numbers from 100 to 120 with an increment of 2
     }
 
     // the old way would be to use array.length
@@ -74,12 +74,13 @@
     const names = ['marco😇', 'lapo🐕'];
 
     for (const letter of names) {
-      console.log(letter);
+      console.log(letter); // it print each single element for the array (including emoji not squares)
     }
 
     // eslint-disable-next-line no-unused-vars
     const namesSplitted = names.forEach((element) => {
-      console.log(element.split(''));
+      console.log(element.split('')); // here you take the element and split it (letters)
+      // since it is a forEach the emoticons are squared
     });
 
     console.log([...names]); // this will give us emoji
@@ -88,7 +89,7 @@
       another use case of for of loop is using promises: we did not cover it yet but if
       you need to sequence a bunch of data. Meaning you have to do one thing after another
       in a loop the for of loop will allow us to use the 'await' inside of it. We will learn
-      with promises. For of is handy for sequences in promises
+      with promises. Just remember: the For of is handy for sequences in promises
 
       the for of loop can also be used with an array:
     */
@@ -108,7 +109,52 @@
     /* 
       for in works similar to for of but it gives us the key of an object.
       in other words is used to loop over keys of an object
+      for (const number in numbers) {
+        console.log(number); // you get numbers from 0 to 11 because there are 12 numbers (keys)
+      }
     */
+    
+    // another example
+
+    /* 
+      const wes = {
+        name: 'wes',
+        age: 100,
+        cool: true,
+      };
+
+    for (const propertyKey in wes) {
+      console.log(propertyKey); // it will give us the keys: name, age and cool      
+    } 
+
+      object.keys or object.entries is the better alternative and because for in is not much used
+      but there is an exception between the for in vs the object.entries that makes the for in 
+      different, with a thing called prototype:
+    */
+
+    const baseHumanStats = {
+      feet: 2,
+      arms: 2,
+      eyes: 2,
+      head: 1,
+    };
+
+    const wes = {
+      name: 'wes',
+      age: 100,
+      cool: true,
+    };
+
+    function Human(namee) {
+      this.name = namee;
+    }
+
+    const wes2 = new Human('wes');
+    console.log(wes2); // it is an object of key 'name' and value 'wes'
+    // if you do wes.arms is offcourse undefined
+
+    Human.prototype = baseHumanStats; // doing that wes is still the same but somehow........
+    // ................inerith
 
     // ###############
     // WHILE
