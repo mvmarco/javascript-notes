@@ -1,0 +1,17 @@
+{
+  "name": "pixelated-face",
+  "version": "1.0.0",
+  "description": "",
+  "main": "pixelated-face.js",
+  "scripts": {
+    "start": "parcel face.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "browserslist": [
+    "last 1 Chrome version"
+  ],
+  "devDependencies": {
+    "parcel-bundler": "^1.3.1"
+  }
+}
