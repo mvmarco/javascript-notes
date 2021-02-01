@@ -55,6 +55,7 @@ async function populateVideo() {
   });
   video.srcObject = stream;
   await video.play();
+
   // size the canvases to be the same size as the video
   console.log(video.videoWidth, video.videoHeight);
   canvas.width = video.videoWidth;
@@ -80,15 +81,36 @@ async function populateVideo() {
 */
 console.log(populateVideo);
 
+/* 
+  if you call populateVideo() you get a MediaStream
+  and the page immediately reloads
+*/
+
+populateVideo();
+
+// a function that detects the face in the shot
+
 async function detect() {
-  const faces = await faceDetector.detect(video);
+  const faces = await faceDetector.detect(video); // you can pass image video or canvas
   // ask the browser when the next animation frame is, and tell it to run detect for us
-  faces.forEach(drawFace);
+  // eslint-disable-next-line no-use-before-define
+  faces.forEach(drawFace); // here goes to the draw face function and for each face runs it
+  // eslint-disable-next-line no-use-before-define
   faces.forEach(censor);
   requestAnimationFrame(detect);
+  // it works also with detect()
+
+  /* 
+    when a function calls itself inside itself is recursion,
+    when a function runs ever and ever
+    until there is an exit condition
+  */
 }
 
+// here you draw the square in front of the face
 function drawFace(face) {
+  // if you check in the console each face, under boundinBox you get the coordinates
+  // x and y refers to the browser, right left etc to the video, we use the latter
   const { width, height, top, left } = face.boundingBox;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.strokeStyle = '#ffc600';
@@ -131,4 +153,4 @@ function censor({ boundingBox: face }) {
   );
 }
 
-populateVideo().then(detect);
+populateVideo().then(detect); // run the populate video and then the detect (detect has to be run every tot second but not with an interval but with request animation frame which tell us when the browser should do something and not every tot second like with the intervals)
