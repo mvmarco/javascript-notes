@@ -29,7 +29,7 @@ const optionsInputs = document.querySelectorAll(
 );
 
 const options = {
-  SIZE: 10,
+  SIZE: 10, // all caps because they are constant in the whole application
   SCALE: 1.35,
 };
 
@@ -130,23 +130,37 @@ function drawFace(face) {
 
 // this pixelate the user face
 function censor({ boundingBox: face }) {
+  /* 
+    function censor(face) {
+      const faceDetails = face. bounding box
+    }
+    can be denscrutured 
+    function censor({ boundingBox })
+    and you can rename it into a variable called face like above
+  */
   faceCtx.imageSmoothingEnabled = false;
   faceCtx.clearRect(0, 0, faceCanvas.width, faceCanvas.height);
   // draw the small face
+  /*  
+    basically what happens is that you take a screenshot of the face,
+    you make it smaller, loose the pixel quality,
+    and put it back on the screen
+  
+  */
   faceCtx.drawImage(
-    // 5 source args
+    // 5 source args that we take out from the face
     video, // where does the source come from?
     face.x, // where do we start the source pull from?
     face.y,
     face.width,
     face.height,
-    // 4 draw args
+    // 4 draw args that we put back
     face.x, // where should we start drawing the x and y?
     face.y,
     options.SIZE,
     options.SIZE
   );
-  // draw the small face back on, but scale up
+  // draw the small face back on, but scale/strecht it up
 
   const width = face.width * options.SCALE;
   const height = face.height * options.SCALE;
