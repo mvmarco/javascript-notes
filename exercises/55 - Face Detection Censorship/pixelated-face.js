@@ -112,12 +112,23 @@ function drawFace(face) {
   // if you check in the console each face, under boundinBox you get the coordinates
   // x and y refers to the browser, right left etc to the video, we use the latter
   const { width, height, top, left } = face.boundingBox;
+  /*
+    here you get the values
+      console.log(width, height, top, left);
+    here the objects with the keys and value: eg: width: 139.289302932093
+    better for understanding the names
+      console.log({ width, height, top, left });
+  */
+
+  // clear the width and the width and the height all the time is run
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // these are the colors and line width the border too
   ctx.strokeStyle = '#ffc600';
   ctx.lineWidth = 2;
   ctx.strokeRect(left, top, width, height);
 }
 
+// this pixelate the user face
 function censor({ boundingBox: face }) {
   faceCtx.imageSmoothingEnabled = false;
   faceCtx.clearRect(0, 0, faceCanvas.width, faceCanvas.height);
