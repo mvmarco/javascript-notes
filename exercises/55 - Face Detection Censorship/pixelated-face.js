@@ -21,6 +21,9 @@ const faceCtx = faceCanvas.getContext('2d'); // contex refers to the object that
   4 Returns the newly created object
 */
 const faceDetector = new window.FaceDetector();
+
+console.log(faceCanvas, faceDetector, video, canvas);
+
 const optionsInputs = document.querySelectorAll(
   '.controls input[type="range"]'
 );
@@ -37,8 +40,17 @@ function handleOption(event) {
 optionsInputs.forEach((input) => input.addEventListener('input', handleOption));
 
 // Write a fucntion that will populate the users video
+/* 
+  calling this function in the console will not be possible, you can only if you
+  console.log it here. Why? because we used a A JavaScript bundler
+  a tool that puts your code and all its dependencies together in one JavaScript file.
+  webpack is a bundler not sure what we used it
+*/
 async function populateVideo() {
+  // The navigator object contains information about the browser.
   const stream = await navigator.mediaDevices.getUserMedia({
+    // here you can say if you wanna a video or audio
+    // by just saying video: true but here we want the video at specific dimensions
     video: { width: 1280, height: 720 },
   });
   video.srcObject = stream;
@@ -50,6 +62,23 @@ async function populateVideo() {
   faceCanvas.width = video.videoWidth;
   faceCanvas.height = video.videoHeight;
 }
+
+/*
+  calling this function in the console will not be possible, you can only if you
+  console.log it here. Why? because we used a A JavaScript bundler
+  a tool that puts your code and all its dependencies together in one JavaScript file.
+  webpack is a bundler not sure what we used it 
+
+  you can right click on the console and click store as variable and then you can
+  always call it there. Usualy the console store the function in a variable with a
+  new and different name such as temp1, that you can always call and refering to the
+  original function.
+
+  In our example if you call temp1 for instance, you don't get the original function
+  because it is a special one but you get a PROMISE (next notes will show what that is)
+  so In order to call a PROMISE you gotta put ASYNC and AWAIT (next notes will explain)
+*/
+console.log(populateVideo);
 
 async function detect() {
   const faces = await faceDetector.detect(video);

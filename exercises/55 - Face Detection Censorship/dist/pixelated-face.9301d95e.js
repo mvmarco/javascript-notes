@@ -140,6 +140,7 @@ const faceCtx = faceCanvas.getContext('2d'); // contex refers to the object that
 */
 
 const faceDetector = new window.FaceDetector();
+console.log(faceCanvas, faceDetector, video, canvas);
 const optionsInputs = document.querySelectorAll('.controls input[type="range"]');
 const options = {
   SIZE: 10,
@@ -156,8 +157,18 @@ function handleOption(event) {
 
 optionsInputs.forEach(input => input.addEventListener('input', handleOption)); // Write a fucntion that will populate the users video
 
+/* 
+  calling this function in the console will not be possible, you can only if you
+  console.log it here. Why? because we used a A JavaScript bundler
+  a tool that puts your code and all its dependencies together in one JavaScript file.
+  webpack is a bundler not sure what we used it
+*/
+
 async function populateVideo() {
+  // The navigator object contains information about the browser.
   const stream = await navigator.mediaDevices.getUserMedia({
+    // here you can say if you wanna a video or audio
+    // by just saying video: true but here we want the video at specific dimensions
     video: {
       width: 1280,
       height: 720
@@ -244,7 +255,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37327" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43719" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
