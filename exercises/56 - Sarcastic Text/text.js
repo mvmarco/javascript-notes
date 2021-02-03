@@ -61,5 +61,3 @@ filterInputs.forEach((input) =>
     transformText(textarea.value); // it is in the html
   })
 );
-
-// 11,49
