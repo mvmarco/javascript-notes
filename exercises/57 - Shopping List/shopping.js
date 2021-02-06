@@ -142,7 +142,16 @@ function mirrorToLocalStorage() {
   /* 
     if you get a number or an array you can just do: string.toString() or array.toString()
     but if you got an object and call object.toString the result will be "object object"
-    many times as the items inside the object itselt
+    many times as the items inside the object itselt. so if you got an object
+
+    const person = {name: 'ves', age: 100} 
+    person.JSON.stringify(items) you will get a object with inside each element in a string
+    format
+
+    {"name: 'wes'", "age: 100" }¨
+
+    if you wanna go back to the normal object from a string you can do
+    person.JSON.parse(items)
   */
   localStorage.setItem('items', JSON.stringify(items));
 }
