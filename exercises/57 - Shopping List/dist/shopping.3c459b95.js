@@ -132,7 +132,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 /* 
   first thing is to listen to everytime the user type into the input (add item)
-  add hit the submit button.
+  add hit the submit button. if you dont add an event listener whatever the user
+  put goes to the url but does not go anywhere
 
   second we gotta keep track of all the items, whether or not they are complete
   on the screen
@@ -149,22 +150,43 @@ var list = document.querySelector('.list'); // We need an array to hold our stat
   etc etc)
 */
 
-var items = [];
+var items = []; // first step
 
 function handleSubmit(e) {
-  e.preventDefault();
+  e.preventDefault(); // stop the submission
+
   console.log('submitted!!');
+  console.log('check here', e.currentTarget);
+  console.log('check here', e.currentTarget.item.value); // get the data from what the user type¨
+  // you gotta do .item.value because item is the name of the input
+  // you can use whatever is inside the input to get the value
+  // and we need to get the value of the input which is what the user types
+  // not just the current target which is the form itself, you cannot store that info as data
+
   var name = e.currentTarget.item.value; // if its empty, then dont submit it
 
   if (!name) return;
+  /* 
+    now we gotta store the user input as data in the array items
+    but we cannot just store straight strings but more information¨
+    like the ID, is it completed? if it is bought or not and the 
+    actual name
+  */
+
   var item = {
     name: name,
+    // equale to name: name, it has been refactored
     id: Date.now(),
-    complete: false
+    // something unique, that is the trick as long as you dont add items in milliseconds
+    // that could be a problem for databases if you save them fast
+    complete: false // by default are not completed or bought
+
   }; // Push the items into our state
 
   items.push(item);
-  console.log("There are now ".concat(items.length, " in your state")); // Clear the form
+  console.log("There are now ".concat(items.length, " in your state")); // Clear the form, it cleans the target of the form so the user does not have to cancel
+  // all the time the word that he puts
+  // the below code is the same as e.currentTarget.item.value = '';
 
   e.target.reset(); // fire off a custom event that will tell anyone else who cares that the items have been updated!
 
@@ -173,10 +195,24 @@ function handleSubmit(e) {
 
 function displayItems() {
   console.log(items);
+  /* 
+    in otder to display the items, you call the items and create
+    a new array with .map where for each name you put it inside a
+    list:
+     names = ['marco', 'olivia']
+    names.map(name => `<li> ${name} </li>`)
+    // here you get something like ["<li> marco </li>", "<li> olivia </li>"];
+    so you can just call join and select the individual list names
+    all together would be: names.map(name => `<li> ${name} </li>`).join("");
+    <li> marco </li>
+    <li> olivia </li>
+  */
+  // the class shopping item just put some style to the items on the list
+
   var html = items.map(function (item) {
-    return "<li class=\"shopping-item\">\n      <input\n        value=\"".concat(item.id, "\"\n        type=\"checkbox\"\n        ").concat(item.complete && 'checked', "\n      >\n      <span class=\"itemName\">").concat(item.name, "</span>\n      <button\n        aria-label=\"Remove ").concat(item.name, "\"\n        value=\"").concat(item.id, "\"\n      >&times;</buttonaria-label=\"Remove>\n  </li>");
+    return "<li class=\"shopping-item\"> \n      <input\n        value=\"".concat(item.id, "\"\n        type=\"checkbox\"\n        ").concat(item.complete && 'checked', "\n      >\n      <span class=\"itemName\">").concat(item.name, "</span>\n\n      <button\n        aria-label=\"Remove ").concat(item.name, "\"\n        value=\"").concat(item.id, "\">\n        &times;\n      </button aria-label=\"Remove>\n  </li>");
   }).join('');
-  list.innerHTML = html;
+  list.innerHTML = html; // const list = document.querySelector('.list');
 }
 
 function mirrorToLocalStorage() {
@@ -218,9 +254,15 @@ function markAsComplete(id) {
   });
   itemRef.complete = !itemRef.complete;
   list.dispatchEvent(new CustomEvent('itemsUpdated'));
-}
+} // ######################
+// first step
+// ######################
 
-shoppingForm.addEventListener('submit', handleSubmit);
+
+shoppingForm.addEventListener('submit', handleSubmit); // ######################
+// first step
+// ######################
+
 list.addEventListener('itemsUpdated', displayItems);
 list.addEventListener('itemsUpdated', mirrorToLocalStorage); // Event Delegation: We listen or the click on the list <ul> but then delegate the click over to the button if that is what was clicked
 
@@ -264,7 +306,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42637" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36753" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
