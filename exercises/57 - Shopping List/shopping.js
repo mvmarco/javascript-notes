@@ -33,7 +33,7 @@ function handleSubmit(e) {
   // and we need to get the value of the input which is what the user types
   // not just the current target which is the form itself, you cannot store that info as data
   const name = e.currentTarget.item.value;
-  // if its empty, then dont submit it
+  // if its empty what the user put, then dont submit it - we also added the required in the HTML
   if (!name) return;
   /* 
     now we gotta store the user input as data in the array items
@@ -76,6 +76,7 @@ function displayItems() {
   */
 
   // the class shopping item just put some style to the items on the list
+  // &times gives the x sign and aria-label prevent that is read as multiplication for screen readers
   const html = items
     .map(
       (item) => `<li class="shopping-item"> 

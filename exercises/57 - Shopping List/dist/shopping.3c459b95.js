@@ -163,7 +163,7 @@ function handleSubmit(e) {
   // and we need to get the value of the input which is what the user types
   // not just the current target which is the form itself, you cannot store that info as data
 
-  var name = e.currentTarget.item.value; // if its empty, then dont submit it
+  var name = e.currentTarget.item.value; // if its empty what the user put, then dont submit it - we also added the required in the HTML
 
   if (!name) return;
   /* 
@@ -208,6 +208,7 @@ function displayItems() {
     <li> olivia </li>
   */
   // the class shopping item just put some style to the items on the list
+  // &times gives the x sign and aria-label prevent that is read as multiplication for screen readers
 
   var html = items.map(function (item) {
     return "<li class=\"shopping-item\"> \n      <input\n        value=\"".concat(item.id, "\"\n        type=\"checkbox\"\n        ").concat(item.complete && 'checked', "\n      >\n      <span class=\"itemName\">").concat(item.name, "</span>\n\n      <button\n        aria-label=\"Remove ").concat(item.name, "\"\n        value=\"").concat(item.id, "\">\n        &times;\n      </button aria-label=\"Remove>\n  </li>");
