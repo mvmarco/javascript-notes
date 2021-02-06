@@ -190,17 +190,25 @@ function handleSubmit(e) {
 
   e.target.reset();
   /* 
-    now we gotta display the items, we could just fo it with: 
-    displayItems();
-    but in larger JS applications we have to display items not only when the user adds them
+    now we gotta display the items, we could just fo it with:
+     displayItems();
+     but in larger JS applications we have to display items not only when the user adds them
     but for instance:
       1 when the page is reloaded the items should be still there from the local storage
       2 display them also when we mark them as completed or sold/bought
       3 when delete an item you gotta show the items not deleted
     so it is necesary to do more things in larger JS applications
-   
+     Like if you want 2 of this display sectiond you cannot just copy the inner function
+    (display items) of the event to other parts because it will be too much code.
+     An alternative would be to use our own events or custom events(event systems),
+    where we listen to those events and listen to items updated event
+     so instead of display the items we are gonna to fire off a custom event that 
+    will tell anyone else who cares that the items have been updated!
+     dispatch means that an event happens for instance: when focusing a text bar or
+    clicking a submit the browser dispatch an event
+     dispatchEvent() is a method that lives inside every dom element and you gotta
+    give a new CustomEvent (which is a function in the console) and its name
   */
-  // fire off a custom event that will tell anyone else who cares that the items have been updated!
 
   list.dispatchEvent(new CustomEvent('itemsUpdated'));
 }
@@ -276,7 +284,8 @@ shoppingForm.addEventListener('submit', handleSubmit); // ######################
 // first step
 // ######################
 
-list.addEventListener('itemsUpdated', displayItems);
+list.addEventListener('itemsUpdated', displayItems); // here you take the custom even and add display items function
+
 list.addEventListener('itemsUpdated', mirrorToLocalStorage); // Event Delegation: We listen or the click on the list <ul> but then delegate the click over to the button if that is what was clicked
 
 list.addEventListener('click', function (e) {
@@ -290,7 +299,7 @@ list.addEventListener('click', function (e) {
     markAsComplete(id);
   }
 });
-restoreFromLocalStorage();
+restoreFromLocalStorage(); // 28:21
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
