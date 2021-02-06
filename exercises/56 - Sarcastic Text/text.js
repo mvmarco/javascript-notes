@@ -1,7 +1,10 @@
 // we use the name to select all of them
 const textarea = document.querySelector('[name="text"]');
 const result = document.querySelector('.result');
-const filterInputs = Array.from(document.querySelectorAll('[name="filter"]')); // you get the input#funky eg
+const filterInputs = Array.from(document.querySelectorAll('[name="filter"]')); // you get an array with
+// the input#sarcastic and the others - like the id of the input tag - you convert all these results
+// into an array because afterwards you gotta find (array.find() method) the value of each input
+// the value of each input is gonna be passed to the mod const. Check down.
 console.log('LOOOOOOK here', filterInputs);
 /* eslint-disable */
 const funkyLetters = {
@@ -47,6 +50,20 @@ function transformText(text) {
   console.log(filter); // you get sarcastc funky or unable in other words the value="funky" eg
   // take the text, and loop over each letter.
   // take the text and convert it into an array
+
+  /* 
+    so we take the input from the user (check the even listener) and
+    We need to create an array from the text to use map (which will check each letter)
+    to return a new array which applies the selected filter.
+
+    // console log
+    filter: sarcastic
+    mod: (45) ["s", "O", " ", "I", " ", "W", "a", "S", " ", "T", "h", "I", 
+    "n", "K", "i", "N", "g", " ", "a", "B", "o", "U", "t", " ", "g", "O", "i", "N",
+     "g", " ", "t", "O", " ", "T", "h", "E", " ", "S", "t", "O", "r", "E", "e", "E", "."]
+    mod.join:  sO I WaS ThInKiNg aBoUt gOiNg tO ThE StOrEeE.
+  
+  */
   const mod = Array.from(text).map(filters[filter]); // you convert the node list from the user to an array
   // and we find the value looping over of each input function and find the one with the checked attribute
   console.log('look also here', mod);

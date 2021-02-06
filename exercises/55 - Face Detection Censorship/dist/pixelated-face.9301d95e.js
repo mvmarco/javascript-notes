@@ -144,6 +144,7 @@ console.log(faceCanvas, faceDetector, video, canvas);
 const optionsInputs = document.querySelectorAll('.controls input[type="range"]');
 const options = {
   SIZE: 10,
+  // all caps because they are constant in the whole application
   SCALE: 1.35
 };
 
@@ -183,40 +184,103 @@ async function populateVideo() {
   faceCanvas.width = video.videoWidth;
   faceCanvas.height = video.videoHeight;
 }
+/*
+  calling this function in the console will not be possible, you can only if you
+  console.log it here. Why? because we used a A JavaScript bundler
+  a tool that puts your code and all its dependencies together in one JavaScript file.
+  webpack is a bundler not sure what we used it 
+
+  you can right click on the console and click store as variable and then you can
+  always call it there. Usualy the console store the function in a variable with a
+  new and different name such as temp1, that you can always call and refering to the
+  original function.
+
+  In our example if you call temp1 for instance, you don't get the original function
+  because it is a special one but you get a PROMISE (next notes will show what that is)
+  so In order to call a PROMISE you gotta put ASYNC and AWAIT (next notes will explain)
+*/
+
+
+console.log(populateVideo);
+/* 
+  if you call populateVideo() you get a MediaStream
+  and the page immediately reloads
+*/
+
+populateVideo(); // a function that detects the face in the shot
 
 async function detect() {
-  const faces = await faceDetector.detect(video); // ask the browser when the next animation frame is, and tell it to run detect for us
+  const faces = await faceDetector.detect(video); // you can pass image video or canvas
+  // ask the browser when the next animation frame is, and tell it to run detect for us
+  // eslint-disable-next-line no-use-before-define
 
-  faces.forEach(drawFace);
+  faces.forEach(drawFace); // here goes to the draw face function and for each face runs it
+  // eslint-disable-next-line no-use-before-define
+
   faces.forEach(censor);
-  requestAnimationFrame(detect);
-}
+  requestAnimationFrame(detect); // it works also with detect()
+
+  /* 
+    when a function calls itself inside itself is recursion,
+    when a function runs ever and ever
+    until there is an exit condition
+  */
+} // here you draw the square in front of the face
+
 
 function drawFace(face) {
+  // if you check in the console each face, under boundinBox you get the coordinates
+  // x and y refers to the browser, right left etc to the video, we use the latter
   const {
     width,
     height,
     top,
     left
   } = face.boundingBox;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  /*
+    here you get the values
+      console.log(width, height, top, left);
+    here the objects with the keys and value: eg: width: 139.289302932093
+    better for understanding the names
+      console.log({ width, height, top, left });
+  */
+  // clear the width and the width and the height all the time is run
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height); // these are the colors and line width the border too
+
   ctx.strokeStyle = '#ffc600';
   ctx.lineWidth = 2;
   ctx.strokeRect(left, top, width, height);
-}
+} // this pixelate the user face
+
 
 function censor({
   boundingBox: face
 }) {
+  /* 
+    function censor(face) {
+      const faceDetails = face. bounding box
+    }
+    can be denscrutured 
+    function censor({ boundingBox })
+    and you can rename it into a variable called face like above
+  */
   faceCtx.imageSmoothingEnabled = false;
   faceCtx.clearRect(0, 0, faceCanvas.width, faceCanvas.height); // draw the small face
 
-  faceCtx.drawImage( // 5 source args
+  /*  
+    basically what happens is that you take a screenshot of the face,
+    you make it smaller, loose the pixel quality,
+    and put it back on the screen
+  
+  */
+
+  faceCtx.drawImage( // 5 source args that we take out from the face
   video, // where does the source come from?
   face.x, // where do we start the source pull from?
-  face.y, face.width, face.height, // 4 draw args
+  face.y, face.width, face.height, // 4 draw args that we put back
   face.x, // where should we start drawing the x and y?
-  face.y, options.SIZE, options.SIZE); // draw the small face back on, but scale up
+  face.y, options.SIZE, options.SIZE); // draw the small face back on, but scale/strecht it up
 
   const width = face.width * options.SCALE;
   const height = face.height * options.SCALE;
@@ -226,7 +290,7 @@ function censor({
   face.x - (width - face.width) / 2, face.y - (height - face.height) / 2, width, height);
 }
 
-populateVideo().then(detect);
+populateVideo().then(detect); // run the populate video and then the detect (detect has to be run every tot second but not with an interval but with request animation frame which tell us when the browser should do something and not every tot second like with the intervals)
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -255,7 +319,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43719" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43287" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
