@@ -125,8 +125,25 @@ function displayItems() {
   list.innerHTML = html; // const list = document.querySelector('.list');
 }
 
+/* 
+  in the console if you type localStorage you get a Storage or an object with all the
+  items, if you do localStorage.setItem(key, value) so if you do
+  localStorage.setItem('name', 'wes') you put it in the local storage
+  the opposity would be to get them from there with 
+  localStorage.getItem('name')  you just pass the key --> and you get the value 'wes'
+
+  so in the application you will see a table of 2 columns one is for the keys
+  like 'name' and one is for the values like 'wes'
+
+*/
 function mirrorToLocalStorage() {
   console.info('Saving items to localstorage');
+  // if you dont stringfy you just put objects and you need to put string/text to see them
+  /* 
+    if you get a number or an array you can just do: string.toString() or array.toString()
+    but if you got an object and call object.toString the result will be "object object"
+    many times as the items inside the object itselt
+  */
   localStorage.setItem('items', JSON.stringify(items));
 }
 
@@ -164,8 +181,19 @@ shoppingForm.addEventListener('submit', handleSubmit);
 // ######################
 // first step
 // ######################
-list.addEventListener('itemsUpdated', displayItems); // here you take the custom even and add display items function
 
+// here you take the custom even and add display items function
+list.addEventListener('itemsUpdated', displayItems);
+
+/* 
+  here you add the display items custom event to mirrorLocalStorage.
+  a local storage is a sort of database that lives inside the browser.
+  It is just a way to save some data in the user browser for the future time.
+
+  how to find is console > application tab > local storage > domain name(localhost)
+  any website has it. check it out
+
+*/
 list.addEventListener('itemsUpdated', mirrorToLocalStorage);
 // Event Delegation: We listen or the click on the list <ul> but then delegate the click over to the button if that is what was clicked
 list.addEventListener('click', function (e) {
