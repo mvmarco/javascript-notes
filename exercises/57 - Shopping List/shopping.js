@@ -161,6 +161,7 @@ function restoreFromLocalStorage() {
   // pull the items from LS
   const lsItems = JSON.parse(localStorage.getItem('items'));
   if (lsItems.length) {
+    // check if there is a length of items (the first time the user load the page would be empty)
     // items = lsItems;
     // lsItems.forEach(item => items.push(item));
     // items.push(lsItems[0], lsItems[1]);
@@ -216,4 +217,4 @@ list.addEventListener('click', function (e) {
 });
 restoreFromLocalStorage();
 
-// 28:21
+// 36:00

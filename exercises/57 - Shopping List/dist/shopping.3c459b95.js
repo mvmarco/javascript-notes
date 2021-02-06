@@ -274,6 +274,7 @@ function restoreFromLocalStorage() {
   if (lsItems.length) {
     var _items;
 
+    // check if there is a length of items (the first time the user load the page would be empty)
     // items = lsItems;
     // lsItems.forEach(item => items.push(item));
     // items.push(lsItems[0], lsItems[1]);
@@ -334,7 +335,7 @@ list.addEventListener('click', function (e) {
     markAsComplete(id);
   }
 });
-restoreFromLocalStorage(); // 28:21
+restoreFromLocalStorage(); // 36:00
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
