@@ -54,6 +54,18 @@ function handleSubmit(e) {
   // all the time the word that he puts
   // the below code is the same as e.currentTarget.item.value = '';
   e.target.reset();
+  /* 
+    now we gotta display the items, we could just fo it with: 
+    displayItems();
+    but in larger JS applications we have to display items not only when the user adds them
+    but for instance:
+      1 when the page is reloaded the items should be still there from the local storage
+      2 display them also when we mark them as completed or sold/bought
+      3 when delete an item you gotta show the items not deleted
+    so it is necesary to do more things in larger JS applications
+
+  
+  */
   // fire off a custom event that will tell anyone else who cares that the items have been updated!
   list.dispatchEvent(new CustomEvent('itemsUpdated'));
 }
