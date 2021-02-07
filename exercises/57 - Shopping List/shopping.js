@@ -32,6 +32,10 @@ function handleSubmit(e) {
   // you can use whatever is inside the input to get the value
   // and we need to get the value of the input which is what the user types
   // not just the current target which is the form itself, you cannot store that info as data
+  /* 
+    you can get the value using ID or the name attribute but those themselves have no value
+    but rather they are pointers to the form inputs which do have values that are accessible.
+  */
   const name = e.currentTarget.item.value;
   // if its empty what the user put, then dont submit it - we also added the required in the HTML
   if (!name) return;
@@ -159,13 +163,13 @@ function mirrorToLocalStorage() {
 function restoreFromLocalStorage() {
   console.info('Restoring from LS');
   // pull the items from LS
-  const lsItems = JSON.parse(localStorage.getItem('items'));
+  const lsItems = JSON.parse(localStorage.getItem('items')); // convert them back to an object
   if (lsItems.length) {
     // check if there is a length of items (the first time the user load the page would be empty)
-    // items = lsItems;
+    // you could also update items = lsItems; with a let instead of a const but too confusing
     // lsItems.forEach(item => items.push(item));
     // items.push(lsItems[0], lsItems[1]);
-    items.push(...lsItems);
+    items.push(...lsItems); // easier like this
     list.dispatchEvent(new CustomEvent('itemsUpdated'));
   }
 }
@@ -216,5 +220,3 @@ list.addEventListener('click', function (e) {
   }
 });
 restoreFromLocalStorage();
-
-// 36:00

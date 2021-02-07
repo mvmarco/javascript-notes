@@ -5,6 +5,12 @@ const filterInputs = Array.from(document.querySelectorAll('[name="filter"]')); /
 // the input#sarcastic and the others - like the id of the input tag - you convert all these results
 // into an array because afterwards you gotta find (array.find() method) the value of each input
 // the value of each input is gonna be passed to the mod const. Check down.
+
+/* 
+  can’t tell you exactly why const filterInputs = Array.from(document.querySelectorAll('[name="filter"]'));
+  returns [input#sarcastic, input#funky, input#unable]  except that perhaps JavaScript was written
+  to return the most specific selector in the DOM elements that are targeted by querySelector.
+*/
 console.log('LOOOOOOK here', filterInputs);
 /* eslint-disable */
 const funkyLetters = {

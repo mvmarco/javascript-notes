@@ -163,6 +163,11 @@ function handleSubmit(e) {
   // and we need to get the value of the input which is what the user types
   // not just the current target which is the form itself, you cannot store that info as data
 
+  /* 
+    you can get the value using ID or the name attribute but those themselves have no value
+    but rather they are pointers to the form inputs which do have values that are accessible.
+  */
+
   var name = e.currentTarget.item.value; // if its empty what the user put, then dont submit it - we also added the required in the HTML
 
   if (!name) return;
@@ -269,16 +274,17 @@ function mirrorToLocalStorage() {
 function restoreFromLocalStorage() {
   console.info('Restoring from LS'); // pull the items from LS
 
-  var lsItems = JSON.parse(localStorage.getItem('items'));
+  var lsItems = JSON.parse(localStorage.getItem('items')); // convert them back to an object
 
   if (lsItems.length) {
     var _items;
 
     // check if there is a length of items (the first time the user load the page would be empty)
-    // items = lsItems;
+    // you could also update items = lsItems; with a let instead of a const but too confusing
     // lsItems.forEach(item => items.push(item));
     // items.push(lsItems[0], lsItems[1]);
-    (_items = items).push.apply(_items, _toConsumableArray(lsItems));
+    (_items = items).push.apply(_items, _toConsumableArray(lsItems)); // easier like this
+
 
     list.dispatchEvent(new CustomEvent('itemsUpdated'));
   }
@@ -335,7 +341,7 @@ list.addEventListener('click', function (e) {
     markAsComplete(id);
   }
 });
-restoreFromLocalStorage(); // 36:00
+restoreFromLocalStorage();
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
