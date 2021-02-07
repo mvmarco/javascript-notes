@@ -282,13 +282,41 @@ function restoreFromLocalStorage() {
     // check if there is a length of items (the first time the user load the page would be empty)
     // you could also update items = lsItems; with a let instead of a const but too confusing
     // lsItems.forEach(item => items.push(item));
-    // items.push(lsItems[0], lsItems[1]);
+    // items.push(lsItems[0], lsItems[1]); that is what spread does
     (_items = items).push.apply(_items, _toConsumableArray(lsItems)); // easier like this
 
 
     list.dispatchEvent(new CustomEvent('itemsUpdated'));
   }
 }
+/* 
+  you cannot just put here:
+
+  const buttons = list.querySelectorAll('button');
+
+  because the event listener that display items in submit or from the storage
+  are called later, so if you console.log(buttons)
+  you do not see any buttons in the console as the list will be empty of products
+  and therefore no buttons are found.
+
+  so you can think to put it after those mentioned event listeners and create the 
+  delete button events:
+
+  function delteItem(id) {
+    console.log("deleting items")
+  }  
+
+  // in the console this function works only on the old products but if you
+  // add new ones it will not work anymore on any products?????
+
+
+
+
+
+  const buttons = list.querySelectorAll('button'); 1
+  buttons.forEach(button => button.addEventListener('click', deleteItem)); 2
+*/
+
 
 function deleteItem(id) {
   console.log('DELETIENG ITEM', id); // update our items array without this one
@@ -328,7 +356,8 @@ list.addEventListener('itemsUpdated', displayItems);
 
 */
 
-list.addEventListener('itemsUpdated', mirrorToLocalStorage); // Event Delegation: We listen or the click on the list <ul> but then delegate the click over to the button if that is what was clicked
+list.addEventListener('itemsUpdated', mirrorToLocalStorage); // Event Delegation: We listen or the click on the list <ul> but then
+// delegate the click over to the button if that is what was clicked
 
 list.addEventListener('click', function (e) {
   var id = parseInt(e.target.value);
