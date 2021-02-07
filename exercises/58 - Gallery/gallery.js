@@ -85,15 +85,18 @@ function Gallery(gallery) {
     console.log(el);
     modal.querySelector('img').src = el.src;
     modal.querySelector('h2').textContent = el.title;
+    // here we get the custom dataset: data-description="This is the description of the image">
     modal.querySelector('figure p').textContent = el.dataset.description;
-    currentImage = el;
+    currentImage = el; // this is connected to the "let currentImage;" in gallery
     openModal();
   }
 
-  // These are our Event Listeners!
+  // #####################################################################################
+  // for each image we have we add event listeners
   images.forEach((image) =>
     image.addEventListener('click', (e) => showImage(e.currentTarget))
   );
+  // #####################################################################################
 
   // loop over each image
   images.forEach((image) => {
