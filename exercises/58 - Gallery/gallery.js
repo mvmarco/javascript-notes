@@ -31,6 +31,9 @@ function Gallery(gallery) {
   const nextButton = modal.querySelector('.next');
   let currentImage;
 
+  // #############################
+  // SECOND IMPORTANT STEP
+  // #############################
   function openModal() {
     console.info('Opening Modal...');
     // First check if the modal is already open
@@ -41,11 +44,16 @@ function Gallery(gallery) {
     modal.classList.add('open');
 
     // Event listeners to be bound when we open the modal:
+    // eslint-disable-next-line no-use-before-define
     window.addEventListener('keyup', handleKeyUp);
+    // eslint-disable-next-line no-use-before-define
     nextButton.addEventListener('click', showNextImage);
+    // eslint-disable-next-line no-use-before-define
     prevButton.addEventListener('click', showPrevImage);
   }
-
+  // #############################
+  // THIRD IMPORTANT STEP
+  // #############################
   function closeModal() {
     modal.classList.remove('open');
     // TODO: add event listeners for clicks and keyboard..
@@ -53,7 +61,9 @@ function Gallery(gallery) {
     nextButton.removeEventListener('click', showNextImage);
     prevButton.removeEventListener('click', showPrevImage);
   }
-
+  // #############################
+  // FOURTH IMPORTANT STEP
+  // #############################
   function handleClickOutside(e) {
     if (e.target === e.currentTarget) {
       closeModal();
@@ -88,7 +98,7 @@ function Gallery(gallery) {
     // here we get the custom dataset: data-description="This is the description of the image">
     modal.querySelector('figure p').textContent = el.dataset.description;
     currentImage = el; // this is connected to the "let currentImage;" in gallery
-    openModal();
+    openModal(); // connect to the second important step
   }
 
   // #####################################################################################
