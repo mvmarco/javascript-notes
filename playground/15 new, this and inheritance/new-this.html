@@ -134,11 +134,19 @@
     const button2 = document.querySelector('.two');
 
     function tellMeAboutTheButton() {
-      console.log(this);
+      console.log(this); // this logs the button itself (which is an instace  -  look below)
     }
 
     button1.addEventListener('click', tellMeAboutTheButton);
     button2.addEventListener('click', tellMeAboutTheButton);
+
+    /* 
+      when creating the consts "button1" and "button2" you are
+      automatically creating a new instance of a button, the "new" keyword
+      is implicit. So when you add an eventListener to one of these "buttons"
+      you are refering to the instances. the word "this" refers to the instance
+      or as Wes says "what is on the left of a method"
+    */
   </script>
 </body>
 
