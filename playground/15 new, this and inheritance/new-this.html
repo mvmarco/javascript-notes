@@ -9,6 +9,8 @@
 </head>
 
 <body>
+  <button class="one">Button 1</button>
+  <button class="two">Button 2</button>
   <script>
     console.log('it works');
     /* 
@@ -47,14 +49,96 @@
 
       const myNumber = new Number(100)
       you can see that: myNumber has a bunch of methos in the proto
-      
-
-
     */
-    /* 
-      
     
+    /*     
+      coming back to  const myDate = new Date('August 11, 2025');
+      myDate is an instace of Date
+      in fact if you do 'typeof myDate' you get "object" because date is an Object
+      and if you do 'myDate instanceof Date' you get "true" 
     */
+
+    // another example
+    const names = ['wes', 'kate'];
+    console.log(names);
+    /* 
+      if you do 'typeof names' in the console you get
+      "object" because an array is not a type but a special kind of an object
+      but if you do 'names istanceof Array' you get "true"
+    */
+
+    /* 
+      can be confusing because usually you do not use the "new" keyword while
+      creating an array or an object: 
+      const names = ['wes', 'kate'];
+      const wes = {name: 'wes', age: 100};
+      because the parentesis like [] or {} are defined as literal sintax
+      and it the same one as:
+      const names = new Array('wes', 'kate');
+      const wes = new Object({name: 'wes', age: 100});
+
+      Date does not have a literal sintax so you gotta use the "new" keyword
+    */
+
+    // another example is:
+
+    const span = document.createElement('span');
+    console.log(span);
+
+    /* 
+      if you do 'span instance of Element' you get "true"
+      span is an instance of an element but we do not use the word "new"
+      because document.createElement() use the "new" keyword under the hood
+    */
+
+    // practice:
+
+    const Pizza = () => console.log('making a pizza');
+    const pepperoniPizza = Pizza();
+    console.log(pepperoniPizza); // you get undefined because the pizza function did not return anything
+
+    function Secondpizza() {
+      console.log('Making a second pizza');
+    }
+
+    const pepperoniPizza2 = new Secondpizza(); // here you get an empty Secondpizza object
+    /* 
+      in other words when you use the "new" keyword on a function it creates a new instance
+      object of that function. In other words, a new object that is an instance of whatever
+      function you made it from
+    */
+    // console.log(pepperoniPizza2);
+    // so if you do:
+    console.log(pepperoniPizza2.constructor);
+    console.log(pepperoniPizza2 instanceof Secondpizza);
+
+    /* 
+      Arrow functions can never be used as constructor functions. 
+      Hence, they can never be invoked with the new keyword. 
+      As such, a prototype property does not exist for an arrow function.
+    */
+
+    // #############################
+    // THIS
+    // #############################
+
+    /* 
+      "this" refers to the instance of an object that a function is bound.
+      "this" refers to what stands to the left of a .dot when you are calling
+      a method
+    */
+
+    // example:
+
+    const button1 = document.querySelector('.one');
+    const button2 = document.querySelector('.two');
+
+    function tellMeAboutTheButton() {
+      console.log(this);
+    }
+
+    button1.addEventListener('click', tellMeAboutTheButton);
+    button2.addEventListener('click', tellMeAboutTheButton);
   </script>
 </body>
 
