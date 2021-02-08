@@ -11,6 +11,7 @@
 <body>
   <button class="one">Button 1</button>
   <button class="two">Button 2</button>
+  <button class="three">Button 3</button>
   <script>
     console.log('it works');
     /* 
@@ -141,12 +142,29 @@
     button2.addEventListener('click', tellMeAboutTheButton);
 
     /* 
-      when creating the consts "button1" and "button2" you are
-      automatically creating a new instance of a button, the "new" keyword
-      is implicit. So when you add an eventListener to one of these "buttons"
-      you are refering to the instances. the word "this" refers to the instance
+      when creating the consts "button1" and "button2" (this also happens when you
+      create JS and put it back into the DOM) you are automatically creating 
+      a new instance of a button from the HTML where the "new" keyword
+      is implicit. So when you add an eventListener to one of these isntance "buttons"
+      you are refering to the instances itself. the word "this" refers to the instance
       or as Wes says "what is on the left of a method"
+
+      the "tellMeAboutTheButton" function is bound to the instance, the keyword "this" refers to
+      the instance which is what the function is bound to
     */
+
+    /* 
+      another thing to know about the "this" keyword is that "this" is scoped to the function
+      which again is bound to the instance. so if you use an arrow function the instance is not
+      bound to the arrow function but instead is bound to the window.
+    */
+
+    const button3 = document.querySelector('.three');
+    const tellMeAboutTheButtonTwo = () => {
+      console.log(this); // when you click the button you get the window
+    };
+
+    button3.addEventListener('click', tellMeAboutTheButtonTwo);
   </script>
 </body>
 
