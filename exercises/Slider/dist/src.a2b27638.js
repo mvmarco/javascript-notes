@@ -170,6 +170,16 @@ function Slider(slider) {
       can be accessed at the lower level. They are not global variables but
       are variables that are living inside the closure slider function 
     */
+
+    /* 
+      1 you take slider because it is the argument of the slider function
+      which is the instance with the slider div. (bottom of the page 
+      const mySlider = Slider(document.querySelector('.slider'));) 
+      from there you take the class .current which is applied to have an automatic start for the first
+      slider or the firstElementChild of slides (const slides = slider.querySelector('.slides'))  
+      which is in the mother function. Why? because the second div. does not have a current class
+      so you gotta take the first element child of the div.class
+     */
     current = slider.querySelector('.current') || slides.firstElementChild;
     prev = current.previousElementSibling || slides.lastElementChild;
     next = current.nextElementSibling || slides.firstElementChild;
