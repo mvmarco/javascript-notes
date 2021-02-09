@@ -12,6 +12,7 @@
   <button class="one">Button 1</button>
   <button class="two">Button 2</button>
   <button class="three">Button 3</button>
+  <button class="four">Button 4</button>
   <script>
     console.log('it works');
     /* 
@@ -156,7 +157,8 @@
     /* 
       another thing to know about the "this" keyword is that "this" is scoped to the function
       which again is bound to the instance. so if you use an arrow function the instance is not
-      bound to the arrow function but instead is bound to the window.
+      bound to the arrow function but instead is bound to the window. or whatever is at the higher
+      level (case of a nested function)
     */
 
     const button3 = document.querySelector('.three');
@@ -165,6 +167,61 @@
     };
 
     button3.addEventListener('click', tellMeAboutTheButtonTwo);
+
+    /* 
+      another example would be creating a normal function that after a second
+      updates the text of the button. But the problem is that if you create another
+      function inside the one bounded to the instance, it will refer to something else like the window
+      the alternative would be create an arrow function instead, inside check the comment after
+    */
+    const button4 = document.querySelector('.four');
+    function tellMeAboutTheButtonThree() {
+      console.log('outside', this);
+      setTimeout(function () {
+        console.log('inside', this); // it is not working because this is still the window
+        this.textContent = 'you clicked me'; // it is not working
+      }, 1000);
+    }
+    button4.addEventListener('click', tellMeAboutTheButtonThree);
+
+    /*   
+      // in this way with an arrow function nested inside should work.
+      // the "this" keyword will work because the arrow function automatically
+      // be connected with whatever it is in that main function
+      const button4 = document.querySelector('.four');
+      function tellMeAboutTheButtonThree() {
+        console.log('outside', this);
+        setTimeout(() => {
+          console.log('inside', this); // it is not working because this is still the window
+          this.textContent = 'you clicked me'; // it is not working
+        }, 1000);
+      }
+      button4.addEventListener('click', tellMeAboutTheButtonThree); 
+    */
+
+    // IMPORTANT: "this" is not so frequent in the case above
+    // because you use event.currentTarget or event.target
+
+    // ########################
+    // another case with "this"
+    // ########################
+    
+    /* 
+      the function that makes an object is called "constructor"
+    */
+    function Focaccia(toppings = [], customer) {
+      console.log('making focaccia');
+      console.log(this); // all the time you make a focaccia you get an object
+      // here you can store more info about the focaccia itself, inside the focaccia
+
+      this.toppings = toppings; // here you save the toppings that were passsed in, to this focaccia instance
+      this.customer = customer; // here you save the customer name that were passsed in, to this focaccia instance
+      // here using paul irish random id website to get random id all the time you run it
+      // all the time focaccia is made it will take a random id
+      this.id = Math.floor(Math.random() * 16777215).toString(16);
+    }
+    const freshFocaccia = new Focaccia(['oil'], 'Marco');
+    const potatoFocaccia = new Focaccia(['oil', 'potatoes'], 'Marco');
   </script>
 </body>
 
