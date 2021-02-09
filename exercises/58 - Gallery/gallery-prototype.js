@@ -35,6 +35,10 @@ function Gallery(gallery) {
   this.modal.addEventListener('click', this.handleClickOutside);
 }
 
+// ###################################################################
+// all the function that were inside the constructor are here below
+// ###################################################################
+
 Gallery.prototype.openModal = function () {
   console.info('Opening Modal...');
   // First check if the modal is already open
