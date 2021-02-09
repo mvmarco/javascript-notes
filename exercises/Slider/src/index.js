@@ -78,6 +78,18 @@ function Slider(slider) {
     console.log({ current, prev, next });
   }
 
+  /* 
+    the difference between LastElementChild vs LastChild:
+
+    if you have:
+      <p> I <strong>love</strong> to eat <strong>pizza</strong> </p>
+      $0.nextSibling (of <strong>love</strong>) is to eat
+      $0.nextElementSibling (of <strong>love</strong>) is pizza
+    the difference is that nextSibling gives us a node and a node can neither be 
+    a straight up text or an element. Whereas nextElementSibling gives as the element
+
+  */
+
   function applyClasses() {
     current.classList.add('current');
     prev.classList.add('prev');
