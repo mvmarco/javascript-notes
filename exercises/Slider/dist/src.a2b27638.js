@@ -215,7 +215,12 @@ function Slider(slider) {
     var _prev$classList, _current$classList, _next$classList;
 
     // first strip all the classes off the current slides
+    // create an array of classes to remove
     var classesToRemove = ['prev', 'current', 'next'];
+    /* 
+      another way would be
+      ['prev', 'current', 'next'].forEach(el => el.classList.remove(...classesToRemove))
+    */
 
     (_prev$classList = prev.classList).remove.apply(_prev$classList, classesToRemove);
 
@@ -255,6 +260,7 @@ function Slider(slider) {
 var mySlider = Slider(document.querySelector('.slider')); // eslint-disable-next-line no-unused-vars
 
 var dogSlider = Slider(document.querySelector('.dog-slider'));
+/* 26 */
 },{}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
