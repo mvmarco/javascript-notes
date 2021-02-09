@@ -2,9 +2,9 @@ function Gallery(gallery) {
   if (!gallery) {
     throw new Error('No Gallery Found!');
   }
-  this.gallery = gallery;
+  this.gallery = gallery; // this says that the info of the function are the two galleries at the end of the page
   // select the elements we need
-  this.images = Array.from(gallery.querySelectorAll('img'));
+  this.images = Array.from(gallery.querySelectorAll('img')); // forEach is applied later on
   this.modal = document.querySelector('.modal');
   this.prevButton = this.modal.querySelector('.prev');
   this.nextButton = this.modal.querySelector('.next');

@@ -57,8 +57,11 @@ function Gallery(gallery) {
   function closeModal() {
     modal.classList.remove('open');
     // TODO: add event listeners for clicks and keyboard..
+    // eslint-disable-next-line no-use-before-define
     window.removeEventListener('keyup', handleKeyUp);
+    // eslint-disable-next-line no-use-before-define
     nextButton.removeEventListener('click', showNextImage);
+    // eslint-disable-next-line no-use-before-define
     prevButton.removeEventListener('click', showPrevImage);
   }
   // #############################
@@ -72,14 +75,18 @@ function Gallery(gallery) {
 
   function handleKeyUp(event) {
     if (event.key === 'Escape') return closeModal();
+    // eslint-disable-next-line no-use-before-define
     if (event.key === 'ArrowRight') return showNextImage();
+    // eslint-disable-next-line no-use-before-define
     if (event.key === 'ArrowLeft') return showPrevImage();
   }
 
   function showNextImage() {
+    // eslint-disable-next-line no-use-before-define
     showImage(currentImage.nextElementSibling || gallery.firstElementChild);
   }
   function showPrevImage() {
+    // eslint-disable-next-line no-use-before-define
     showImage(currentImage.previousElementSibling || gallery.lastElementChild);
   }
   // #############################
