@@ -179,6 +179,11 @@ function Slider(slider) {
       slider or the firstElementChild of slides (const slides = slider.querySelector('.slides'))  
       which is in the mother function. Why? because the second div. does not have a current class
       so you gotta take the first element child of the div.class
+       2 for "prev" you take the same element before it, or the last for the second slider
+      because before the 1st there is the last. 
+       3 with next same logic but inverted
+       HOW TO TEST IT: CONSOLE>SELECT WITH THE ARROW ONE OF THE SLIDE NUMBER> OPEN CONSOLE AND 
+      TYPE $0.previousElementSibling
      */
     current = slider.querySelector('.current') || slides.firstElementChild;
     prev = current.previousElementSibling || slides.lastElementChild;
