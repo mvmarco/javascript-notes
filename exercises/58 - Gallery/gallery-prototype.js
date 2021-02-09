@@ -101,4 +101,5 @@ Gallery.prototype.showImage = function (el) {
 const gallery1 = new Gallery(document.querySelector('.gallery1'));
 const gallery2 = new Gallery(document.querySelector('.gallery2'));
 
-console.log(gallery1, gallery2);
+console.log(gallery1, gallery2); // this would be undefined without the "new" keyword
+// Gallery is the constructor function above the page
