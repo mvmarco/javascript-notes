@@ -122,6 +122,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   a slider is basically a class adder/remover through each slide in the html
   we put this file in src because we have multiple JS, and it is common way to do it
 */
+// the slider refers to the div/elementwith the class of slider
 function Slider(slider) {
   if (!(slider instanceof Element)) {
     throw new Error('No slider passed in');
@@ -191,9 +192,11 @@ function Slider(slider) {
     return move('back');
   });
   nextButton.addEventListener('click', move);
-}
+} // eslint-disable-next-line no-unused-vars
 
-var mySlider = Slider(document.querySelector('.slider'));
+
+var mySlider = Slider(document.querySelector('.slider')); // eslint-disable-next-line no-unused-vars
+
 var dogSlider = Slider(document.querySelector('.dog-slider'));
 },{}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];

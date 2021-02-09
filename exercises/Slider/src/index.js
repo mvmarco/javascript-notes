@@ -3,6 +3,7 @@
   we put this file in src because we have multiple JS, and it is common way to do it
 */
 
+// the slider refers to the div/elementwith the class of slider
 function Slider(slider) {
   if (!(slider instanceof Element)) {
     throw new Error('No slider passed in');
@@ -64,5 +65,7 @@ function Slider(slider) {
   nextButton.addEventListener('click', move);
 }
 
+// eslint-disable-next-line no-unused-vars
 const mySlider = Slider(document.querySelector('.slider'));
+// eslint-disable-next-line no-unused-vars
 const dogSlider = Slider(document.querySelector('.dog-slider'));
