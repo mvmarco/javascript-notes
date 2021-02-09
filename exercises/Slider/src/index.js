@@ -1,3 +1,8 @@
+/* 
+  a slider is basically a class adder/remover through each slide in the html
+  we put this file in src because we have multiple JS, and it is common way to do it
+*/
+
 function Slider(slider) {
   if (!(slider instanceof Element)) {
     throw new Error('No slider passed in');

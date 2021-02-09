@@ -1,7 +1,12 @@
+/* 
+  the purpose of the scss is to show that
+  parcel translates auomatically the SCSS in CSS
+*/
+
 .slides {
   width: 800px;
   height: 500px;
-  border:2px solid black;
+  border: 2px solid black;
   position: relative;
   margin: 0 auto;
   overflow: hidden;
@@ -19,7 +24,7 @@
   font-size: 100px;
   font-family: sans-serif;
   border: 5px solid white;
-  transition: all .25s;
+  transition: all 0.25s; // allows to have the anymation to slide
   transform: translateX(-200%);
 }
 
@@ -29,7 +34,9 @@
 
 .slide.prev {
   z-index: 10;
-  transform: translateX(-100%);
+  transform: translateX(
+    -100%
+  ); // it means it pushes outside to the left the content
 }
 .slide.current {
   z-index: 10;
@@ -37,7 +44,9 @@
 }
 .slide.next {
   z-index: 10;
-  transform: translateX(100%);
+  transform: translateX(
+    100%
+  ); // it means it pushes outside to the right the content
 }
 
 .controls {

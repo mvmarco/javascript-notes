@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "sass": "^1.23.3"
+    "sass": "^1.32.6"
   },
   "dependencies": {
     "parcel": "^1.12.4"
