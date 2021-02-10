@@ -294,7 +294,10 @@
         instead of putting functions of every single pizza instance, we can put them on what
         is referred to PROTOTYPE. The big deal is that if you have 200000000 thousands of pizza
         instances and make a duplicate functions, all the time you duplicate you suck data memory
-         if you have thousand thousands of pizza,
+        in your computer and this led to slower websites in a lot of cases.
+
+        so instad of having 200000000 thousands functions we can have one that is shared among
+        all of ours pizza ******* check the next big comment *******
       */
     }
 
@@ -303,6 +306,35 @@
     const tomatoePizza = new NewPizza(['oil', 'tomatoe'], 'Lapo');
     console.log(freshNewPizza);
     console.log(tomatoePizza);
+
+    /* 
+      ******* check the here *******
+      if you got two arrays:
+
+      const numbers = [1, 2, 3, 4, 5];
+      const names = ['wes', 'kate'];
+
+      and in the console you do:
+
+      numbers.filter()
+      names.filter()
+
+      the browser is not copy and paste the filter() functionality all the time you make a new array
+      but instead takes the functionality from a place called prototype. Which allows, each of the arrays
+      to share that functionality. In fact if you do:
+
+      numbers.filter() === names.filter() 
+      you get: true
+      they are the same exact function, they don't have the same functionality, they are the same function ~~~~
+      whereas again if you
+      do:
+      tomatoePizza.eat() === freshNewPizza.eat()
+      you get: false
+      they are not the same function but they do look like the same
+
+
+    
+    */
   </script>
 </body>
 
