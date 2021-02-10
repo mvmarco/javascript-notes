@@ -414,14 +414,32 @@
       middle.length() is still available, because all the methods are defined on the prototype
 
       all these methods are coming with the language and are called built in
+      you could potentially add your own but it is not a good thing to do:
 
+      String.prototype.toUpperCase = function() {
+        return 'yelling'
+      }
 
+      if you do now:
 
-      but that means that if you create a new string:
+      name = 'wes'
+      name.toUpperCase()  what you get is "yelling" 
+      now since we overwrite the prototype functionality when all the time we call the method
+      on a new string it will be always toUpperCase();
 
-      
-    
-    
+      why is this allowed? because new functionality that are added to the browser
+      like Array.prototype.includes() - includes() was originally associated on strings
+      but new browser adopted it. Older browsers needs to check and if it is not present add it:
+
+      if(!Array.prototype.includes) {
+        Array.prototype.includes = function() {
+          .................................
+        }
+      }
+
+      that is what it is referred to polyfill or polyfilling, when the browser does not include
+      a functionality on the prototype natively you gotta fill it but recreating the functionality
+      in vanilla JavaScript
     */
   </script>
 </body>
