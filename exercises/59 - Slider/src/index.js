@@ -36,6 +36,16 @@ function Slider(slider) {
   const prevButton = slider.querySelector('.goToPrev');
   const nextButton = slider.querySelector('.goToNext');
 
+  /* 
+    this will not let the bottom button work, but only the first
+    and will let both slides works... why? because document.querySelector()
+    will take the first element that matches on the page and binds to that 
+    and not all of them. So we gotta look on the buttons inside each slider
+    itself,
+    const prevButton = document.querySelector('.goToPrev');
+    const nextButton = document.querySelector('.goToNext');
+  */
+
   function startSlider() {
     /*
       here we update/popilate the variables "prev", "current" and "next"
@@ -150,5 +160,3 @@ function Slider(slider) {
 const mySlider = Slider(document.querySelector('.slider'));
 // eslint-disable-next-line no-unused-vars
 const dogSlider = Slider(document.querySelector('.dog-slider'));
-
-/* 26 */
