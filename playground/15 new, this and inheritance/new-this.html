@@ -355,8 +355,43 @@
             return this.slices;
           } // this is an else
           console.log('sorry! no slices left');
+        }
       */
     }
+
+    NewPizza2.prototype.eat = function () {
+      if (this.slices > 1) {
+        this.slices -= 1;
+        console.log(`you now have ${this.slices} left!`);
+        return this.slices;
+      } // this is an else
+      console.log('sorry! no slices left');
+    };
+
+    /* 
+      now if you go in the console and do: tomatoePizza2.eat();
+      it works as the same as before. but also,
+      if in the console you do: tomatoePizza2
+      you see all the instance properties and also under __proto__:
+      eat: f()
+      which is our function
+
+      while our old tomatoePizza has still the function duplicated inside iself and not in the __proto__
+
+      going back to our tomatoePizza2, if you call eat() on it, the browser will not directly
+      find the functionality inside itself but but instead will search also the prototype
+      and find it there eventually.
+
+      so for instace if we add a new prototype:
+
+      NewPizza2.prototype.size = 'large';
+
+      and in our "constructor": this.size = "medium"
+
+      what it will happen when you call: newPizza2.size will be getting the medium
+      because first it will search inside the function itself and then if does not find 
+      anything it will search on the prototype
+    */
 
     const tomatoePizza2 = new NewPizza2(['oil', 'tomatoe'], 'Lapo');
     console.log('here the prototype pizza', tomatoePizza2);
