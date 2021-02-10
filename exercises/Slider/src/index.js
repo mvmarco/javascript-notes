@@ -108,10 +108,18 @@ function Slider(slider) {
     current.classList.remove(...classesToRemove);
     next.classList.remove(...classesToRemove);
     if (direction === 'back') {
-      // make an new array of the new values, and destructure them over and into the prev, current and next variables
+      /* 
+        take the array the value "prev", "current", "next" and associate new value.
+        "prev" has to be the previousElement Sibling
+        "current" is gonna be "prev"
+        and "next" is gonna be "current" 
+        check the order:
+        make an new array of the new values, and destructure them over and into the prev,
+        current and next variables.
+      */
       [prev, current, next] = [
         // get the prev slide, if there is none, get the last slide from the entire slider for wrapping
-        prev.previousElementSibling || slides.lastElementChild,
+        prev.previousElementSibling || slides.lastElementChild, // otherwise you get errors
         prev,
         current,
       ];
@@ -124,15 +132,17 @@ function Slider(slider) {
       ];
     }
 
-    applyClasses();
+    applyClasses(); // here you re-apply the classes with the right order
   }
 
-  // when this slider is created, run the start slider function
+  // when this slider is created, run the start slider function and apply the classes
   startSlider();
   applyClasses();
 
   // Event listeners
+  // if you need to pass an argument you can just put the arrow function
   prevButton.addEventListener('click', () => move('back'));
+  // when it is not necessary you can just call the function itself
   nextButton.addEventListener('click', move);
 }
 

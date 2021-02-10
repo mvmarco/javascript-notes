@@ -229,9 +229,18 @@ function Slider(slider) {
     (_next$classList = next.classList).remove.apply(_next$classList, classesToRemove);
 
     if (direction === 'back') {
-      // make an new array of the new values, and destructure them over and into the prev, current and next variables
+      /* 
+        take the array the value "prev", "current", "next" and associate new value.
+        "prev" has to be the previousElement Sibling
+        "current" is gonna be "prev"
+        and "next" is gonna be "current" 
+        check the order:
+        make an new array of the new values, and destructure them over and into the prev,
+        current and next variables.
+      */
       var _ref = [// get the prev slide, if there is none, get the last slide from the entire slider for wrapping
-      prev.previousElementSibling || slides.lastElementChild, prev, current];
+      prev.previousElementSibling || slides.lastElementChild, // otherwise you get errors
+      prev, current];
       prev = _ref[0];
       current = _ref[1];
       next = _ref[2];
@@ -243,16 +252,18 @@ function Slider(slider) {
       next = _ref2[2];
     }
 
-    applyClasses();
-  } // when this slider is created, run the start slider function
+    applyClasses(); // here you re-apply the classes with the right order
+  } // when this slider is created, run the start slider function and apply the classes
 
 
   startSlider();
   applyClasses(); // Event listeners
+  // if you need to pass an argument you can just put the arrow function
 
   prevButton.addEventListener('click', function () {
     return move('back');
-  });
+  }); // when it is not necessary you can just call the function itself
+
   nextButton.addEventListener('click', move);
 } // eslint-disable-next-line no-unused-vars
 
@@ -289,7 +300,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33381" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43373" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
