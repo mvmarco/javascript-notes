@@ -268,10 +268,36 @@
         you get "chomp" but also undefined.
         if you then check: tomatoePizza.slices then you get 9
         and if you keep running tomatoePizza.eat() and check the slices they are decreasing
+      */
+      this.eat = function () {
+        // here you can make it better so we do not run out of slices
+        if (this.slices > 1) {
+          this.slices -= 1;
+          console.log(`you now have ${this.slices} left!`);
+          return this.slices;
+        } // this is an else
+        console.log('sorry! no slices left');
+      };
+      /* 
+        so the above function works perfectly but there is a downside which is that we are
+        actually creating one function for every single pizza is made. So if in the console you
+        do: 
+        tomatoePizza.eat() === freshNewPizza.eat()  
+        you get: false
+        
+        so what happens is that we are duplicating the functionality of the eat() function
+        once for every single pizza, and the function is the same for every single pizza.
+        So the function does not have to have its own code for it, like toppings, customer
+        id and so on. Because they are essentially different, but the functionality to eat()
+        a slice of pizza is the same for each pizza. 
 
-
+        instead of putting functions of every single pizza instance, we can put them on what
+        is referred to PROTOTYPE. The big deal is that if you have 200000000 thousands of pizza
+        instances and make a duplicate functions, all the time you duplicate you suck data memory
+         if you have thousand thousands of pizza,
       */
     }
+
     // something important a constructor name should never start with a lowercase letter
     const freshNewPizza = new NewPizza(['oil', 'origano'], 'Marco');
     const tomatoePizza = new NewPizza(['oil', 'tomatoe'], 'Lapo');
