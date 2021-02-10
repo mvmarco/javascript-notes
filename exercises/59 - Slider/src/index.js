@@ -82,6 +82,33 @@ function Slider(slider) {
       TYPE $0.previousElementSibling
 
     */
+
+    /* 
+      so when you start the the first slider:
+      1 current is 16
+      2 prev is undefined
+      3 next is undefined
+
+      but then you apply the classes
+      1 current is still 16
+      2 prev is finally becomming 15
+      3 next is  is finally becomming 17
+
+      Same as the dog-slider
+      1 current is undefined
+      2 prev is undefined
+      3 next is undefined
+
+      but then you apply the classes
+      1 current is now 0001
+      2 prev is now the last element 0005
+      3 next is now 0002
+
+      but then after applying the classes there is the moving direction
+      function and once you reach the last element of the slides div
+      and try to go "next" there is not really an actual: current.nextElementSibling
+      because there are no sibling after the last one, so you do: slides.firstElementChild;    
+    */
     current = slider.querySelector('.current') || slides.firstElementChild;
     prev = current.previousElementSibling || slides.lastElementChild;
     next = current.nextElementSibling || slides.firstElementChild;

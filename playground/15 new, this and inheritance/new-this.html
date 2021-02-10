@@ -332,9 +332,34 @@
       you get: false
       they are not the same function but they do look like the same
 
-
-    
+      so now here below we copy the same NewPizza function called NewPizza2 and we 
+      are going to make the eat() functionality exists in our prototype
     */
+
+    function NewPizza2(toppings = [], customer) {
+      console.log('making a new pizza');
+      console.log(this);
+
+      this.toppings = toppings;
+      this.customer = customer;
+      this.id = Math.floor(Math.random() * 16777215).toString(16);
+      this.slices = 10;
+
+      /*
+        THIS IS THE EAT() FUNCTIONALITY, WE ARE GONNA MAKE IT EXISTS IN THE PROTOTYPE
+        
+        this.eat = function () {
+          if (this.slices > 1) {
+            this.slices -= 1;
+            console.log(`you now have ${this.slices} left!`);
+            return this.slices;
+          } // this is an else
+          console.log('sorry! no slices left');
+      */
+    }
+
+    const tomatoePizza2 = new NewPizza2(['oil', 'tomatoe'], 'Lapo');
+    console.log('here the prototype pizza', tomatoePizza2);
   </script>
 </body>
 
