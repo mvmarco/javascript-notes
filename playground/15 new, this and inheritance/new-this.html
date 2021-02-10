@@ -219,7 +219,6 @@
       // here using paul irish random id website to get random id all the time you run it
       // all the time focaccia is made it will take a random id
       this.id = Math.floor(Math.random() * 16777215).toString(16);
-      this.slices = 10;
     }
     const freshFocaccia = new Focaccia(['oil'], 'Marco');
     const potatoFocaccia = new Focaccia(['oil', 'potatoes'], 'Olivia');
@@ -237,11 +236,21 @@
     // #####################################
 
     /* 
-    
+      what we learn so far is that having a function and using the "new" keyword
+      will return an object that is an instance of that object, freshnewPizza and
+      tomatoePizza below are the new instances. With "this" we attach new properties
+      onto to the instances. The function itself is called "constructor".
+
+      now when it is matter of adding new functionality to a class/function in this case, 
+      if we want to count the slices that are left in that pizza we can start with that 
+      pizza having 10 slices.
+
+      if we want to have a method that eats pizza slices, lets say one per time
+      like tomatoePizza.eat()
     */
 
-    function newPizza(toppings = [], customer) {
-      console.log('making focaccia');
+    function NewPizza(toppings = [], customer) {
+      console.log('making a new pizza');
       console.log(this);
 
       this.toppings = toppings;
@@ -249,10 +258,24 @@
     
       this.id = Math.floor(Math.random() * 16777215).toString(16);
       this.slices = 10;
+      /*       
+        this.eat = function () {
+          console.log('chomp'); 
+          this.slices -= 1;
+        }; 
+
+        so if you call on the console tomatoePizza.eat()
+        you get "chomp" but also undefined.
+        if you then check: tomatoePizza.slices then you get 9
+        and if you keep running tomatoePizza.eat() and check the slices they are decreasing
+
+
+      */
     }
-    const freshnewPizza = new newPizza(['oil', 'origano'], 'Marco');
-    const tomatoePizza = new newPizza(['oil', 'tomatoe'], 'Lapo');
-    console.log(freshnewPizza);
+    // something important a constructor name should never start with a lowercase letter
+    const freshNewPizza = new NewPizza(['oil', 'origano'], 'Marco');
+    const tomatoePizza = new NewPizza(['oil', 'tomatoe'], 'Lapo');
+    console.log(freshNewPizza);
     console.log(tomatoePizza);
   </script>
 </body>
