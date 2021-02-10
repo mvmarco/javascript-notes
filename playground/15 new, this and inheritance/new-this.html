@@ -232,7 +232,7 @@
     */
 
     // #####################################
-    // Prototypes and Prototypal Inheritance
+    // PROTOTYPES AND PROTOTYPAL INHERITANCE
     // #####################################
 
     /* 
@@ -413,8 +413,11 @@
       middle is a string
       middle.length() is still available, because all the methods are defined on the prototype
 
+    // ##################################################
+    // UPDATE A PROTOTYPE (BAD PRACTICE) AND POLYFILLING
+    // ##################################################
       all these methods are coming with the language and are called built in
-      you could potentially add your own but it is not a good thing to do:
+      you could potentially update one or add your own but it is not a good thing to do:
 
       String.prototype.toUpperCase = function() {
         return 'yelling'
@@ -441,6 +444,12 @@
       a functionality on the prototype natively you gotta fill it but recreating the functionality
       in vanilla JavaScript. No one use IE8 or IE9 but if a new functionality is implemented and
       not supported yet by the broswer that is why you gott polyfill:-)
+
+    // ##############################################################
+    // CREATE A NEW PROTOTYPE ON BUILT IN CONSTRUCTORS (BAD PRACTICE)
+    // ##############################################################
+
+
     */
   </script>
 </body>
