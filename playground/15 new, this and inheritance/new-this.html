@@ -89,7 +89,7 @@
 
     /* 
       if you do 'span instance of Element' you get "true"
-      span is an instance of an element but we do not use the word "new"
+      span is an instanceof an element but we do not use the word "new"
       because document.createElement() use the "new" keyword under the hood
     */
 
@@ -219,6 +219,7 @@
       // here using paul irish random id website to get random id all the time you run it
       // all the time focaccia is made it will take a random id
       this.id = Math.floor(Math.random() * 16777215).toString(16);
+      this.slices = 10;
     }
     const freshFocaccia = new Focaccia(['oil'], 'Marco');
     const potatoFocaccia = new Focaccia(['oil', 'potatoes'], 'Olivia');
@@ -230,6 +231,29 @@
       information inside of it. When creating instances, the "this" keyword will help
       to store information
     */
+
+    // #####################################
+    // Prototypes and Prototypal Inheritance
+    // #####################################
+
+    /* 
+    
+    */
+
+    function newPizza(toppings = [], customer) {
+      console.log('making focaccia');
+      console.log(this);
+
+      this.toppings = toppings;
+      this.customer = customer;
+    
+      this.id = Math.floor(Math.random() * 16777215).toString(16);
+      this.slices = 10;
+    }
+    const freshnewPizza = new newPizza(['oil', 'origano'], 'Marco');
+    const tomatoePizza = new newPizza(['oil', 'tomatoe'], 'Lapo');
+    console.log(freshnewPizza);
+    console.log(tomatoePizza);
   </script>
 </body>
 
