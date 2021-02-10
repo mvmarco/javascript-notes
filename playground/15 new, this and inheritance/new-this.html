@@ -448,9 +448,69 @@
     // ##############################################################
     // CREATE A NEW PROTOTYPE ON BUILT IN CONSTRUCTORS (BAD PRACTICE)
     // ##############################################################
-
-
     */
+    const name = 'lapo';
+
+    // eslint-disable-next-line no-extend-native
+    String.prototype.sarcastic = function () {
+      console.log(this); // so if you put in the console name.sarcastic it will log the function
+
+      // make sarcastic
+      const sarcastic = this.split('')
+        .map((character, index) => {
+          if (index % 2) {
+            return character.toUpperCase();
+          }
+          return character.toLowerCase();
+        })
+        .join('');
+      return sarcastic;
+    };
+
+    console.log(name.sarcastic());
+
+    /* 
+      in sum by adding a method to the prototype of a constructor or something wether is built in
+      or not is applied to all the instances of that constructor. But never do it on the built in
+      constructors. Like the examples of the string.
+    */
+
+    /* 
+      last example build a prototype that when someone calls pizza.describe() it tells
+      this pizza is for the customer name, with the toppings and there are this amount of
+      slices left
+    */
+
+    function SuperPizza(toppings = [], customer) {
+      console.log('making a super new pizza');
+      console.log(this);
+
+      this.toppings = toppings;
+      this.customer = customer;
+      this.id = Math.floor(Math.random() * 16777215).toString(16);
+      this.slices = 8;
+    }
+
+    // "this" refers always on the instance is called on and not the mama pizza function
+    SuperPizza.prototype.description = function () {
+      return `this pizza is for ${this.customer}, 
+        with toppings: ${this.toppings} and there are
+        ${this.slices} slices left`;
+    };
+
+    SuperPizza.prototype.eat = function () {
+      if (this.slices > 1) {
+        this.slices -= 1;
+        console.log(`you now have ${this.slices} left!`);
+        return this.slices;
+      } // this is an else
+      console.log('sorry! no slices left');
+    };
+
+    const superPizza = new SuperPizza(['oil', 'tomatoes ', 'luck'], 'Marco');
+    console.log(superPizza.description());
+    console.log(superPizza.eat());
+    console.log(superPizza.description());
   </script>
 </body>
 
