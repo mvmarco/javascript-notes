@@ -41,14 +41,62 @@
       const sayHi = person.sayHi;
 
       and in the console we do: sayHi()  as result we just get  "hey "
-      because it search in person, outside of its own function without connecting
-      to what "this" was connected to. It is like says go in person and take the
-      sayHi() returned value, who cares where it is stored
+      because person.sayHi is stored inside another variable and we are not calling
+      the function directly on the object.
+
+      another example: if you do: person.sayHi() is bounded to the person itself, the instance
+      but if you do: sayHi() is bounded to the window, because there was nothing on its left
+      that was bound to. It was not referring to any instance, "this" refers to instance,
+      so when it is not bounded "this" is not read.
+
+      the "this" keyword is only defined where the function is being called
+      and not where the function has been defined. So even though we defined the sayHi() 
+      function inside of an object, it is not bound it unless we call it as a method of an
+      object -> like person.sayHi()
+
+      what we can do is use the "bind" keyword to change where the "this" keyword is
+      defined. In other words, the "bind" keyword is used to change what actually
+      the "this" keyword is equal to or bound to.
+
+      so if we do:
+
+      const sayHi = person.sayHi.bind(person);
+
+      what is says is, creating a function called sayHi() for the person stored into
+      const sayHi, but binded the the "person" object. In other words, when called the "this" key
+      word it will refered to the "person" passed in the bind() function
+
+      so now if we run in the console: sayHi() we get "hey Marco" 
+
+      it works because we changed what "this" is equal to by binding to another object or
+      the direct one. So why would that be useful? because sometimes we want to use a method
+      of an object with some other informations. Example below:
+      
+      The bind() method allows an object to borrow a method from another object without
+      making a copy of that method. This is known as function borrowing in JavaScript.
+      // .bind({ name: 'Harry' });
     */
 
-// .bind({ name: 'Harry' });
+    // how would I use the sayHi() method for another object such as Jenna?
+    const person2 = {
+      name: 'Marco',
+      sayHi() {
+        console.log(this); // this will log all the properties of the person object, property and function
+        console.log(`hey this is ${this.name}`); // this will log this string
+        return `hey ${this.name}`; // this will return the string
+      },
+    };
+    
     const jenna = { name: 'Jenna' };
+    // the solution would be to bind the sayHi() to jenna
 
+    const sayHi = person2.sayHi.bind(jenna); // jenna is what this will be focus on
+    console.log(sayHi()); // this will run "hey Jenna"
+
+    /* 
+      sayHi is a function while bind() is method that lives inside any functions
+      and says chang the "this" keyword to what there is inside of that object that you pass
+    */
     // QS Example
     // by calling bind against querySelector, we say when the $ function is run, use `document` as the `this` value.
     const $ = document.querySelector.bind(document);
@@ -93,3 +141,6 @@
 </body>
 
 </html>
+
+
+<!-- 6 -->
