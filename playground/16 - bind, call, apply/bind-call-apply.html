@@ -14,7 +14,14 @@
   <div class="wrapper">
     <p>Hey im in a wrapper</p>
   </div>
+
   <script>
+    /*  
+      "bind", "call" and "apply" are function used to change the scope of what "this" is
+      equal to, inside of a function or inside of a method. They are not used so much
+      but many people do and some tricky interview questions focus on this topic
+    */
+
     const person = {
       name: 'Wes Bos',
       sayHi() {
@@ -44,7 +51,7 @@
       calculate(taxRate) {
         console.log(this);
         return this.total + this.total * taxRate;
-  },
+      },
       describe(mealType, drinkType, taxRate) {
         console.log(
           `Your meal of ${mealType} with a drink of ${drinkType} was ${this.calculate(
