@@ -210,8 +210,14 @@ Slider.prototype.move = function (direction) {
 
 var mySlider = new Slider(document.querySelector('.slider'));
 var dogSlider = new Slider(document.querySelector('.dog-slider'));
-console.log(mySlider, dogSlider);
-window.dogSlider = dogSlider; // this way is the way to access dogSlider in the console, parcel prevent it otherwise
+console.log(mySlider, dogSlider); // this way is the way to access dogSlider in the console, parcel prevent it otherwise
+
+window.dogSlider = dogSlider;
+/* 
+  in fact, if you do in the console: dogSlider.move('back') or dogSlider.move() you can
+  see that it moves. So we can think about add an event listener on the Window
+  and when click the arrows move the slides
+*/
 
 window.addEventListener('keyup', function (e) {
   if (e.key === 'ArrowRight') {
