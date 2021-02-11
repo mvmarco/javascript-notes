@@ -3,9 +3,34 @@ function Slider(slider) {
     throw new Error('No slider passed in');
   }
 
+  /* 
+    with the prototype you do not even need anymore:
+      let prev;
+      let current;
+      let next;
+
+    which should be like as follow since you cannot have variable
+    declaration on properties:
+
+      this.prev
+      this.current
+      this.next
+
+    afterwards you somehow rename this properties but you can
+    add properties whenever you want so you do not really need
+    them, since "afterwards" you just add the mentioned properties
+  */
   // select the elements needed for the slider
   this.slides = slider.querySelector('.slides');
-  this.slider = slider;
+  this.slider = slider; // what actual slider is from the instance
+
+  /*
+    the prev and next do not need to be renamed with the "this"
+    keyword as they will be only accessible inside the "constructor"
+    when we add to them the event listener directly inside here.
+    In other words, when something is not needed outside, you can
+    just avoid the usage of "this"
+  */
   const prevButton = slider.querySelector('.goToPrev');
   const nextButton = slider.querySelector('.goToNext');
 
@@ -18,7 +43,7 @@ function Slider(slider) {
   nextButton.addEventListener('click', () => this.move());
 }
 
-Slider.prototype.startSlider = function() {
+Slider.prototype.startSlider = function () {
   this.current =
     this.slider.querySelector('.current') || this.slides.firstElementChild;
   this.prev =
@@ -26,13 +51,13 @@ Slider.prototype.startSlider = function() {
   this.next = this.current.nextElementSibling || this.slides.firstElementChild;
 };
 
-Slider.prototype.applyClasses = function() {
+Slider.prototype.applyClasses = function () {
   this.current.classList.add('current');
   this.prev.classList.add('prev');
   this.next.classList.add('next');
 };
 
-Slider.prototype.move = function(direction) {
+Slider.prototype.move = function (direction) {
   // first strip all the classes off the current slides
   const classesToRemove = ['prev', 'current', 'next'];
   this.prev.classList.remove(...classesToRemove);
@@ -63,9 +88,16 @@ const dogSlider = new Slider(document.querySelector('.dog-slider'));
 
 console.log(mySlider, dogSlider);
 
+// this way is the way to access dogSlider in the console, parcel prevent it otherwise
 window.dogSlider = dogSlider;
 
-window.addEventListener('keyup', function(e) {
+/* 
+  in fact, if you do in the console: dogSlider.move('back') or dogSlider.move() you can
+  see that it moves. So we can think about add an event listener on the Window
+  and when click the arrows move the slides
+*/
+
+window.addEventListener('keyup', function (e) {
   if (e.key === 'ArrowRight') {
     dogSlider.move();
   }
