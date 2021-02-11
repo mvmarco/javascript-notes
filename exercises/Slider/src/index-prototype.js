@@ -9,13 +9,28 @@ function Slider(slider) {
       let current;
       let next;
 
+    which should be like as follow since you cannot have variable
+    declaration on properties:
+
       this.prev
       this.current
       this.next
+
+    afterwards you somehow rename this properties but you can
+    add properties whenever you want so you do not really need
+    them, since "afterwards" you just add the mentioned properties
   */
   // select the elements needed for the slider
   this.slides = slider.querySelector('.slides');
-  this.slider = slider;
+  this.slider = slider; // what actual slider is from the instance
+
+  /*
+    the prev and next do not need to be renamed with the "this"
+    keyword as they will be only accessible inside the "constructor"
+    when we add to them the event listener directly inside here.
+    In other words, when something is not needed outside, you can
+    just avoid the usage of "this"
+  */
   const prevButton = slider.querySelector('.goToPrev');
   const nextButton = slider.querySelector('.goToNext');
 
@@ -73,7 +88,7 @@ const dogSlider = new Slider(document.querySelector('.dog-slider'));
 
 console.log(mySlider, dogSlider);
 
-window.dogSlider = dogSlider;
+window.dogSlider = dogSlider; // this way is the way to access dogSlider in the console, parcel prevent it otherwise
 
 window.addEventListener('keyup', function (e) {
   if (e.key === 'ArrowRight') {
