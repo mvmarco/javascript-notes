@@ -23,17 +23,31 @@
     */
 
     const person = {
-      name: 'Wes Bos',
+      name: 'Marco',
       sayHi() {
-        console.log(this);
-        console.log(`hey ${this.name}`);
-        return `hey ${this.name}`;
+        console.log(this); // this will log all the properties of the person object, property and function
+        console.log(`hey this is ${this.name}`); // this will log this string
+        return `hey ${this.name}`; // this will return the string
       },
     };
 
-    const jenna = { name: 'Jenna' };
+    /* 
+      if in the console you call: person.sayHi() and when methods are called the way the work is
+      that they look to the left of the dot and see what they are bound against
 
-    const sayHi = person.sayHi.bind({ name: 'Harry' });
+      so now if we are gonna take the sayHi() method and put it outside in its own variable
+      so it is defined outside:
+
+      const sayHi = person.sayHi;
+
+      and in the console we do: sayHi()  as result we just get  "hey "
+      because it search in person, outside of its own function without connecting
+      to what "this" was connected to. It is like says go in person and take the
+      sayHi() returned value, who cares where it is stored
+    */
+
+// .bind({ name: 'Harry' });
+    const jenna = { name: 'Jenna' };
 
     // QS Example
     // by calling bind against querySelector, we say when the $ function is run, use `document` as the `this` value.
