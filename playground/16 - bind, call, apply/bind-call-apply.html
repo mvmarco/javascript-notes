@@ -36,23 +36,62 @@
 
     /* 
       if in the console you call: person.sayHi() and when methods are called the way the work is
-      that they look to the left of the dot and see what they are bound against
+      that they look to the left of the dot and see what they are bound against. As result you get
+      the result of the function on that method: "hey Marco"
+
 
       so now if we are gonna take the sayHi() method and put it outside in its own variable
       so it is defined outside:
+    */
 
-      const sayHi = person.sayHi;
+    const { sayHi } = person;
+    /* 
+      when you will console.log(sayHi) you will get:
 
-      and in the console we do: sayHi()  as result we just get  "hey "
-      because person.sayHi is stored inside another variable and we are not calling
-      the function directly on the object. so we just get the return of the method
-      and not what is bound with the keyword "this" like the name.
+      ƒ sayHi() {
+        console.log(`hey this is ${this.name}`);
+        return `hey ${this.name}`;
+      }
 
-      another example: if you do: person.sayHi() is bounded to the person itself, the instance
-      but if you do: sayHi() is bounded to the window, because there was nothing on its left
-      that was bound to. It was not referring to any instance, "this" refers to instance,
-      so when it is not bounded "this" is not read.
+      in other words the property of that "person object", which is a function itself
+      and you will store it into the variable sayHi
+    */
+    console.log(sayHi);
+    
+    /*
+      but now the crack is that when in the console we do: sayHi()  
+      as result we just get:  "hey " 
+      because person.sayHi (the property which is a function) is stored inside a variable 
+      and we are just calling it, the "this" is not bound to anything. it is just a property
+      stored into a variable, there is not an object associated or "bind" to. 
+    */
 
+    // another example: if you do save person.sayHi() in another const:
+    const sayHi2 = person.sayHi();
+
+    /* 
+      the sayHi2 variable will store inside the returned value of the sayHi function 
+      inside the person object ( person.sayHi() will call the function 
+      and return the value inside of the function) so now when you will console.log(sayHi2)
+      you will get: "hey Marco"  
+      
+      which is the stored result of the function/method: "hey Marco"
+    */
+
+    console.log(sayHi2);
+
+    /* 
+      now when you in the console do: sayHi() you get undefined, it says that sayHi() is not a function.
+      because for the browser now sayHi() does not exist as a function and you cannot call it.
+      The only thing that exist is the result of the sayHi() function, which is stored into 
+      the variable sayHi2. 
+      
+      sayHi() is now bounded to the window, if exists
+      
+      
+    */
+
+    /*
       the "this" keyword is only defined where the function is being called
       and not where the function has been defined. So even though we defined the sayHi() 
       function inside of an object, it is not bound it unless we call it as a method of an
@@ -66,19 +105,21 @@
 
       const sayHi = person.sayHi.bind(person);
 
-      what is says is, creating a function called sayHi() for the person stored into
-      const sayHi, but binded the the "person" object. In other words, when called the "this" key
-      word it will refered to the "person" passed in the bind() function
+      what you do is, taking the person property, which is function, and associate that
+      function to the "object person" otherwise the property/function is not associated to 
+      nothing. and store this function associated to the object into a variable called sayHi.
+      
+      In other words, "this" will now be referred to something, the "person" passed in the bind() 
+      function. Which is an object by the way.
 
       so now if we run in the console: sayHi() we get "hey Marco" 
 
-      it works because we changed what "this" is equal to by binding to another object or
-      the direct one. So why would that be useful? because sometimes we want to use a method
+      it works because we changed what "this" is equal to by binding to an object.
+      So why would that be useful? because sometimes we want to use a method
       of an object with some other informations. Example below:
       
       The bind() method allows an object to borrow a method from another object without
       making a copy of that method. This is known as function borrowing in JavaScript.
-      // .bind({ name: 'Harry' });
     */
 
     // how would I use the sayHi() method for another object such as Jenna?
@@ -94,11 +135,12 @@
     const jenna = { name: 'Jenna' };
     // the solution would be to bind the sayHi() to jenna
 
-    const sayHi = person2.sayHi.bind(jenna); // jenna is what this will be focus on
-    console.log(sayHi()); // this will run "hey Jenna"
+    // you the property/function of the person2 and associate it to a another object
+    const sayHi3 = person2.sayHi.bind(jenna);
+    console.log(sayHi3); // this will run "hey Jenna"
 
     /* 
-      sayHi is a function while bind() is method that lives inside any functions
+      sayHi is a function/property while bind() is method that lives inside any functions
       and says change the "this" keyword to what there is inside of that object that you pass
     */
 
@@ -132,9 +174,8 @@
       either to the wrapper or the document.
 
       but the resons why $.('p') is not working is because we somehow removed the power of the
-      querySelector, we called it direcly on a variable, and there is nothing on the left of the dot
-      called directly, there is just a variable. We are taken away the object which the method
-      was called against  and it is not bound to anything 
+      querySelector, we tried to find the selector directly on a variable.
+      We are taken away the object which the method was called against and it is not bound to anything 
     */
 
     /* 
