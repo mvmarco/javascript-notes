@@ -251,13 +251,47 @@
       kind of like that function wherever you want and knowing that the arguments/batteries
       are pre installed on it and you can go ahead and call it whenever you want
     */
+
     // ############################
     // CALL
     // ############################
+    
+    /*
+      "call" and "apply" works in the same exact way as "bind" but with the only exception
+      that they will call the function for you. So insted of returning a function
+    */
+    console.log('----------------------- CALL AND APPLY ------------------------');
+
+    const bill2 = {
+      total: 1000,
+      calculate(taxRate) {
+        console.log(this);
+        return this.total + this.total * taxRate;
+      },
+    };
+
+    const calc2 = bill2.calculate.bind({ total: 100 }, 10);
+    console.log('this is "bind" we gotta call the function');
+    console.log(calc2()); // this is "bind" we gotta call the function
+    
+    console.log('this is "call" it will automatically call the function');
+    const calc3 = bill2.calculate.call({ total: 100 }, 10);
+    console.log(calc3); // 'this is "call" it will automatically call the function'
+
+    /*
+      ".bind()" is a method that returns a function that then needs to be called by itself
+
+      ".call()" is a method that returns a function that is called automatically and does not need
+      to be called by itself
+
+      so if you need to "bind" a function and call it later, use "bind" 
+      if you need to "bind" a function and call it immediately use "call"
+    */
 
     // ############################
     // APPLY
     // ############################
+
     // console.log(calc());
     // const total2 = bill.calculate.call({ total: 500 }, 0.06);
     // console.log(total2);
