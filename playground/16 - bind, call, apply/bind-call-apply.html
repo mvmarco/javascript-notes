@@ -197,7 +197,76 @@
     console.log($2('p')); // here find the p in the document
     console.log(lookFor('p')); // here you get a nodelist with 2 paragraps/element
 
+    /* 
+      last time "bind" will change the context of what the "this" keyword is bind to or equal to.
+      Another thing that "bind" is used for is to prep a function that has arguments, sort of
+      preloaded or batteries included
+    */
+
+    // ############################
+    // BIND WITH METHOD ARGUMENTS
+    // ############################
+
     const bill = {
+      total: 1000,
+      calculate(taxRate) {
+        console.log(this);
+        return this.total + this.total * taxRate;
+      },
+    };
+    
+    // here you console log the result of the returned function
+    const total = bill.calculate(0.13);
+    console.log(total); // it works you get: 1130
+
+    // now if we want to store the calculate function into another variable
+    const calc = bill.calculate.bind({ total: 500 }, 0.06); // 0.06 is the taxt rate (argument)
+    console.log(calc());
+
+    /* 
+      you can also pass the arguments of the method of the object
+      directly when you call the function: console.log(calc(0.15)); for example
+
+      if a method has multiple arguments:
+
+      const bill = {
+        total: 1000,
+        calculate(taxRate, tiRate, blablablabla) {
+          console.log(this);
+          return this.total + this.total * taxRate;
+        },
+      };
+      
+
+      you can just pass them following the order of them when creating a new binded variable
+
+      const calculation = bill.calculate.bind({total: 1000},taxRate, tiRate, blablablabla);
+      console.log(calculation());
+      
+      Now
+    */
+
+    // console.log(calc());
+    // const total2 = bill.calculate.call({ total: 500 }, 0.06);
+    // console.log(total2);
+
+    // const total3 = bill.calculate.apply({ total: 325 }, [0.6]);
+    // console.log(total3);
+
+    // const myMeal = bill.describe.call(bill, 'pizza', 'beer', 0.13);
+    // console.log(myMeal);
+    // const myMeal2 = bill.describe.apply(bill, ['pizza', 'beer', 0.13]);
+    // console.log(myMeal2);
+  </script>
+</body>
+
+</html>
+
+<!-- 
+
+
+
+      const bill = {
       total: 1000,
       calculate(taxRate) {
         console.log(this);
@@ -211,24 +280,4 @@
         );
       },
     };
-
-    const total = bill.calculate(0.13);
-    const calc = bill.calculate.bind({ total: 500 }, 0.06);
-
-    console.log(calc());
-    const total2 = bill.calculate.call({ total: 500 }, 0.06);
-    console.log(total2);
-
-    const total3 = bill.calculate.apply({ total: 325 }, [0.6]);
-    console.log(total3);
-
-    const myMeal = bill.describe.call(bill, 'pizza', 'beer', 0.13);
-    console.log(myMeal);
-    const myMeal2 = bill.describe.apply(bill, ['pizza', 'beer', 0.13]);
-    console.log(myMeal2);
-  </script>
-</body>
-
-</html>
-
-
+ -->
