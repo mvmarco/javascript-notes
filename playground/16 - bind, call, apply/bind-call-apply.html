@@ -243,9 +243,21 @@
       const calculation = bill.calculate.bind({total: 1000},taxRate, tiRate, blablablabla);
       console.log(calculation());
       
-      Now
+      Now what is this helpful? because sometimes when you are generating functions, and you
+      need to loop over a list of data, you have access to that data at the time of the function
+      creation and maybe later you wanna call it. And sometimes it is easier to go batteries 
+      included on the binded function / example bill.calculate.apply({ total: 325 }, [0.6]); /
+      pass what the argumetn will be at the call time, when you are binding it and then you can
+      kind of like that function wherever you want and knowing that the arguments/batteries
+      are pre installed on it and you can go ahead and call it whenever you want
     */
+    // ############################
+    // CALL
+    // ############################
 
+    // ############################
+    // APPLY
+    // ############################
     // console.log(calc());
     // const total2 = bill.calculate.call({ total: 500 }, 0.06);
     // console.log(total2);
