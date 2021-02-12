@@ -66,7 +66,52 @@
       and run the "ending". What happens next is, two seconds later what comes back is
       the call back that has been queued up. And it will run it for us. That is what is
       referred to as the "call-stack": https://developer.mozilla.org/en-US/docs/Glossary/Call_stack
-      for more infos.
+      for more infos. "call-stack" and the "event-loop" is a pretty complicated thing to understand it
+      so to understand it properly watch this video: https://www.youtube.com/watch?v=8aGhZQkoFbQ
+
+
+      if you go to: http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
+      you can test the process described above, essentially there are three boxes.
+
+
+      the "call-stack"                                     This is are things that are waiting
+      is what actually JavaScript is                       or things that we are listening for
+      doing or running                                     such as event handlers, timers etc.
+      ------------------------------------                 ------------------------------------
+      |                                  |                 |                                  |
+      |              CALL-STACK          |                 |            WEB APIs              |
+      |                                  |                 |                                  |
+      ------------------------------------                 ------------------------------------  
+      
+      When a click button has finished it 
+      or a timer it will be stick into the "call-back queue"
+      and sent to the "callstack" when there is nothing else left there
+      ------------------------------------
+      |                                  |
+      |           CALLBACK QUEUE         |
+      |                                  |
+      ------------------------------------
+
+      in the tool loupe, you can sort of visualize the "call-stack". In general the "call-stack"
+      will show you, when you click something, which functions where called upon that. 
+      And we know that the "call-stack" will only run one function at the time, but there are
+      situations where the functions are running in other spefic moments. That is also why
+      JavaScript is referred as "asynchronous". Which means that is not going to stop
+      the function that needs more time, but instead put in what is called "web apis". Then it
+      will be put in the "call-back queue" and run in the "call-stack" if there is nothing
+      before it.
+
+      even if you put 0 milliseconds on the following code lines it will be following the same
+      process:
+
+      console.log('starting'); // this run 1st
+      setTimeout(() => {
+        console.log('running'); // this run 3rd
+      }, 0);
+      console.log('ending'); // this run 2nd
+
+
+
     */
 
     function go(e) {
