@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Event Loop</title>
+  <link rel="stylesheet" href="../../base.css">
+</head>
+
+<body>
+  <style>
+    .go {
+      margin: 5rem;
+      background: white;
+      padding: 5rem;
+      width: 25rem;
+      height: 25rem;
+      transition: all 0.2s;
+    }
+
+    .go.circle {
+      border-radius: 50%;
+    }
+
+    .go.red {
+      background: red;
+    }
+
+    .go.purple {
+      background: purple;
+      color: white;
+    }
+
+    .go.fadeOut {
+      opacity: 0;
+    }
+  </style>
+  <div class="go">Click Me</div>
+  <script>
+    /* 
+      the first thing to understand before passing to promises, we need to talk about
+      how JavaScript is Asynchronous and how the event loop works. Sometimes we hear
+      that almost everything in JavaScript is "Asynchronus" or "non-blocking". In order
+      to understand what that means, we need to talk about how JavaScript events work.
+
+      Javascript is a single threaded language. Which means, that only one thing can only
+      can only be run at a time. it executes code in order and must finish executing a piece code
+      before moving onto the next. Some other languages are multi threaded, meaning that they
+      can run multiple processes at once. But JavaScript is single threaded, meaning that we can
+      run what thing at once.
+    */
+
+    console.log('starting'); // this run 1st
+    setTimeout(() => {
+      console.log('running'); // this run 3rd
+    }, 2000);
+    console.log('ending'); // this run 2nd
+
+    /* 
+      so as we can see they do not run in the order we put them or code them in.
+      So it will not first do the "starting", then wait 2 seconds and do the "running"
+      and then do the "ending". But instead, what JS will do is: parsing "starting",
+      then it will parse the next couple of lines the "running". Notice that there is a
+      callback, and pin it a side and come back in two second. And then it goes again
+      and run the "ending". What happens next is, two seconds later what comes back is
+      the call back that has been queued up. And it will run it for us. That is what is
+      referred to as the "call-stack": https://developer.mozilla.org/en-US/docs/Glossary/Call_stack
+      for more infos.
+    */
+
+    function go(e) {
+      const el = e.currentTarget;
+      // 1. Change the text to GO when clicked.
+      el.textContent = 'GO';
+      setTimeout(function () {
+        // 2. Make it a circle after 2 seconds
+        el.classList.add('circle');
+        setTimeout(function () {
+          // 3. Make it red after 0.5s
+          el.classList.add('red');
+          setTimeout(function () {
+            // 4. make it square after 0.25s
+            el.classList.remove('circle');
+            setTimeout(function () {
+              // 5. make it purple
+              el.classList.remove('red');
+              el.classList.add('purple');
+              setTimeout(function () {
+                // 6. fade out after 0.5s
+                el.classList.add('invisible');
+                setTimeout(function () {
+                  console.log('You have reacted the 7th layer of callback hell');
+                  el.classList.remove('invisible', 'purple');
+                }, 500);
+              }, 500);
+            }, 500);
+          }, 500);
+        }, 500);
+      }, 500);
+    }
+  </script>
+</body>
+
+</html>
