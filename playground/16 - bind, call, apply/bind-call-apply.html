@@ -22,6 +22,9 @@
       but many people do and some tricky interview questions focus on this topic
     */
 
+// ############################
+// BIND
+// ############################
     const person = {
       name: 'Marco',
       sayHi() {
@@ -42,7 +45,8 @@
 
       and in the console we do: sayHi()  as result we just get  "hey "
       because person.sayHi is stored inside another variable and we are not calling
-      the function directly on the object.
+      the function directly on the object. so we just get the return of the method
+      and not what is bound with the keyword "this" like the name.
 
       another example: if you do: person.sayHi() is bounded to the person itself, the instance
       but if you do: sayHi() is bounded to the window, because there was nothing on its left
@@ -95,17 +99,54 @@
 
     /* 
       sayHi is a function while bind() is method that lives inside any functions
-      and says chang the "this" keyword to what there is inside of that object that you pass
+      and says change the "this" keyword to what there is inside of that object that you pass
     */
-    // QS Example
-    // by calling bind against querySelector, we say when the $ function is run, use `document` as the `this` value.
-    const $ = document.querySelector.bind(document);
-    const lookFor = document.querySelectorAll.bind(document);
+
+    // ############################
+    // BIND QUERY SELECTOR EXAMPLE
+    // ############################
+
+    // if you have this costant:
+    const $ = document.querySelector;
+    // and in the console you run: $ you get the same result as running: document.querySelector
+    // it is the same exact thing: document.querySelector === $    :true
+
+    /* 
+      above this page we have  paragrap if you wanna get it and do in the console:
+
+      $('p'); you get error, somewhere under the hood in querySelector needs to know
+      where to look for the thing you are selecting (like the document). So if we
+      have the wrapper class we can search it in the document and use the wrapper
+      to search the paragrap as follow:
+      
+    */
 
     const wrapper = document.querySelector('.wrapper');
     const p = wrapper.querySelector('p');
     console.log(p);
-    console.log($('p'));
+    /*
+      so querySelector is a function that needs to know where should look inside of
+      for the selector, and it is the resons why it knows where it scopes to. This can be globally
+      with the document or in a subset of the dom which is the wrapper, then it knows
+      to look inside of the wrapper because the querySelector says "this" which will be equal
+      either to the wrapper or the document.
+
+      but the resons why $.('p') is not working is because we somehow removed the power of the
+      querySelector, we called it direcly on a variable, and there is nothing on the left of the dot
+      called directly, there is just a variable. We are taken away the object which the method
+      was called against  and it is not bound to anything 
+    */
+
+    /* 
+      the way we fix that is with the usage of "bind" and then we manually pass reference
+      to the thing we want "this" to be equal to. by calling bind against querySelector, 
+      we say when the $2 function is run, use `document` as the `this` value. so basically
+      you associated the "this" value to a variable, because the method is not called directly
+      to that variable.
+    */
+    const $2 = document.querySelector.bind(document);
+    const lookFor = document.querySelectorAll.bind(document);
+    console.log($2('p'));
     console.log(lookFor('p'));
 
     const bill = {
