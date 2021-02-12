@@ -292,17 +292,49 @@
     // APPLY
     // ############################
 
-    // console.log(calc());
-    // const total2 = bill.calculate.call({ total: 500 }, 0.06);
-    // console.log(total2);
+    /* 
+      While the syntax of "apply" is almost identical of "call()",
+      the fundamental difference is that "call()" accepts an argument list,
+      while "apply()" accepts a single array of arguments.
 
-    // const total3 = bill.calculate.apply({ total: 325 }, [0.6]);
-    // console.log(total3);
+      In other words, instead of passing a list you just pass an array containing that
+    */
 
-    // const myMeal = bill.describe.call(bill, 'pizza', 'beer', 0.13);
-    // console.log(myMeal);
-    // const myMeal2 = bill.describe.apply(bill, ['pizza', 'beer', 0.13]);
-    // console.log(myMeal2);
+    const bill3 = {
+      total: 1000,
+      calculate(taxRate) {
+        console.log(this);
+        return this.total + this.total * taxRate;
+      },
+    };
+
+    const calculation2 = bill3.calculate.apply({ total: 3000 }, [0.06]);
+    console.log(calculation2);
+
+    // another example
+    const bill4 = {
+      total: 100333330,
+      calculate(taxRate) {
+        console.log(this);
+        return this.total + this.total * taxRate;
+      },
+      describe(mealType, drinkType, taxRate) {
+        console.log(
+          `Your meal of ${mealType} with a drink of ${drinkType} was ${this.calculate(
+            taxRate
+          )}`
+        );
+      },
+    };
+
+    const myMeal1 = bill4.describe.call({ total: 342 }, 'pizza', 'beer', 0.13);
+    console.log(myMeal1); // this will be undefined, because we passed total: which is in another scope
+    
+    const myMeal2 = bill4.describe.call(bill4, 'pizza', 'beer', 0.13);
+    console.log(myMeal2);
+
+    const myMeal3 = bill.describe.apply(bill, ['pizza', 'beer', 0.13]);
+    console.log(myMeal3);
   </script>
 </body>
 
@@ -318,12 +350,7 @@
         console.log(this);
         return this.total + this.total * taxRate;
       },
-      describe(mealType, drinkType, taxRate) {
-        console.log(
-          `Your meal of ${mealType} with a drink of ${drinkType} was ${this.calculate(
-            taxRate
-          )}`
-        );
+      
       },
     };
  -->
