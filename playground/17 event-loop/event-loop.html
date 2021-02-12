@@ -44,8 +44,8 @@
       that almost everything in JavaScript is "Asynchronus" or "non-blocking". In order
       to understand what that means, we need to talk about how JavaScript events work.
 
-      Javascript is a single threaded language. Which means, that only one thing can only
-      can only be run at a time. it executes code in order and must finish executing a piece code
+      Javascript is a single threaded language. Which means, that only do one thing/only
+      run one thing at the time. it executes code in order and must finish executing a piece code
       before moving onto the next. Some other languages are multi threaded, meaning that they
       can run multiple processes at once. But JavaScript is single threaded, meaning that we can
       run what thing at once.
@@ -106,12 +106,14 @@
 
       console.log('starting'); // this run 1st
       setTimeout(() => {
-        console.log('running'); // this run 3rd
+        console.log('running'); // this run 3rd because it will be added on the "web apis"
       }, 0);
       console.log('ending'); // this run 2nd
+      
 
-
-
+      so it sounds simple but it goes at deep level, as beginner-mid-level you just have to understand
+      that JavaScript is a "single-threaded" language. Which means, that only run one thing at the time.
+      and if it has to run multiple things queued up this is obviusly slowing down.
     */
 
     function go(e) {
@@ -148,3 +150,5 @@
 </body>
 
 </html>
+
+<!-- 10:00 -->
