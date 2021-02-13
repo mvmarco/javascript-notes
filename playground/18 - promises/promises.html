@@ -17,38 +17,85 @@
     from an API, or someone giving access to a camera or microphone. When we request those
     things, like a request for a timer to start, a data to be requested or a microphone or 
     camera to give access to, what often we get as when we request this things is not the 
-    immediate data back (because takes time) but instead of getting the immediate data
-    returned we would get a "promise". as a metaphone: 'I got a ticket in my hand that is
+    immediate data back (because takes time) (instead of getting the immediate data
+    returned) we would get a "promise". as a metaphone: 'I got a ticket in my hand that is
     a little promise, that says whoooooo i may get a timer at some point, or I have this ticket
     for some data, and eventually at some point I probably may get it back. (it could also
     fail which is called "rejecting").' 
 
     If you are asking to the user webcam access, like in face detection > pixelated.js in the
-    function "populateVideo()" in the "const stream" we put "await" meaning that we havet to
+    function "populateVideo()" in the "const stream" we put "await" meaning that we have to
     wait for the user to click the accept button before they give us access to their webcam.
 
     so that happens all the time, we need to wait for something to happen before you can run 
     the rest of the code, and that what is referring to "promise"
+    here below we build a function pizza and inside of it will be making a pizza promise
+    because you cannot make a pizza instanly (you gotta put the toppings on, bake the thing
+    etc. etc. that takes time). So what we can do, if you order a pizza online, they will
+    immediately give you some order number, and you cannot eat that, but you know that that
+    order number or receipt is a "promise" that they will give it to you when it is finished
   */
 
-function makePizza(toppings = []) {
-    return new Promise(function (resolve, reject) {
-      // reject if people try with pineapple
-      if (toppings.includes('pineapple')) {
-        reject('Seriously? Get out 🍍');
-      }
-      const amountOfTimeToBake = 500 + toppings.length * 200;
-      // wait 1 second for the pizza to cook:
-      setTimeout(function () {
-        // when you are ready, you can resolve this promise
-        resolve(`Here is your pizza 🍕 with the toppings ${toppings.join(' ')}`);
-      }, amountOfTimeToBake);
-      // if something went wrong, we can reject this promise;
-    });
-}
+  // eslint-disable-next-line no-unused-vars
+  function makePizzaToDeliver() {
+    const pizzaPromise = new Promise(); // pizza promise
+    return pizzaPromise; // return it from your function immediately
+  }
 
-// console.log('First');
-makePizza(['pepperoni'])
+  /*
+  
+    this is the key point (like 41-42). Promises are made immediately(42) but do not resolve
+    the request until they are ready(41): until the data comes back, the timer is finished,
+    the toppings are on pizza...etc
+
+    in sum:
+
+    "returning" happens immediately (42)
+    "resolving" happens when it is done (41)
+
+    a clearer example is here below:
+  */
+
+  function makePizza() {
+    /*     
+      a promise takes a callback function, with two arguments:
+      the "resolve" function and the "reject" function.
+      always the same order of arguments: 1st resolve 2nd reject 
+    */
+    const pizzaPromise = new Promise(function (resolve, reject) {
+      // 1st when you are ready, you can resolve this promise
+      resolve('🍕');
+      // 2nd if something went wrong, we can reject this promise
+    });
+    return pizzaPromise;
+  }
+
+  const pizza = makePizza();
+  console.log(pizza);
+  /*
+    from the log you get "Promise {<fulfilled>: ":pizza:"}" but it is not important yet
+    what is important that the makePizza() function gives us a "promise" of pizza that
+    at some point in the future, you will "resolve" the promise like we did now or
+    "reject" because something went wrong. Now we make the example more robust
+  */
+
+  function makePizza2(toppings) {
+    const pizzaPromise = new Promise(function (resolve, reject) {
+      resolve(`Here is your pizza 🍕 with the toppings: ${toppings.join(' ')}`);
+      // 2nd if something went wrong, we can reject this promise
+    });
+    return pizzaPromise;
+  }
+
+  const pepperoniPromise = makePizza2(['pepperoni']);
+  const canadianPromise = makePizza2(['pepperoni', 'mushrooms', 'onions']);
+  // here we get the two promises
+  console.log(pepperoniPromise);
+  console.log(canadianPromise);
+
+/* 
+  // console.log('First');
+  makePizza(['pepperoni'])
     .then(function (pizza) {
       console.log(pizza);
       return makePizza(['ham', 'cheese']);
@@ -78,51 +125,51 @@ makePizza(['pepperoni'])
         'four',
       ]);
     })
-  .then((pizza) => {
+    .then((pizza) => {
       console.log('All done! here is your last pizza');
       console.log(pizza);
     })
     .catch(handleError);
 
-// console.log('Right after');
+  // console.log('Right after');
 
-// Run them Concurrently
-// const pizzaPromise1 = makePizza(['hot peppers', 'onion', 'feta']);
-// const pizzaPromise2 = makePizza(['one', 'two', 'three', 'four', 'one', 'two', 'three', 'four', 'one', 'two', 'three', 'four']);
-// const pizzaPromise3 = makePizza(['ham', 'cheese']);
+  // Run them Concurrently
+  // const pizzaPromise1 = makePizza(['hot peppers', 'onion', 'feta']);
+  // const pizzaPromise2 = makePizza(['one', 'two', 'three', 'four', 'one', 'two', 'three', 'four', 'one', 'two', 'three', 'four']);
+  // const pizzaPromise3 = makePizza(['ham', 'cheese']);
 
-// const dinnerPromise = Promise.all([pizzaPromise1, pizzaPromise2, pizzaPromise3]);
+  // const dinnerPromise = Promise.all([pizzaPromise1, pizzaPromise2, pizzaPromise3]);
 
-// dinnerPromise.then(function ([hottie, garbagePail, hamAndCheese]) {
-//   console.log(hottie, garbagePail, hamAndCheese);
-// });
+  // dinnerPromise.then(function ([hottie, garbagePail, hamAndCheese]) {
+  //   console.log(hottie, garbagePail, hamAndCheese);
+  // });
 
-// const firstPizzaPromise = Promise.race([pizzaPromise1, pizzaPromise2, pizzaPromise3]);
+  // const firstPizzaPromise = Promise.race([pizzaPromise1, pizzaPromise2, pizzaPromise3]);
 
-// firstPizzaPromise.then(pizza => {
-//   console.log('You must be hungry, here is the first one ready');
-//   console.log(pizza);
-// })
+  // firstPizzaPromise.then(pizza => {
+  //   console.log('You must be hungry, here is the first one ready');
+  //   console.log(pizza);
+  // })
 
-function handleError(err) {
+  function handleError(err) {
     console.log('Ohh noooo!!');
     console.log(err);
-}
+  }
 
-makePizza(['cheese', 'pineapple'])
+  makePizza(['cheese', 'pineapple'])
     .then((pizza) => {
       console.log(pizza);
     })
-  .catch(handleError);
+    .catch(handleError);
 
-const p1 = makePizza(['pep']);
-const p2 = makePizza(['pineapple']);
+  const p1 = makePizza(['pep']);
+  const p2 = makePizza(['pineapple']);
 
-const dinnerPromise2 = Promise.allSettled([p1, p2]);
+  const dinnerPromise2 = Promise.allSettled([p1, p2]);
 
-dinnerPromise2.then((results) => {
+  dinnerPromise2.then((results) => {
     console.log(results);
-});
+  }); */
   </script>
 </body>
 
