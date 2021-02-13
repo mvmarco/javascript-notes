@@ -135,8 +135,28 @@
     "pending" and after a second we actually get access to our pizza value.
 
     one more time, we have a regular function that makes a promise and immediately
-    that promise is returned, in fact often what you will see instead is:
+    that promise is returned, in fact often what you will see instead of making a
+    variable "pizzaPromise" for instance and then return it, they will just
+    avoid that and return directly the promise. Check below:
+
+    it is a function that immediately return a new promise:
   */
+
+  // IMPORTANT: how the promise gets resolved is always inside the promise body
+  function makePizza4(toppings) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(() => {
+        resolve(`Here is your pizza 🍕 with the toppings: ${toppings.join(' ')}`);
+      }, 1000);
+    });
+  }
+
+  const veggiePizza2 = makePizza4([' more veggies']);
+  console.log(veggiePizza2); // here the promise with status pending
+  veggiePizza2.then(function (pizzaValue) {
+    // this result will be logged after a second
+    console.log(`ah got the pizza value: ${pizzaValue}`);
+  });
 
 /* 
   // console.log('First');
