@@ -152,13 +152,22 @@
       }, 1000);
     });
   }
-
+  // then we run a funtion that will return the promise
   const veggiePizza2 = makePizza4([' more veggies']);
   console.log(veggiePizza2); // here the promise with status pending
+
+  // then in order to get the pizza, the way you that you access the resolve is to chaining .then
+  // to the promise itself
   veggiePizza2.then(function (pizzaValue) {
     // this result will be logged after a second
     console.log(`ah got the pizza value: ${pizzaValue}`);
   });
+
+  /* 
+    so why it is useful then an actuall call back, because if we wanna make a pizza
+    one after another. And let's say I have an oven that can cook a pizza at the time
+  
+  */
 
 /* 
   // console.log('First');
@@ -241,3 +250,5 @@
 </body>
 
 </html>
+
+<!-- 9,40 -->
