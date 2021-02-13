@@ -93,6 +93,51 @@
   console.log(pepperoniPromise);
   console.log(canadianPromise);
 
+  /* 
+    now the questions is, how do we get the actual pizza. And this is a bit confusing because
+    the DEV TOOLS will show us the values when it is "resolved" or not. But in JavaScript if
+    you actually want to access the value is not that you can do: 
+      console.log(pepperoniPromise.value);                    example
+    because it is not gonna work, there would be when we hit "async" or "await" but the
+    way we access is that we say:  
+  */
+
+  pepperoniPromise.then(function (pizzaValue) {
+    console.log(`ah got the pizza value: ${pizzaValue}`);
+  });
+
+  /*
+    it seems a harder way of dealing with data because we did not introduce 
+    any time delays into it. So if now we create a new function makepizza with a delay
+    of one second for the pizza to be cooked. 
+  */
+
+  function makePizza3(toppings) {
+    const pizzaPromise = new Promise(function (resolve, reject) {
+      // wait 1 second for the pizza to cook:
+      setTimeout(() => {
+        resolve(`Here is your pizza 🍕 with the toppings: ${toppings.join(' ')}`);
+      }, 1000);
+    });
+    return pizzaPromise;
+  }
+  
+  const veggiePizza = makePizza3(['veggies']);
+  console.log(veggiePizza); // here the promise with status pending
+  veggiePizza.then(function (pizzaValue) {
+    // this result will be logged after a second
+    console.log(`ah got the pizza value: ${pizzaValue}`);
+  });
+
+  /* 
+    what is important to notice is that now that we put the setTimeout() when 
+    console.log the veggie pizza we immediately get the "promise" with status
+    "pending" and after a second we actually get access to our pizza value.
+
+    one more time, we have a regular function that makes a promise and immediately
+    that promise is returned, in fact often what you will see instead is:
+  */
+
 /* 
   // console.log('First');
   makePizza(['pepperoni'])
