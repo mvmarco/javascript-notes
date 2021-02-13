@@ -143,6 +143,8 @@
   */
 
   // IMPORTANT: how the promise gets resolved is always inside the promise body
+  // that promise function will always resolve or reject whenever it feels like it is ready
+  // in our case, we feel like the pizza is ready after one second
   function makePizza4(toppings) {
     return new Promise(function (resolve, reject) {
       setTimeout(() => {
