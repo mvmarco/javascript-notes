@@ -114,41 +114,64 @@
       so it sounds simple but it goes at deep level, as beginner-mid-level you just have to understand
       that JavaScript is a "single-threaded" language. Which means, that only run one thing at the time.
       and if it has to run multiple things queued up this is obviusly slowing down.
+
+      the question is how do we deal with this that takes time, like going off grap some data from an
+      API and come back to it, we should be able to don't freeze up the intere browser. What we want
+      to do is fetch, get that data and carry on the rest of our life. And when that data comes to
+      us we can deal to it. Like the setTimeOut(), when the timer is done we can come back and deal
+      with it.
+
+      so callback are great but it is difficult to orchestrate multiple things at once, here below an
+      example. Where we have to deal with stuff in sequence, it is common in JS:
     */
 
-    function go(e) {
-      const el = e.currentTarget;
-      // 1. Change the text to GO when clicked.
-      el.textContent = 'GO';
-      setTimeout(function () {
-        // 2. Make it a circle after 2 seconds
+    /*
+      above there is a div with a class="go";
+    */
+    // 1. Make a DIV and change the text to GO when clicked.
+    const go = document.querySelector('.go');
+    go.addEventListener('click', function (event) {
+      const el = event.currentTarget;
+      console.log(el);
+      el.textContent = 'go';
+      // 2. Make it a circle after 2 seconds
+      setTimeout(() => {
         el.classList.add('circle');
-        setTimeout(function () {
-          // 3. Make it red after 0.5s
+        console.log('making it CIRCLE');
+        // 3. Make it red after 0.5s
+        setTimeout(() => {
           el.classList.add('red');
-          setTimeout(function () {
-            // 4. make it square after 0.25s
+          console.log('making it RED');
+          // 4. after it is a circle make it square again after 0.25s
+          setTimeout(() => {
             el.classList.remove('circle');
-            setTimeout(function () {
-              // 5. make it purple
-              el.classList.remove('red');
+            console.log('making it SQUARE');
+            // 5. make it purple after 0.3 second
+            setTimeout(() => {
+              // el.classList.remove('red');
               el.classList.add('purple');
-              setTimeout(function () {
-                // 6. fade out after 0.5s
-                el.classList.add('invisible');
-                setTimeout(function () {
-                  console.log('You have reacted the 7th layer of callback hell');
-                  el.classList.remove('invisible', 'purple');
-                }, 500);
+              console.log('making it PURPLE');
+              // 6. fade out after 0.5s
+              setTimeout(() => {
+                el.classList.add('fadeOut');
               }, 500);
-            }, 500);
-          }, 500);
+            }, 300);
+          }, 250);
         }, 500);
-      }, 500);
-    }
+      }, 2000);
+    });
+
+    /* 
+      this is awful and it is what is referred to "call-back hell" and "call-back hell" is
+      if you need to do thing one after another you must nest the call-back inside each other
+      because they all depend on the previous call-back to being called before they can be
+      go ahead and run. The example is easy but you end up with a christmas three code, and it is
+      not the best practice. the solution to "call-back hell" is "promise-land", using "promises".
+      "promises" allow us to write code that is much easier to look at and flatter.
+
+    */
   </script>
 </body>
 
 </html>
 
-<!-- 10:00 -->
