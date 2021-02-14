@@ -296,13 +296,9 @@
   */
   
   /* 
-    Promise.all is a method that lives on the "mama" or the class directly -- ("static method")
-
-    Neither static methods nor static properties can be called on instances of the class.
-    Instead, they're called on the class itself.  Static methods are often utility functions, 
-    such as functions to create or clone objects, whereas static properties are useful for caches,
-    fixed-configuration, or any other data you don't need to be replicated across instances. --
-    
+    Promise.all is a method that lives on the "mama"  -- ("static method")
+    Static methods are the methods in JS that can be called without creating
+    an object of class. --
     sort of little helper that takes an array of promises "baby promises" like the pizzaPromises
     and then makes a big promise
   */
@@ -313,14 +309,35 @@
     dinnerPromise.then((pizzas) => console.log(pizzas));
     console.log(pizzas) will give us an array with the 3 pizzas value
     
-    but we can also denstructure it taking the index of each arry so we get each
-    single value
+    but we can also denstructure it as follow:
   */
 
   dinnerPromise.then(function (pizzas) {
+    // const pizza1 = pizzas;
+    // const pizza2 = pizzas;
+    // const pizza3 = pizzas;
     const [pizza1, pizza2, pizza3] = pizzas;
     console.log(pizza1, pizza2, pizza3);
   });
+
+  /*
+    you could also do:
+
+    dinnerPromise.then(function ([pizza1, pizza2, pizza3]) {
+      console.log(pizza1, pizza2, pizza3);
+    });
+
+    which says: take the first argument and descructure it into the corresponding
+    items/pizza values
+  */
+
+  /* 
+    in sum "Promise.all" will take all of our promises and resolve all of the three
+    promises when they are all three promises have been resolved themselves
+    
+
+    similarly there is 
+  */
 
   /* 
 
