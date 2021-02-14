@@ -348,27 +348,10 @@
   });
 
   /* 
-
-
-  function handleError(err) {
-    console.log('Ohh noooo!!');
-    console.log(err);
-  }
-
-  makePizza(['cheese', 'pineapple'])
-    .then((pizza) => {
-      console.log(pizza);
-    })
-    .catch(handleError);
-
-  const p1 = makePizza(['pep']);
-  const p2 = makePizza(['pineapple']);
-
-  const dinnerPromise2 = Promise.allSettled([p1, p2]);
-
-  dinnerPromise2.then((results) => {
-    console.log(results);
-  }); */
+    "Promise.race" will run/wait for the first one only
+    while "Promise.all" will run/wait for all of them together
+    there are a couple more that we will talk about more with "arrow handling"
+  */
   </script>
 </body>
 
