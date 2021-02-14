@@ -117,7 +117,7 @@
       // wait 1 second for the pizza to cook:
       setTimeout(() => {
         resolve(`Here is your pizza 🍕 with the toppings: ${toppings.join(' ')}`);
-      }, 1000);
+      }, 200);
     });
     return pizzaPromise;
   }
@@ -149,7 +149,7 @@
     return new Promise(function (resolve, reject) {
       setTimeout(() => {
         resolve(`Here is your pizza 🍕 with the toppings: ${toppings.join(' ')}`);
-      }, 1000);
+      }, 400);
     });
   }
   // then we run a funtion that will return the promise
@@ -181,7 +181,7 @@
     return new Promise(function (resolve, reject) {
       setTimeout(() => {
         resolve(`Here is your pizza 🍕 with the toppings: ${toppings.join(' ')}`);
-      }, 1000);
+      }, 750);
     });
   }
   console.log('first');
@@ -205,8 +205,43 @@
     one level deep. The only down side, if you check the logs "first" and "right after"
     they are running before all the big chunch of "promise land" -> 188 and 199
     beause of the timer. But we can work around it with the "async" and "await" keywords
-  
   */
+
+  /*
+    here we make our promise makePizza() more resiliant, adding as argument an empty 
+    array for toppings, sometimes people order pizza with nothing on it. and then 
+    what we wanna do is that for every single toppings they have add 200 milliseconds
+    and an additional bake time of 500 milliseconds
+  */
+
+  function makePizza6(toppings) {
+    return new Promise(function (resolve, reject) {
+      const amountOfTimeToBake = 3000 + toppings.length * 200;
+      setTimeout(() => {
+        resolve(
+          `Here is your pizza 🍕🍕🍕🍕🍕🍕 with the toppings: ${toppings.join(
+            ' '
+          )}`
+        );
+      }, amountOfTimeToBake);
+    });
+  }
+// ###############################
+// RUN THEM SEQUENTIALLY
+// ###############################
+
+  makePizza6(['salami']) // 1 promise
+    .then(function (pizzaa) {
+      console.log(pizzaa); // 1 value
+      return makePizza6(['ananas', 'ananas', 'ananas']); // 2 promise
+    })
+    .then(function (pizzaa) {
+      console.log(pizzaa); // 2 value
+      return makePizza6(['fries', 'fries']); // 3 promise
+    })
+    .then(function (pizzaa) {
+      console.log(pizzaa); // 3 value
+    });
 
 /* 
     .then(function (pizza) {
