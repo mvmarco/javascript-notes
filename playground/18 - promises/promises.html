@@ -294,16 +294,19 @@
 
     here below the MEGA PROMISE:
   */
-
+  
+  /* 
+    Promise.all is a method that lives on the "mama" directly -- ("static method") --
+    sort of little helper that takes an array of promises "baby promises" like the pizzaPromises
+    and then makes a big promise
+  */
   // eslint-disable-next-line prettier/prettier
   const dinnerPromise = Promise.all([pizzaPromise1, pizzaPromise2, pizzaPromise3]); // "mega promise"
-
+  dinnerPromise.then((pizzas) => console.log(pizzas));
   /* 
 
 
-  // dinnerPromise.then(function ([hottie, garbagePail, hamAndCheese]) {
-  //   console.log(hottie, garbagePail, hamAndCheese);
-  // });
+  
 
   // const firstPizzaPromise = Promise.race([pizzaPromise1, pizzaPromise2, pizzaPromise3]);
 
