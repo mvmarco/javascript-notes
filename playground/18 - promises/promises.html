@@ -266,7 +266,7 @@
       const amountOfTimeToBake = 4000 + toppings.length * 200;
       setTimeout(() => {
         resolve(
-          `Here is your pizza 🍕🍕🍕WITH BIG OVEN🍕🍕🍕 with the toppings: ${toppings.join(
+          `🛑 - Here is your pizza 🍕🍕🍕WITH BIG OVEN🍕🍕🍕 with the toppings: ${toppings.join(
             ' '
           )}`
         );
@@ -274,10 +274,10 @@
     });
   }
   // Run them Concurrently
-  const pizzaPromise1 = makePizza(['hot peppers', 'onion', 'feta']);
+  const pizzaPromise1 = makePizza7(['hot peppers', 'onion', 'feta']);
   // eslint-disable-next-line prettier/prettier
-  const pizzaPromise2 = makePizza(['one', 'two', 'three', 'four', 'one', 'two', 'three', 'four', 'one', 'two', 'three', 'four']);
-  const pizzaPromise3 = makePizza(['ham', 'cheese']);
+  const pizzaPromise2 = makePizza7(['one', 'two', 'three', 'four', 'one', 'two', 'three', 'four', 'one', 'two', 'three', 'four']);
+  const pizzaPromise3 = makePizza7(['ham', 'cheese']);
 
   /*   
     this below, will run in sucession the alternative is to create a "mega promise"
@@ -302,8 +302,22 @@
   */
   // eslint-disable-next-line prettier/prettier
   const dinnerPromise = Promise.all([pizzaPromise1, pizzaPromise2, pizzaPromise3]); // "mega promise"
-  dinnerPromise.then((pizzas) => console.log(pizzas));
+  
   /* 
+    dinnerPromise.then((pizzas) => console.log(pizzas));
+    console.log(pizzas) will give us an array with the 3 pizzas value
+    
+    but we can also denstructure it taking the index of each arry so we get each
+    single value
+  */
+
+  dinnerPromise.then(function (pizzas) {
+    const [pizza1, pizza2, pizza3] = pizzas;
+    console.log(pizza1, pizza2, pizza3);
+  });
+
+  /* 
+
 
 
   
