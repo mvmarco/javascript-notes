@@ -296,7 +296,13 @@
   */
   
   /* 
-    Promise.all is a method that lives on the "mama" directly -- ("static method") --
+    Promise.all is a method that lives on the "mama" or the class directly -- ("static method")
+
+    Neither static methods nor static properties can be called on instances of the class.
+    Instead, they're called on the class itself.  Static methods are often utility functions, 
+    such as functions to create or clone objects, whereas static properties are useful for caches,
+    fixed-configuration, or any other data you don't need to be replicated across instances. --
+    
     sort of little helper that takes an array of promises "baby promises" like the pizzaPromises
     and then makes a big promise
   */
