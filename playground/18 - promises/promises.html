@@ -153,7 +153,7 @@
     });
   }
   // then we run a funtion that will return the promise
-  const veggiePizza2 = makePizza4([' more veggies']);
+  const veggiePizza2 = makePizza4(['agurk', 'zucchini', 'aubergine']);
   console.log(veggiePizza2); // here the promise with status pending
 
   // then in order to get the pizza, the way you that you access the resolve is to chaining .then
@@ -164,26 +164,51 @@
   });
 
   /* 
-    so why it is useful then an actuall call back, because if we wanna make a pizza
+    so why it is useful then an actuall call back, like in the example with the timer,
+    in the event-loop notes number 17? because if we wanna make a pizza
     one after another. And let's say I have an oven that can cook a pizza at the time
+    what we can do is:  
+
+    1 first just call the makepizza() function without bein inside of a const
+    2 then get the actual value of the promise (which is makepizza() by the way)
+      by the usage of .then()
+    3 inside teh .then() with can return a new makePizza() promise instance with new values
+    4 we can access the new makePizza() promise attaching again the keyword .then()
+
+    check here:
+  */
+  function makePizza5(toppings) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(() => {
+        resolve(`Here is your pizza 🍕 with the toppings: ${toppings.join(' ')}`);
+      }, 1000);
+    });
+  }
+  console.log('first');
+  makePizza5(['pepperoni']) // 1 promise
+    .then(function (pizzaa) {
+      console.log(pizzaa); // 1 value
+      return makePizza5(['pepperoni', 'bufala', 'basil']); // 2 promise
+    })
+    .then(function (pizzaa) {
+      console.log(pizzaa); // 2 value
+      return makePizza5(['nutella']); // 3 promise
+    })
+    .then(function (pizzaa) {
+      console.log(pizzaa); // 3 value
+    });
+  console.log('right after');
+
+  /* 
+    this is not all nested functions like in the "call-back hell" but this
+    is "promise land" which allow us to keep all of from line 188 to line 199
+    one level deep. The only down side, if you check the logs "first" and "right after"
+    they are running before all the big chunch of "promise land" -> 188 and 199
+    beause of the timer. But we can work around it with the "async" and "await" keywords
   
   */
 
 /* 
-  // console.log('First');
-  makePizza(['pepperoni'])
-    .then(function (pizza) {
-      console.log(pizza);
-      return makePizza(['ham', 'cheese']);
-    })
-    .then(function (pizza) {
-      console.log(pizza);
-      return makePizza(['hot peppers', 'onion', 'feta']);
-    })
-    .then(function (pizza) {
-      console.log(pizza);
-      return makePizza(['pineapple']);
-    })
     .then(function (pizza) {
       console.log(pizza);
       return makePizza([
@@ -251,4 +276,3 @@
 
 </html>
 
-<!-- 9,40 -->
