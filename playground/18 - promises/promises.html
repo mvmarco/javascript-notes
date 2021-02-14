@@ -217,7 +217,7 @@
 
   function makePizza6(toppings) {
     return new Promise(function (resolve, reject) {
-      const amountOfTimeToBake = 3000 + toppings.length * 200;
+      const amountOfTimeToBake = 2600 + toppings.length * 200;
       setTimeout(() => {
         resolve(
           `Here is your pizza 🍕🍕🍕🍕🍕🍕 with the toppings: ${toppings.join(
@@ -263,7 +263,7 @@
 
   function makePizza7(toppings) {
     return new Promise(function (resolve, reject) {
-      const amountOfTimeToBake = 4000 + toppings.length * 200;
+      const amountOfTimeToBake = 8000 + toppings.length * 200;
       setTimeout(() => {
         resolve(
           `🛑 - Here is your pizza 🍕🍕🍕WITH BIG OVEN🍕🍕🍕 with the toppings: ${toppings.join(
@@ -280,7 +280,7 @@
   const pizzaPromise3 = makePizza7(['ham', 'cheese']);
 
   /*   
-    this below, will run in sucession the alternative is to create a "mega promise"
+    this below, will run  still in sucession, the alternative is to create a "mega promise"
 
     pizzaPromise1.then(function (pizzaa) {
       console.log(pizzaa);
