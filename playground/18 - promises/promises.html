@@ -182,7 +182,7 @@
     return new Promise(function (resolve, reject) {
       setTimeout(() => {
         resolve(`Here is your pizza 🍕 with the toppings: ${toppings.join(' ')}`);
-      }, 750);
+      }, 650);
     });
   }
   console.log('first');
@@ -352,6 +352,160 @@
     while "Promise.all" will run/wait for all of them together
     there are a couple more that we will talk about more with "error handling"
   */
+
+  // ########################
+  // REJECT
+  // ########################
+
+  /* 
+    "reject" is the opposite of "resolve".  The "reject" someone checked if something
+    you do want happens, and if that happens something is run. 
+    For instance in the example below we check if someone put pineapple on pizza,
+    if that is true. we gonna reject that pizza from happening
+  */
+
+  function makePizza8(toppings) {
+    return new Promise(function (resolve, reject) {
+      // reject if people try pineapple
+      if (toppings.includes('pinapple')) {
+        // eslint-disable-next-line prefer-promise-reject-errors
+        reject('Seriously? get out 🍍');
+      }
+      const amountOfTimeToBake = 12000 + toppings.length * 200;
+      setTimeout(() => {
+        resolve(
+          `🛑 - Here is your pizza 🍕🍕🍕WITH BIG OVEN🍕🍕🍕 with the toppings: ${toppings.join(
+            ' '
+          )}`
+        );
+      }, amountOfTimeToBake);
+    });
+  }
+  
+  makePizza8(['pinapple', 'cheese']).then(function (pizzaValue) {
+    console.log(pizzaValue); // check ###
+  });
+
+  /*   
+    ###   console.log(pizzaValue); will log
+    "promises.html:1 Uncaught (in promise) Seriously? get out 🍍"
+    which means that there was as an error in our promises but we did not write
+    any code to handle that error in order to try to catch it. In order to get
+    the "value of the error" we must use the .catch keyword
+  */
+
+function makePizza9(toppings) {
+    return new Promise(function (resolve, reject) {
+      // reject if people try pineapple
+      if (toppings.includes('pinapple')) {
+        // eslint-disable-next-line prefer-promise-reject-errors
+        reject('Seriously? get out 🍍');
+      }
+      const amountOfTimeToBake = 12000 + toppings.length * 200;
+      setTimeout(() => {
+        resolve(
+          `🛑 - Here is your pizza 🍕🍕🍕WITH BIG OVEN🍕🍕🍕 with the toppings: ${toppings.join(
+            ' '
+          )}`
+        );
+      }, amountOfTimeToBake);
+    });
+  }
+
+  makePizza9(['pinapple', 'cheese'])
+    .then(function (pizzaValue) {
+      console.log(pizzaValue);
+    })
+    .catch(function (error) {
+      console.log('HERE IS THE VALUE OF THE ERROR', error);
+    });
+
+  /*
+    IMPORTANT: the 'then()' will only run when the promise resolves sucessfully
+    the 'catch()' will only run when the promise is doesn't go sucessfully
+
+    almost always when the promise built funtions you must always chain:
+    a '.then()' and a '.catch()'
+
+    so if sometimes goes wrong you are able to gonna catch it and display it to the user.
+    What is more common to do is to refactor the function inside the catch and put it outside.
+    One reason is that if you have 20000 promises you do not have to create thousand of catch.
+    you just put it at the end. and can be an outside function.
+
+    function handleError(error) {
+      console.log(error);
+    }
+
+    makePizza9(['pinapple', 'cheese'])
+      .then(function (pizzaValue) {
+        console.log(pizzaValue);
+      })
+      .catch(handleError);
+      });
+  */
+
+  /* 
+    As mentioned not everysingle promise needs a catch on the end, but just one after
+    all the promises, check the example:  
+  */
+  
+  function makePizza10(toppings = []) {
+    return new Promise(function (resolve, reject) {
+      // reject if people try with pineapple
+      if (toppings.includes('pineapple')) {
+        // eslint-disable-next-line prefer-promise-reject-errors
+        reject(`Seriously? Get out 🍍`);
+      }
+      const amountOfTimeToBake = 1600 + toppings.length * 200;
+      // wait 1 second for the pizza to cook:
+      setTimeout(function () {
+        // when you are ready, you can resolve this promise
+        resolve(`Here is your pizza 🍕 with the toppings ${toppings.join(' ')}`);
+      }, amountOfTimeToBake);
+      // if something went wrong, we can reject this promise;
+    });
+  }
+
+  function handleErrorr(err) {
+    console.log('Ohh noooo!!');
+    console.log(err);
+  }
+  // console.log('First');
+  makePizza10(['pepperoni'])
+    .then(function (pizzaaa) {
+      console.log(pizzaaa);
+      return makePizza10(['ham', 'cheese']);
+    })
+    .then(function (pizzaaa) {
+      console.log(pizzaaa);
+      return makePizza10(['hot peppers', 'onion', 'feta']);
+    })
+    .then(function (pizzaaa) {
+      console.log(pizzaaa);
+      return makePizza10(['pineapple']);
+    })
+    .then(function (pizzaaa) {
+      console.log(pizzaaa);
+      return makePizza10([
+        'one',
+        'two',
+        'three',
+        'four',
+        'one',
+        'two',
+        'three',
+        'four',
+        'one',
+        'two',
+        'three',
+        'four',
+      ]);
+    })
+    .then((pizzaaa) => {
+      console.log('All done! here is your last pizza');
+      console.log(pizzaaa);
+    })
+    .catch(handleErrorr);
   </script>
 </body>
 
