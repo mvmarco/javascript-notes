@@ -456,11 +456,13 @@ function makePizza9(toppings) {
         // eslint-disable-next-line prefer-promise-reject-errors
         reject(`Seriously? Get out 🍍`);
       }
-      const amountOfTimeToBake = 1600 + toppings.length * 200;
+      const amountOfTimeToBake = 16000 + toppings.length * 500;
       // wait 1 second for the pizza to cook:
       setTimeout(function () {
         // when you are ready, you can resolve this promise
-        resolve(`Here is your pizza 🍕 with the toppings ${toppings.join(' ')}`);
+        resolve(
+          `Here is your pizza 🍕🍀 with the toppings ${toppings.join(' ')}`
+        );
       }, amountOfTimeToBake);
       // if something went wrong, we can reject this promise;
     });
@@ -506,6 +508,12 @@ function makePizza9(toppings) {
       console.log(pizzaaa);
     })
     .catch(handleErrorr);
+
+  /* 
+    the problem here is that as soon as it found the "pinapple"
+    it stops working and does not log the value of the promises that are
+    afterwords of the "pinapple" even though they don't contain it
+  */
   </script>
 </body>
 
