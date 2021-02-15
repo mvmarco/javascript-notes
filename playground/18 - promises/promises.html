@@ -446,7 +446,7 @@ function makePizza9(toppings) {
 
   /* 
     As mentioned not everysingle promise needs a catch on the end, but just one after
-    all the promises, check the example:  
+    all the promises in case the promises are dependent one upon another, check the example:  
   */
   
   function makePizza10(toppings = []) {
@@ -510,9 +510,53 @@ function makePizza9(toppings) {
     .catch(handleErrorr);
 
   /* 
-    the problem here is that as soon as it found the "pinapple"
-    it stops working and does not log the value of the promises that are
-    afterwords of the "pinapple" even though they don't contain it
+    if the promises are dependent one upon another you can put the "catch()" at the end
+    this will cause, that as soon as it found the "pinapple", to stops working
+    and does not log the value of the promises that are after the "pinapple" or the error 
+    even though they don't contain it
+
+    but sometimes, you want that its fine that the "pinapple" got rejected but what about
+    the one that comes after? I still want them to by made. If that is the case 
+    "promise chaining" is not what we need but we need instead is something like
+    "Promise.all" or "Promise.race" the statics method. Check example below: 
+  */
+
+function makePizza11(toppings = []) {
+    return new Promise(function (resolve, reject) {
+      // reject if people try with pineapple
+      if (toppings.includes('pineapple')) {
+        // eslint-disable-next-line prefer-promise-reject-errors
+        reject(`Seriously? Get out 🍍`);
+      }
+      const amountOfTimeToBake = 17000 + toppings.length * 500;
+      // wait 1 second for the pizza to cook:
+      setTimeout(function () {
+        // when you are ready, you can resolve this promise
+        resolve(
+          `Here is your pizza 🍕🦈 with the toppings ${toppings.join(' ')}`
+        );
+      }, amountOfTimeToBake);
+      // if something went wrong, we can reject this promise;
+    });
+  }
+  const p1 = makePizza11(['pep']);
+  const p2 = makePizza11(['pineapple']);
+
+  const dinnerPromise2 = Promise.allSettled([p1, p2]);
+  dinnerPromise2.then((results) => {
+    console.log(results); // the 1st was fullfilled and the 2nd was rejected
+  });
+
+  /* 
+    the difference between "Promise.all" and "Promise.allSettled" is that
+    if we did with "Promise.all" it would break. Because it presumes that all
+    of them will go successfully and if you want to catch any errors you would need to
+    do: Promise.all([p1, p2]).catch(handleError) but you get the error for both of the
+    promises. And it is not what you want because if one of them breaks, all of them do
+    and maybe we still want the other one that may still be good.
+
+    So "Promise.allSettled" will just tell us when all of them are done regardless of
+    if they were rejected or not
   */
   </script>
 </body>
