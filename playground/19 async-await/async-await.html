@@ -10,74 +10,79 @@
 
 <body>
   <script>
-    function wait(ms = 0) {
-      return new Promise((resolve) => {
-        setTimeout(resolve, ms);
-      });
-    }
+  /* 
+    Async await are a way to improve the syntax of promises, the new promises
+    syntax allow us to use a much nicer and cleaner way of writing promises
+  */
 
-    function makePizza(toppings = []) {
-      return new Promise(function (resolve, reject) {
-        // reject if people try with pineapple
-        if (toppings.includes('pineapple')) {
-          // eslint-disable-next-line prefer-promise-reject-errors
-          reject('Seriously? Get out 🍍');
-        }
-        const amountOfTimeToBake = 500 + toppings.length * 200;
-        // wait 1 second for the pizza to cook:
-        setTimeout(function () {
-          // when you are ready, you can resolve this promise
-          resolve(`Here is your pizza 🍕 with the toppings ${toppings.join(' ')}`);
-        }, amountOfTimeToBake);
-        // if something went wrong, we can reject this promise;
-      });
-    }
+  function wait(ms = 0) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
 
-    async function go() {
-      console.log('Starting');
-      await wait(2000);
-      console.log('running');
-      await wait(200);
-      console.log('ending');
-    }
+  function makePizza(toppings = []) {
+    return new Promise(function (resolve, reject) {
+      // reject if people try with pineapple
+      if (toppings.includes('pineapple')) {
+        // eslint-disable-next-line prefer-promise-reject-errors
+        reject('Seriously? Get out 🍍');
+      }
+      const amountOfTimeToBake = 500 + toppings.length * 200;
+      // wait 1 second for the pizza to cook:
+      setTimeout(function () {
+        // when you are ready, you can resolve this promise
+        resolve(`Here is your pizza 🍕 with the toppings ${toppings.join(' ')}`);
+      }, amountOfTimeToBake);
+      // if something went wrong, we can reject this promise;
+    });
+  }
 
-    // go();
+  async function go() {
+    console.log('Starting');
+    await wait(2000);
+    console.log('running');
+    await wait(200);
+    console.log('ending');
+  }
 
-    async function makeDinner() {
-      const pizzaPromise1 = makePizza(['pepperoni']);
-      const pizzaPromise2 = makePizza(['mushrooms']);
-      const [pep, mush] = await Promise.all([pizzaPromise1, pizzaPromise2]);
-      console.log(pep, mush);
-    }
+  // go();
 
-    makeDinner();
+  async function makeDinner() {
+    const pizzaPromise1 = makePizza(['pepperoni']);
+    const pizzaPromise2 = makePizza(['mushrooms']);
+    const [pep, mush] = await Promise.all([pizzaPromise1, pizzaPromise2]);
+    console.log(pep, mush);
+  }
 
-    // // Function declaration
-    // async function fd() { }
+  makeDinner();
 
-    // // arrow function
-    // const arrowFn = async () => { }
+  // // Function declaration
+  // async function fd() { }
 
-    // // call back
-    // window.addEventListener('click', async function () {
+  // // arrow function
+  // const arrowFn = async () => { }
 
-    // })
+  // // call back
+  // window.addEventListener('click', async function () {
 
-    // //
-    // const person = {
-    //   // method
-    //   sayHi: async function () {
+  // })
 
-    //   },
-    //   // method shorthand
-    //   async sayHello() {
+  // //
+  // const person = {
+  //   // method
+  //   sayHi: async function () {
 
-    //   },
-    //   // function property
-    //   sayHey: async () => {
+  //   },
+  //   // method shorthand
+  //   async sayHello() {
 
-    //   }
-    // }
+  //   },
+  //   // function property
+  //   sayHey: async () => {
+
+  //   }
+  // }
   </script>
 </body>
 
