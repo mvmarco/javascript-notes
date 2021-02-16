@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Async Await</title>
+  <link rel="stylesheet" href="../../base.css">
+</head>
+
+<body>
+  <script>
+    /* 
+      because while using "async" and "await" we avoid the usage of .then
+      it is hard to catch() the error. There are different 4 ways to do error handling
+      in "async-await". There is also the most popular way.
+    */
+    function wait(ms = 0) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+      });
+    }
+
+    function makePizza(toppings = []) {
+      return new Promise(function (resolve, reject) {
+        // reject if people try with pineapple
+        if (toppings.includes('pineapple')) {
+          // eslint-disable-next-line prefer-promise-reject-errors
+          reject('Seriously? Get out 🍍');
+        }
+        const amountOfTimeToBake = 500 + toppings.length * 200;
+        // wait 1 second for the pizza to cook:
+        setTimeout(function () {
+          // when you are ready, you can resolve this promise
+          resolve(`Here is your pizza 🍕 with the toppings ${toppings.join(' ')}`);
+        }, amountOfTimeToBake);
+        // if something went wrong, we can reject this promise;
+      });
+    }
+
+/*     async function go() {
+      const pizza = await makePizza(['pinapple']);
+      console.log(pizza); // we do not get anything not even the error
+    }
+    go();
+ */
+    // ###########################
+    // FIRST METHOD: TRY AND CATCH
+    // ###########################
+
+    /* 
+      "try" and "catch" works as we say: try a bunch of stuff and 
+      you sorf of wrap it in a safety blanket, and if anything goes
+      wrong you catch the error and handle it.
+
+      the first way is to add "try" inside the function:
+    */
+    async function go1() {
+      try {
+        const pizza = await makePizza(['pineapple']);
+        console.log(pizza); // try to do this and if it is an error we catch it below
+      } catch (err) {
+        console.log('try and catch');
+        console.log(err); // this is where you would display the error to the user
+      }
+    }
+    
+    go1();
+
+    /* 
+      the only thing is that disturb a bit the simplicity of "async" "await"
+      since you have to wrap the whole thing in a "try" and "catch" 
+      another way is using that we call "mix and match"
+    */
+
+    // ############################
+    // SECOND METHOD: MIX AND MATCH
+    // ############################
+
+    /* 
+      in "mix and match" we can use "async-await" but we can use 
+      also the promise syntax for the error handling    
+    */
+
+    function handleError(err) {
+      console.log('mix and match');
+      console.log(err);
+    }
+
+    async function go2() {
+      const pizza = await makePizza(['pineapple']);
+      console.log(pizza);
+    }
+
+    go2().catch(handleError);
+
+    /* 
+      what will do is, when it runs it will give us: seriusly get out 🍍
+      and we are sort of mixing and matchin the best of both words:
+      we are using "await" to get the data of the promise instead of
+      a .then and  we're still using the older syntax with ".catch" onto
+      the end of the function when you call it.
+
+      this is helpful when you want to handle the error when you call
+      the actual function. the thing to remember is that .catch is usually
+      applied to promises and go2() it is not, but instad it is an async
+      function:    IMPORTANT
+
+      when you mark a function as "async" it will immediately return a promise
+      to you - when it is a regular function it will return the data that you want:
+    */
+
+/* 
+
+
+    function handleError(err) {
+      console.log('ohhh noooo');
+      console.log(err);
+    }
+
+    function handleDisgustingPizza() {}
+    async function go() {
+      const pizza = await makePizza(['pineapple']).catch(handleDisgustingPizza);
+      return pizza;
+    }
+
+    // catch it at run time
+    go().catch(handleError);
+    // make a safe function with a HOF
+    function makeSafe(fn, errorHandler) {
+      return function () {
+        fn().catch(errorHandler);
+      };
+    }
+
+    const safeGo = makeSafe(go, handleError);
+
+    safeGo(); */
+  </script>
+</body>
+
+</html>
+
+<!-- 7 -->
