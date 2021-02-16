@@ -15,17 +15,16 @@
     syntax allow us to use a much nicer and cleaner way of writing promises
   */
 
-  // same as usual wait function
-  function wait(ms = 0) {
-    return new Promise((resolve) => {
-      setTimeout(resolve, ms);
-    });
-  }
-
-  /* 
+/* 
+    // same as usual wait function
+    function wait(ms = 0) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+      });
+    }
     if we want to use the "async" "await" syntax there are a couple of things that needs
     to happen:
-
+    
     1st you can only use "async" "await" inside of a function that is marked as "async"
     if you have the followin function: you get first starting, then go and then you wait
     
@@ -34,19 +33,19 @@
       wait(2000)
       console.log('ending');
     }
-
+    
     but if you do: 
-
+    
     async function go() {
       console.log('starting');
       await wait(2000)
       console.log('ending');
     }
-
+    
     you get starting, you wait e sec and then you get ending.
     and you are able to stick "async" "await"
     however you want:
-
+    
     async function go() {
       console.log('starting');  // run 1st
       await wait(2000)          // waits 2 seconds
@@ -54,33 +53,53 @@
       await wait(2000)          // waits 2 more seconds
       console.log('ending');    // run last
     }
-
+    
     you can use "async" and "await" with any type of functions:
-
+    
     // function declaration:  async funtion fd() {};
     // arrow function: const arrowFn = async () => {}
     // callback functions: window.addEventListener('click', async funtion() {})
     // methods: const person = {
-                  sayHi: async function() {
-
-                  },
-                }
+      sayHi: async function() {
+        
+      },
+    }
     // function properties: const person = {
-                              sayHi: async function() {
-
-                              },
-                              sayHey: async () => {
-
-                              },
-                            }
-
+      sayHi: async function() {
+        
+      },
+      sayHey: async () => {
+        
+      },
+    }
+    
     essentially when you have a function you gotta just put the word "async" in front
     and that will let you do "await"
+    
+    the only thing you cannot do is what reffered to as "top level await":
+    Top-level await enables developers to use the await keyword outside of async functions.
+    but does not workkkkkkk - so avoid it.
+    */
 
-    the only thing you cannot do is what reffered to as "top level await"
-  */
+  // same as usual wait function
+  function wait(ms = 0) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
+  async function go() {
+    console.log('Starting');
+    await wait(2000);
+    console.log('running');
+    await wait(200);
+    console.log('ending');
+  }
 
-  /* function makePizza(toppings = []) {
+  go();
+  
+// another example
+
+  function makePizza(toppings = []) {
     return new Promise(function (resolve, reject) {
       // reject if people try with pineapple
       if (toppings.includes('pineapple')) {
@@ -97,15 +116,61 @@
     });
   }
 
-  async function go() {
-    console.log('Starting');
-    await wait(2000);
-    console.log('running');
-    await wait(200);
-    console.log('ending');
+  async function makeDinnerExample() {
+    const pizza1 = makePizza(['pepperoni']);
+    console.log(pizza1); // here we get a promise and not the value
   }
 
-  // go();
+  makeDinnerExample();
+
+  /* 
+    if you want the actual data  that comes back from a promise (without the usage of .then)
+    you must "await" it.
+
+    if you just run the function and store it into a variable, that will store the promise 
+    into a variable. But if we put the await in front of the function it will run the 
+    "make pizza" function, then wait. The reason why it is it "await" and not just wait 
+    it is because is "asynchronously waiting" meaning that its not going to actually
+    pause all JavaScript, it is not going to block all the rest of JavaScript on the
+    page from running so if I were to run both go() and make dinner() at the same time they
+    will not interfere with each other. It is just that they do not interfere with each other
+    just the speficic function will temporarly pause. So we are asynchronously waiting for the
+    pizza to be done and we will simply console.log it. 
+  */
+
+  async function makeDinnerExampleTwo() {
+    const pizza1 = await makePizza(['pepperoni']);
+    console.log(pizza1); // here we get a promise and the value thanks to await
+  }
+
+  makeDinnerExampleTwo();
+  
+  // similarly we can do:
+
+  async function makeDinner1() {
+    const pizza1 = await makePizza(['pepperoni']);
+    console.log(pizza1);
+    const pizza2 = await makePizza(['mushrooms']);
+    console.log(pizza2);
+  }
+
+  makeDinner1(); // each of them will take their own amount time and run
+
+  /* 
+    now the question is: how do I wait to both to be done? the above code is kind of inefficient
+    and it is referred to as "footgun" where if you give somebody the tools to do this it's
+    possible that you could make code that is not permormant meaning that, if I make a
+    "pepperoni" and "mushroom" pizza I am totally waiting for the "pepperoni" to be created,
+    baked and taken out before I even start making the next pizza ("mushroom") and it is 
+    likely that you could make both of them at the same time or "concurrently" so what we could
+    do is instead of running, waiting for one, and then moving onto the next line and making
+    the next one we will:
+    1 remove teh await from both of them
+    2 add the word promise to each of them
+    3 make a big promise we can await
+    check below:
+
+  */
 
   async function makeDinner() {
     const pizzaPromise1 = makePizza(['pepperoni']);
@@ -114,7 +179,7 @@
     console.log(pep, mush);
   }
 
-  makeDinner(); */
+  makeDinner();
 
   // // Function declaration
   // async function fd() { }
