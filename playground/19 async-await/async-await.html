@@ -11,17 +11,76 @@
 <body>
   <script>
   /* 
-    Async await are a way to improve the syntax of promises, the new promises
+    "Async" "await" are a way to improve the syntax of promises, the new promises
     syntax allow us to use a much nicer and cleaner way of writing promises
   */
 
+  // same as usual wait function
   function wait(ms = 0) {
     return new Promise((resolve) => {
       setTimeout(resolve, ms);
     });
   }
 
-  function makePizza(toppings = []) {
+  /* 
+    if we want to use the "async" "await" syntax there are a couple of things that needs
+    to happen:
+
+    1st you can only use "async" "await" inside of a function that is marked as "async"
+    if you have the followin function: you get first starting, then go and then you wait
+    
+    function go() {
+      console.log('starting');
+      wait(2000)
+      console.log('ending');
+    }
+
+    but if you do: 
+
+    async function go() {
+      console.log('starting');
+      await wait(2000)
+      console.log('ending');
+    }
+
+    you get starting, you wait e sec and then you get ending.
+    and you are able to stick "async" "await"
+    however you want:
+
+    async function go() {
+      console.log('starting');  // run 1st
+      await wait(2000)          // waits 2 seconds
+      console.log('running');   // run 2nd
+      await wait(2000)          // waits 2 more seconds
+      console.log('ending');    // run last
+    }
+
+    you can use "async" and "await" with any type of functions:
+
+    // function declaration:  async funtion fd() {};
+    // arrow function: const arrowFn = async () => {}
+    // callback functions: window.addEventListener('click', async funtion() {})
+    // methods: const person = {
+                  sayHi: async function() {
+
+                  },
+                }
+    // function properties: const person = {
+                              sayHi: async function() {
+
+                              },
+                              sayHey: async () => {
+
+                              },
+                            }
+
+    essentially when you have a function you gotta just put the word "async" in front
+    and that will let you do "await"
+
+    the only thing you cannot do is what reffered to as "top level await"
+  */
+
+  /* function makePizza(toppings = []) {
     return new Promise(function (resolve, reject) {
       // reject if people try with pineapple
       if (toppings.includes('pineapple')) {
@@ -55,7 +114,7 @@
     console.log(pep, mush);
   }
 
-  makeDinner();
+  makeDinner(); */
 
   // // Function declaration
   // async function fd() { }
