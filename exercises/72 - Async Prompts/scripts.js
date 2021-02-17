@@ -25,6 +25,7 @@ async function destroyPopup(popup) {
   rejecting the promise - it will jusr resolve with nothing
 */
 function ask(options) {
+  // you mark as async the parent function of the await, not the mama function
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async function (resolve) {
     // *************** First we need to create a popup with all the fields in it
@@ -78,7 +79,13 @@ function ask(options) {
     // insert that popup into the DOM
     document.body.appendChild(popup);
     // put a very small timeout before we add the open class
-
+    // because othersie the class popup and the class open, opens at the same time
+    // and if they open at the same time the opacity transition are not working
+    /* 
+      setTimeout(function() {
+        popup.classList.add('open');
+      },0);  // if you put 0 it will still run after what it is before it but if u put 50 is better
+    */
     await wait(50);
     popup.classList.add('open');
   });
