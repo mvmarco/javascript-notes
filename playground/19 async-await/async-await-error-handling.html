@@ -107,7 +107,13 @@
       function:    IMPORTANT
 
       when you mark a function as "async" it will immediately return a promise
-      to you - when it is a regular function it will return the data that you want:
+      to you that is why catch works (catch is like .then but for errors to return
+      a value of a promise). 
+
+      you can run .catch when you call the function as the example above or also when you
+      define it in Makepizza(['pineapple']).catch()    the await coverts all the promise
+      into a value. "async" it will immediately return a promise to you
+      
     */
 
 /* 
@@ -141,4 +147,3 @@
 
 </html>
 
-<!-- 7 -->
