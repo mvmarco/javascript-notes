@@ -51,7 +51,8 @@ function ask(options) {
       const skipButton = document.createElement('button');
       skipButton.type = 'button'; // if you do not say button, it will assume it is a submit
       skipButton.textContent = 'Cancel';
-      popup.firstElementChild.appendChild(skipButton);
+      // also insertAdjacentElement works
+      popup.firstElementChild.appendChild(skipButton); // to the fieldset
       // TODO: listen for a click on that cancel button
       skipButton.addEventListener(
         'click',
