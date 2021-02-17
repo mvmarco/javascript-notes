@@ -34,12 +34,13 @@
       });
     }
 
-/*     async function go() {
+    async function go() {
       const pizza = await makePizza(['pinapple']);
       console.log(pizza); // we do not get anything not even the error
+      return pizza;
     }
     go();
- */
+
     // ###########################
     // FIRST METHOD: TRY AND CATCH
     // ###########################
@@ -150,30 +151,41 @@
       1st: make a function called "maleSafe" that takes 2 arguments a "function" and an "errorHandler"
       2nd: that function returns another function which calles the original function
       3rd: you chain the .catch on the original function
+
+      so you make a safer function that ***
     */
 
-    function makeSafe(fn, errorHandler) {
-      return function () {
-        fn().catch(handleError);
-      };
+    function makePizza2(toppings = []) {
+      return new Promise(function (resolve, reject) {
+        // reject if people try with pineapple
+        if (toppings.includes('pineapple')) {
+          // eslint-disable-next-line prefer-promise-reject-errors
+          reject('Seriously? Get out 🍍');
+        }
+        const amountOfTimeToBake = 500 + toppings.length * 200;
+        // wait 1 second for the pizza to cook:
+        setTimeout(function () {
+          // when you are ready, you can resolve this promise
+          resolve(`Here is your pizza 🍕 with the toppings ${toppings.join(' ')}`);
+        }, amountOfTimeToBake);
+        // if something went wrong, we can reject this promise;
+      });
     }
 
-/* 
-
-
-    function handleError(err) {
+    function handleError2(err) {
       console.log('ohhh noooo');
       console.log(err);
     }
 
-    function handleDisgustingPizza() {}
-    async function go() {
-      const pizza = await makePizza(['pineapple']).catch(handleDisgustingPizza);
+    async function go3() {
+      const pizza = await makePizza2(['pineapple']);
+      console.log(pizza);
       return pizza;
     }
 
     // catch it at run time
-    go().catch(handleError);
+    go3().catch(handleError2);
+
     // make a safe function with a HOF
     function makeSafe(fn, errorHandler) {
       return function () {
@@ -181,10 +193,10 @@
       };
     }
 
-    const safeGo = makeSafe(go, handleError);
+    const safeGo = makeSafe(go3, handleError2);
 
-    safeGo(); */
-  </script>
+    safeGo();
+</script>
 </body>
 
 </html>
