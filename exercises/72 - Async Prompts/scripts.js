@@ -12,12 +12,29 @@ async function destroyPopup(popup) {
   /* eslint-enable no-param-reassign */
 }
 
+// #############################
+// FIRST STEP
+// #############################
+
+/* 
+  the "options" will have 2 things:
+  - what will be the text of the prompt be
+  - should the users be allow to cancel it with a cancel button
+
+  the function takes only resolve, if the user cancel it we won't
+  rejecting the promise - it will jusr resolve with nothing
+*/
 function ask(options) {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async function (resolve) {
-    // First we need to create a popup with all the fields in it
-    const popup = document.createElement('form');
+    // *************** First we need to create a popup with all the fields in it
+    const popup = document.createElement('form'); // create the dom element
+    // so we can associate the eventListener
     popup.classList.add('popup');
+    // here we can add backticks because there is nothing associated with the event listener
+    // fieldset is like a div but you can put all the inputs in
+    // if you add disable to it, it will disable all the inputs
+    // you do options.title because in ask we pass an objects with multiple options
     popup.insertAdjacentHTML(
       'afterbegin',
       `<fieldset>
@@ -28,10 +45,10 @@ function ask(options) {
     `
     );
 
-    // check if they want a cancel button
+    // *************** Second, check if they want a cancel button
     if (options.cancel) {
       const skipButton = document.createElement('button');
-      skipButton.type = 'button';
+      skipButton.type = 'button'; // if you do not say button, it will assume it is a submit
       skipButton.textContent = 'Cancel';
       popup.firstElementChild.appendChild(skipButton);
       // TODO: listen for a click on that cancel button
@@ -44,7 +61,7 @@ function ask(options) {
         { once: true }
       );
     }
-    // listen for the submit event on the inputs
+    // *************** third, listen for the submit event on the inputs
     popup.addEventListener(
       'submit',
       function (e) {
@@ -56,7 +73,7 @@ function ask(options) {
       },
       { once: true }
     );
-    // when someone does submit it, resolve the data that was in the input box!
+    // *************** last, when someone does submit it, resolve the data that was in the inputbox!
 
     // insert that popup into the DOM
     document.body.appendChild(popup);
