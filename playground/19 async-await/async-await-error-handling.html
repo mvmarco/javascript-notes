@@ -13,7 +13,8 @@
     /* 
       because while using "async" and "await" we avoid the usage of .then
       it is hard to catch() the error. There are different 4 ways to do error handling
-      in "async-await". There is also the most popular way.
+      in "async-await". There is also the most popular way. Here only 3 are present
+      as the fourth one is kind of complex and nest different functions
     */
 
     function makePizza(toppings = []) {
@@ -68,9 +69,9 @@
       another way is using that we call "mix and match"
     */
 
-    // ############################
-    // SECOND METHOD: MIX AND MATCH
-    // ############################
+    // #########################################
+    // SECOND METHOD: MIX AND MATCH: MOST COMMON
+    // #########################################
 
     /* 
       in "mix and match" we can use "async-await" but we can use 
@@ -112,31 +113,51 @@
 
       so it is also possible to do:
 
-    async function go2() {
-      const pizza = await makePizza(['pineapple']);
-      console.log(pizza);
-    }
+      async function go2() {
+        const pizza = await makePizza(['pineapple']);
+        console.log(pizza);
+      }
 
-    go2().then(result => {console.log(result)}).catch(handleError);
+      go2().then(result => {console.log(result)}).catch(handleError);
 
-    Again "asynchronus functions" will always return a promise themselves, which means we can use
-    the .catch or the .then on async functions if we want. Why would that be useful? well often we
-    will have have function that does few things inside of a promise inside of it (like imagining
-    more inside the function go), and then you wanna wait for that function to return its data,
-    and if that is the case then you can await or use a .then and catch on it.
-
-    similarly we can do:
+      Again "asynchronus functions" will always return a promise themselves, which means we can use
+      the .catch or the .then on async functions if we want. Why would that be useful? well often we
+      will have have function that does few things inside of a promise inside of it (like imagining
+      more inside the function go), and then you wanna wait for that function to return its data,
+      and if that is the case then you can await or use a .then and catch on it.
     */
 
-    async function go3() {
-      const pizza = await makePizza(['pineapple']);
-      console.log(pizza);
-    }
-    async function goGo() {
-      const result = await go3();
+    // ##################################################
+    // THIRD METHOD: HIGHER ORDER FUNCTIONS -> HARD STUFF
+    // ##################################################
+
+    /* 
+      the last method to handle "async-await" functions is to use what is called
+      a 'higher order function': what is a 'higher order function': in it is simple
+      term is a function that returns another function. So the way that works is that
+      you go ahead and define all of your functions just if you were never to have any
+      errors. 
+
+      Just write async functions and do not worry about error handling inside of
+      those functions. Then when it comes time to calling that function, you have
+      two options:
+
+      1st: you can catch it at run time
+      2nd: you can make a 'safe function' with a high order function (HOF)
+
+      how does it work?
+
+      1st: make a function called "maleSafe" that takes 2 arguments a "function" and an "errorHandler"
+      2nd: that function returns another function which calles the original function
+      3rd: you chain the .catch on the original function
+    */
+
+    function makeSafe(fn, errorHandler) {
+      return function () {
+        fn().catch(handleError);
+      };
     }
 
-    goGo();
 /* 
 
 
