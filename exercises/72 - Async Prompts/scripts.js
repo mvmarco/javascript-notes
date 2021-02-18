@@ -1,3 +1,8 @@
+/* 
+  we are trying to build a prompt interface and not using the one from the browser
+  because that one includes only one input
+*/
+
 function wait(ms = 0) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -8,7 +13,7 @@ async function destroyPopup(popup) {
   // remove the popup entirely!
   popup.remove();
   /* eslint-disable no-param-reassign */
-  popup = null;
+  popup = null; // even you remove it from the dom, you remove it also from the memory here
   /* eslint-enable no-param-reassign */
 }
 
@@ -57,10 +62,11 @@ function ask(options) {
       skipButton.addEventListener(
         'click',
         function () {
-          resolve(null);
-          destroyPopup(popup);
+          // resolve(e.target.input.value) // input is the name inside the tag (line 48)
+          resolve(null); // the resolve comes from the function ask
+          destroyPopup(popup); //
         },
-        { once: true }
+        { once: true } // this says: only listen for the event once and then remove yourself
       );
     }
     // *************** third, listen for the submit event on the inputs
@@ -71,7 +77,7 @@ function ask(options) {
         console.log('SUBMITTED');
         resolve(e.target.input.value);
         // remove it from the DOM entirely
-        destroyPopup(popup);
+        destroyPopup(popup); // after you submite remove the popup
       },
       { once: true }
     );
