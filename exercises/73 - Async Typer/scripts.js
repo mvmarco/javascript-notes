@@ -10,7 +10,8 @@ function wait(ms = 0) {
 
 // this function will give a random number between a min and a max value
 // Math.random() generates a number from 0 to 1
-// getting a number from 10 and 15
+// by multiplying it by 2 you get a number from 0 to 1,9999 / example
+// how do you get a number from 10 and 15?
 // min 20 millecond and max 150 - by doin gthis we get a number from 0 to 130 + 20 = 150
 // you store the value of MathRandom() in a variable so it keeps the same random number there and
 // does not keep changing
