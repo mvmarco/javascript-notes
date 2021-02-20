@@ -63,17 +63,23 @@ function getRandomBetween(min = 20, max = 150, randomNumber = Math.random()) {
   called an exit condition, until it should stop basically.
 */
 
-async function draw(el) {
+function draw(el) {
   // the index will be incremented every single time
   let index = 1;
   const text = el.textContent;
   const { typeMin, typeMax } = el.dataset;
+
+  // here you make a closure
+  /* closures are the ability to access a parent level scope from a child scope
+    even after the parent function has been terminated 
+  */
   async function drawLetter() {
+    // take the text and create a new array including position 0 to 1 not included (first time)
     el.textContent = text.slice(0, index);
-    index += 1;
+    index += 1; // increment the index, it is 1 because 0 is not text
     const amountOfTimeToWait = getRandomBetween(typeMin, typeMax);
     // exit condition
-    await wait(amountOfTimeToWait);
+    await wait(amountOfTimeToWait); // each element goes asynchronous, at their own time
     if (index <= text.length) {
       drawLetter();
       // wait for some time
