@@ -22,6 +22,7 @@
     function handleError(err) {
       console.log('OH NOOOOOO');
       console.log(err);
+      userEl.textContent = `Something went wrong:${err}`;
     }
     
     async function displayUser(username) {
