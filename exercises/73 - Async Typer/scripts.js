@@ -39,7 +39,13 @@ function getRandomBetween(min = 20, max = 150, randomNumber = Math.random()) {
       el.textContent = soFar;
 
       // wait for some amount of time since the browser is so far that you do not see the actual
-      //replacement 
+      //replacement - check how data-type-min or max is equal to typeMin or typeMax by logging:
+      // console.log(el.dataset)
+
+      // the below code ---- const { typeMin, typeMax } = el.dataset; ---- is equal to:
+      // const typeMin = el.dataset.typeMin
+      // const typeMax = el.dataset.typeMax
+
       const { typeMin, typeMax } = el.dataset;
       const amountOfTimeToWait = getRandomBetween(typeMin, typeMax);
       await wait(amountOfTimeToWait);
