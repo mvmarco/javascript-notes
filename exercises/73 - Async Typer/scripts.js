@@ -14,21 +14,32 @@ function wait(ms = 0) {
 // how do you get a number from 10 and 15?
 // min 20 millecond and max 150 - by doin gthis we get a number from 0 to 130 + 20 = 150
 // you store the value of MathRandom() in a variable so it keeps the same random number there and
-// does not keep changing
+// does not keep changing every time you run it. so it is easy to test it
 function getRandomBetween(min = 20, max = 150, randomNumber = Math.random()) {
   return Math.floor(randomNumber * (max - min) + min);
 }
 
-/* 
-  // async for of loop
+// #####################
+// ASYNC FOR OF LOOP
+// #####################
 
+/* 
+  the way it works is you take each letter of the text at the time, and erase the rest
+
+*/
+/* 
   async function draw(el) {
     const text = el.textContent;
     let soFar = '';
+
     for (const letter of text) {
-      soFar += letter;
+      soFar = soFar + letter;
+
+      // uptadde the content
       el.textContent = soFar;
-      // wait for some amount of time
+
+      // wait for some amount of time since the browser is so far that you do not see the actual
+      //replacement 
       const { typeMin, typeMax } = el.dataset;
       const amountOfTimeToWait = getRandomBetween(typeMin, typeMax);
       await wait(amountOfTimeToWait);
