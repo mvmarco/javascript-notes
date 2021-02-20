@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>APIs</title>
+  <link rel="stylesheet" href="../../base.css">
+</head>
+
+<body>
+  <p class="user"></p>
+  <script>
+    /* 
+      here we refactor the first file APIS.html into an async-await
+      because it will be nicer
+      */
+    const baseEndpoint = 'https://api.github.com';
+    const userEndPoint = `${baseEndpoint}/users`;
+    const userElementParagraph = document.querySelector('.user'); // *******
+
+    function handleError(err) {
+      console.log('OH NOOOOOO');
+      console.log(err);
+    }
+    
+    async function displayUser(username) {
+      userElementParagraph.textContent = 'Loading......'; // *******
+      const marcoResponse = await fetch(`${userEndPoint}/${username}`);
+      const data = await marcoResponse.json();
+      console.log(data);
+      console.log(data.blog);
+      console.log(data.name);
+      console.log(data.location);
+      userElementParagraph.textContent = `${data.name} - ${data.blog} - ${data.location}`; // *******
+    }
+
+    displayUser('mvmarco').catch(handleError); // in case the url is wrong
+  </script>
+</body>
+
+</html>
