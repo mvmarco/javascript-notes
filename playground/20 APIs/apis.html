@@ -11,6 +11,8 @@
 <body>
   <p class="user"></p>
   <script>
+    // IMPORTANT: check the list of all the popular APIs here: https://github.com/public-apis/public-apis
+
     /* 
       API: application, programming, interface - a way to talk with a machine in a more standardized
       procedure. 
@@ -65,11 +67,12 @@
       there are also other libraries that are used such as "Axios". Fetch is very good and used in
       all browser. We use that one here.
     */
+
     // here you can display some text before we fetch the data from the user: below makes more sense
     userElementParagraph.textContent = 'Loading......';
     const marcoPromise = fetch(endpoint); // fetch means retrieval of data - it is a browser method
     console.log(marcoPromise);
-    
+
     /* 
       after console.log(marcoPromise)
       if you go to network, refresh, you see all the request happened on the page, including the data
@@ -83,20 +86,20 @@
       console.log('OH NOOOOOO');
       console.log(err);
     }
-    
+
     marcoPromise
-  .then((response) => {
+      .then((response) => {
         console.log(response); // which is not our final data, we need to:
         return response.json(); // which will convert the response in JSON, but it is another promise
       })
-  .then((data) => {
+      .then((data) => {
         console.log(data);
         console.log(data.blog);
         console.log(data.name);
         console.log(data.location);
         userElementParagraph.textContent = `${data.name} - ${data.blog} - ${data.location}`;
       })
-  .catch(handleError);
+      .catch(handleError);
   </script>
 </body>
 

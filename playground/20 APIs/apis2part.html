@@ -11,10 +11,12 @@
 <body>
   <p class="user"></p>
   <script>
+    // IMPORTANT: check the list of all the popular APIs here: https://github.com/public-apis/public-apis
+    
     /* 
       here we refactor the first file APIS.html into an async-await
       because it will be nicer
-      */
+    */
     const baseEndpoint = 'https://api.github.com';
     const userEndPoint = `${baseEndpoint}/users`;
     const userElementParagraph = document.querySelector('.user'); // *******
@@ -22,7 +24,7 @@
     function handleError(err) {
       console.log('OH NOOOOOO');
       console.log(err);
-      userEl.textContent = `Something went wrong:${err}`;
+      userElementParagraph.textContent = `Something went wrong:${err}`;
     }
     
     async function displayUser(username) {
