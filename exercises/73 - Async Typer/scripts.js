@@ -53,8 +53,18 @@ function getRandomBetween(min = 20, max = 150, randomNumber = Math.random()) {
   } 
 */
 
-// recursion
-function draw(el) {
+// #####################
+// RECURSION
+// #####################
+
+/* 
+  you basically do the same thing as the for of loop, but in a different way: using "recursion".
+  "recursion" is referring to a function calling itself, until there is some sort of what is
+  called an exit condition, until it should stop basically.
+*/
+
+async function draw(el) {
+  // the index will be incremented every single time
   let index = 1;
   const text = el.textContent;
   const { typeMin, typeMax } = el.dataset;
