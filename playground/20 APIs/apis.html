@@ -60,8 +60,12 @@
 
     /* 
       now in order to get the data we use a library present in the browser called: "fetch"
-      there are also other libraries that are used such as "Axios"
+      there are also other libraries that are used such as "Axios". Fetch is very good and used in
+      all browser. We use that one here.
     */
+
+    const marcoPromise = fetch(endpoint);
+    console.log(marcoPromise);
   </script>
 </body>
 

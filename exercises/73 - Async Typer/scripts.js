@@ -89,6 +89,10 @@ function draw(el) {
   drawLetter();
 }
 
+/* 
+  The reason forEach works in that example is because querySelectorAll is used - 
+  and it returns a NodeList  
+*/
 document.querySelectorAll('[data-type]').forEach(draw);
 
 /* 
