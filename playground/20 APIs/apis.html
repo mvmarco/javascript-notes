@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>APIs</title>
+  <link rel="stylesheet" href="../../base.css">
+</head>
+
+<body>
+  <script>
+    /* 
+      API: application, programming, interface - a way to talk with a machine in a more standardized
+      procedure. 
+
+      any type of app, that app, the client, the browser that needs to talk to the server that exists
+      somewhere and get data from an API. You can either push or pull data from an API.
+
+      Here we check how to pull data and display it, from a website that offers an API: url that you can
+      it with some associated data. That API responds with a JSON: JavaScript Object Notation. A way
+      to transport JavaScript Objects from server to server or from server to client. And to see the data.
+
+      if you click the RAW version from an API in JSON viewer, you copied and pasted it (`in backticks`)
+      into a variable (lets say "data" = ...), you see a huge string (no matter if inside you see 
+      an object inside, it is still a string. so you cannot do string.something). 
+      Baically, a server wil just give you a string and it is up to us
+      to convert it into a JSON (a JavaScript Object) - and we do it with "JSON.parse(data)" so that
+      now we can call as an example: theObjectFromApi.name or theObjectFromApi.companyName etc etc
+
+      A lot of APIs will allow you to pull data from their server into your own, there are many
+      that do not allow it and that require API keys to controll over you. What we check here are
+      the "wide-open APIs" the ones that do not require any authentication.
+
+      Another thing, if you hear "AJAX". "AJAX" stands for: Asynchronous, JavaScript And Xml.
+      The Xml is another way that you can receive data. Not common. Looks like HTML but it is not,
+      it is quite unlickely to work with it. People just using AJAX as a word when they mean  to
+      fetching data from an API and displaying it on the page.
+    */
+
+    // #######################
+    // FIRST STEP
+    // #######################
+
+    /* 
+      the first step, not mandatory but more easy, is put the url into a variable.
+      sometimes is referred to "endpoint" just a fancy way to refer to the URL that you
+      need to visit in order to get the data. So just a nice way to say, it is not a simple URL
+
+      does not matter if the URL is in backticks or double/single string. In case you gotta
+      interpolate the username, in this case, coming from a different const. Then you gotta 
+      use backticks on the URL for interpolate
+    */
+
+    const endpoint = 'https://api.github.com/users/mvmarco';
+
+    // #########################################
+    // SECOND STEP: GET THE DATA: FETCH OR AXIOS
+    // #########################################
+
+    /* 
+      now in order to get the data we use a library present in the browser called: "fetch"
+      there are also other libraries that are used such as "Axios"
+    */
+  </script>
+</body>
+
+</html>

@@ -19,9 +19,9 @@ function getRandomBetween(min = 20, max = 150, randomNumber = Math.random()) {
   return Math.floor(randomNumber * (max - min) + min);
 }
 
-// #####################
-// ASYNC FOR OF LOOP
-// #####################
+// ###########################
+// ASYNC FOR OF LOOP IS BETTER
+// ###########################
 
 /* 
   the way it works is you take each letter of the text at the time, and erase the rest
@@ -78,7 +78,7 @@ function draw(el) {
     el.textContent = text.slice(0, index);
     index += 1; // increment the index, it is 1 because 0 is not text
     const amountOfTimeToWait = getRandomBetween(typeMin, typeMax);
-    // exit condition
+    // exit condition, if you do not put it (the if thing) it will run forever and break the browser
     await wait(amountOfTimeToWait); // each element goes asynchronous, at their own time
     if (index <= text.length) {
       drawLetter();
@@ -90,3 +90,8 @@ function draw(el) {
 }
 
 document.querySelectorAll('[data-type]').forEach(draw);
+
+/* 
+  in its essence async await it is just a way first to do things asynchronusly, one at their one time
+  and secondly to convert with await promises, such as the one we called "wait"
+*/
