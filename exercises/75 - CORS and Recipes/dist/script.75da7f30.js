@@ -146,20 +146,31 @@ async function handleSubmit(event) {
 
   const recipes = await fetchRecipes(formTarget.query.value); // which is pizza, but in a promise format because it is an async function
 
-  console.log(recipes); // turn the form on after the submission
+  console.log(recipes); // here you get  all the pizzas recipes, which are under results(array)
+  // turn the form on after the submission
 
-  formTarget.submit.disabled = false;
+  formTarget.submit.disabled = false; // eslint-disable-next-line no-use-before-define
+
+  displayRecipes(recipes.results);
 }
+/* 
+  here you can make another function in a way that when the page is loaded
+  you can see some results instead of submiting, like the default values of pizza
+*/
+
 
 function displayRecipes(recipes) {
-  console.log('Creating HTML');
-  const html = recipes.map(recipe => `<div class="recipe">
+  console.log('Creating HTML'); // here we loop over the arrray results:
+
+  const html = recipes.map( // it is a new div inside recipes class in the html
+  recipe => `<div class="recipe">
       <h2>${recipe.title}</h2>
       <p>${recipe.ingredients}</p>
-      ${recipe.thumbnail && `<img src="${recipe.thumbnail}" alt="${recipe.title}"/>`}
+      ${// if the recipe.thumbnail is present we will put the img
+  recipe.thumbnail && `<img src="${recipe.thumbnail}" alt="${recipe.title}"/>`}
       <a href="${recipe.href}">View Recipe →</a>
     </div>`);
-  recipesGrid.innerHTML = html.join('');
+  recipesGrid.innerHTML = html.join(''); // if you do not join will put a comma between the array and you want text, join converts array into text
 }
 
 form.addEventListener('submit', handleSubmit);
