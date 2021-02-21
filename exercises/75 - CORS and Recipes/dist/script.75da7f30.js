@@ -172,7 +172,8 @@ fetchRecipes('pizza'); // here you populate the fetchRecipes. But we do get an e
   "browserslist": ["last 1 chrome versions"]
 
   what it does is tricking babel that you are supporting the latest and greatest and then
-  there is no need to transpile
+  there is no need to transpile. Another thing you can do if you still have issues kill the
+  server
 
 
 
