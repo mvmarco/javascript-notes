@@ -118,14 +118,24 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"script.js":[function(require,module,exports) {
-const baseEndpoint = 'http://www.recipepuppy.com/api'; // if you check the link, on top of the JSON viewer you see how the ?q= is built (the query)
+const baseEndpoint = 'http://www.recipepuppy.com/api';
+const proxy = `https://cors-anywhere.herokuapp.com/`;
+const form = document.querySelector('form.search'); // if you check the link, on top of the JSON viewer you see how the ?q= is built (the query)
 
 async function fetchRecipes(query) {
-  const res = await fetch(`${baseEndpoint}?q=${query}`);
+  const res = await fetch(`${proxy}${baseEndpoint}?q=${query}`);
   const data = await res.json();
+  console.log(data); // here we get the json data:)
+
   return data;
 }
 
+function handleSubmit(event) {
+  event.preventDefault();
+  console.log(event.currentTarget.query.value); // we get pizza
+}
+
+form.addEventListener('submit', handleSubmit);
 fetchRecipes('pizza'); // here you populate the fetchRecipes. But we do get an error
 
 /* 
@@ -190,7 +200,7 @@ fetchRecipes('pizza'); // here you populate the fetchRecipes. But we do get an e
   that instead of going directly from: "localhost" to "recipepuppy" we put in the middle
   a "proxy":
   
-  localhost (send data to the proxy)
+  localhost (send data to the proxy, a random server controlled by who knows who)
   👆
   👇
   PROXY (will make a server side request) (receive data from the recipe and send it back to
@@ -202,7 +212,13 @@ fetchRecipes('pizza'); // here you populate the fetchRecipes. But we do get an e
   you can either build up an entire server that handle your request yourself or
   if it is something silly like this example, where there is nothing sensitive
   we use something called CORS PROXY which is something that people provided to you
-  
+  and you can stick it in front of your URL and it wil proxy the data from you.
+  if you google: "cors proxy" you go for instance here: https://cors-anywhere.herokuapp.com/
+  copy that url in front of your "endpoint". and will proxy that data for you.
+
+  A CORS PROXY is not a good for sensitive data like users name, passwords, email and other
+  sensitive infos. In that case you gotta run your own server yourself.
+
 */
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
