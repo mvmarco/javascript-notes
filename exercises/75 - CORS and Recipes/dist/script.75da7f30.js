@@ -173,11 +173,36 @@ fetchRecipes('pizza'); // here you populate the fetchRecipes. But we do get an e
 
   what it does is tricking babel that you are supporting the latest and greatest and then
   there is no need to transpile. Another thing you can do if you still have issues kill the
-  server
+  server. go to to delete "cache" and "dist" and run again the npm start.
 
+  but now we get: "localhost/:1 Access to fetch at 'http://www.recipepuppy.com/api?q=pizza'
+  from origin 'http://localhost:1234' has been blocked by CORS policy:
+  No 'Access-Control-Allow-Origin' header is present on the requested resource. 
+  If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch 
+  the resource with CORS disabled."
 
+  this new ERROR is not anymore that the origin is null but that the origin is now
+  blocked. Like the recipe website is saying "you are not suppose to use this in the
+  browser". The solution should be on their website solutions. but it is not. the idea
+  is that if they do not have a CORS policy on browsers, but they from their website
+  have an "iphone app" so supposely you can run this from the phone. SO the idea is that
+  you if you amde a request from anything other than a browser it works. The solution is
+  that instead of going directly from: "localhost" to "recipepuppy" we put in the middle
+  a "proxy":
+  
+  localhost (send data to the proxy)
+  👆
+  👇
+  PROXY (will make a server side request) (receive data from the recipe and send it back to
+        the localhot)
+  👆
+  👇
+  recipepuppy (say it is all good and send back the data to the proxy)
 
-
+  you can either build up an entire server that handle your request yourself or
+  if it is something silly like this example, where there is nothing sensitive
+  we use something called CORS PROXY which is something that people provided to you
+  
 */
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
