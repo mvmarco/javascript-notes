@@ -2,7 +2,7 @@
   "name": "dogrecipes",
   "version": "1.0.0",
   "description": "",
-  "main": "scripts.js",
+  "main": "script.js",
   "scripts": {
     "start": "parcel index.html"
   },
