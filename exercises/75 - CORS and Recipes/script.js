@@ -10,9 +10,18 @@ async function fetchRecipes(query) {
   return data;
 }
 
-function handleSubmit(event) {
+async function handleSubmit(event) {
   event.preventDefault();
-  console.log(event.currentTarget.query.value); // we get pizza
+  // console.log(event.currentTarget.query.value); // we get pizza
+  const formTarget = event.currentTarget;
+  console.log(formTarget);
+  // turn the form off as soon as the user submit
+  formTarget.submit.disabled = true;
+  // submit the search calling fetchRecipes() function
+  const recipes = await fetchRecipes(formTarget.query.value); // which is pizza, but in a promise format
+  console.log(recipes);
+  // turn the form on after the submission
+  formTarget.submit.disabled = false;
 }
 
 form.addEventListener('submit', handleSubmit);

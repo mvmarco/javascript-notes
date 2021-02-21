@@ -11,8 +11,13 @@
       grid-template-columns: 1fr;
     }
 
+    /* 
+      here if you want to add a class disabled to the button in a way that when
+      the user click or search somthing the button does not submit anymore: the user submit once
+      and see the UI changing, with the opacity
+    */
     button[disabled] {
-      opacity: 0.4;
+      opacity: 0.2;
     }
 
     .recipes {
@@ -31,7 +36,12 @@
   <div class="wrapper">
     <form class="search" autocomplete="off">
       <input type="text" name="query" value="pizza">
-      <button name="submit" type="submit">Submit</button>
+      <!-- here you can add a disabled attribute to the button -->
+      <!-- another way is to add a <fieldset> </fieldset> and wrap all the 
+      input and button inside of it. and put a disable attribute to the field
+      itself and tha will stop somebody from bein able to either type in the box
+      or submit-->
+      <button name="submit" type="submit">Submit</button> 
     </form>
     <div class="recipes"></div>
   </div>
