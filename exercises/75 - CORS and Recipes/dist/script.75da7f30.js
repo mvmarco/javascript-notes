@@ -140,24 +140,40 @@ async function handleSubmit(event) {
   event.preventDefault(); // console.log(event.currentTarget.query.value); // we get pizza
 
   const formTarget = event.currentTarget;
-  console.log(formTarget); // turn the form off as soon as the user submit
+  console.log(formTarget); // eslint-disable-next-line no-use-before-define
 
-  formTarget.submit.disabled = true; // submit the search calling fetchRecipes() function
-
-  const recipes = await fetchRecipes(formTarget.query.value); // which is pizza, but in a promise format because it is an async function
-
-  console.log(recipes); // here you get  all the pizzas recipes, which are under results(array)
-  // turn the form on after the submission
-
-  formTarget.submit.disabled = false; // eslint-disable-next-line no-use-before-define
-
-  displayRecipes(recipes.results);
+  fetchAndDisplay(form.query.value);
+  /*   
+    // turn the form off as soon as the user submit
+    formTarget.submit.disabled = true;
+    // submit the search calling fetchRecipes() function
+    const recipes = await fetchRecipes(formTarget.query.value); // which is pizza, but in a promise format because it is an async function
+    console.log(recipes); // here you get  all the pizzas recipes, which are under results(array)
+    // turn the form on after the submission
+    formTarget.submit.disabled = false;
+    // eslint-disable-next-line no-use-before-define
+    displayRecipes(recipes.results); 
+  */
 }
 /* 
   here you can make another function in a way that when the page is loaded
   you can see some results instead of submiting, like the default values of pizza
 */
 
+
+async function fetchAndDisplay(query) {
+  // turn the form off as soon as the user submit
+  form.submit.disabled = true; // submit the search calling fetchRecipes() function
+
+  const recipes = await fetchRecipes(query); // which is pizza, but in a promise format because it is an async function
+
+  console.log(recipes); // here you get  all the pizzas recipes, which are under results(array)
+  // turn the form on after the submission
+
+  form.submit.disabled = false; // eslint-disable-next-line no-use-before-define
+
+  displayRecipes(recipes.results);
+}
 
 function displayRecipes(recipes) {
   console.log('Creating HTML'); // here we loop over the arrray results:
@@ -173,9 +189,10 @@ function displayRecipes(recipes) {
   recipesGrid.innerHTML = html.join(''); // if you do not join will put a comma between the array and you want text, join converts array into text
 }
 
-form.addEventListener('submit', handleSubmit);
-fetchRecipes('pizza'); // here you populate the fetchRecipes. But we do get an error
+form.addEventListener('submit', handleSubmit); // fetchRecipes('pizza'); // here you populate the fetchRecipes. But we do get an error
+// on page load run pizza
 
+fetchAndDisplay('pizza');
 /* 
   the browser blocked the fetchRecipes, throwing an error saying "No access controll allow origin - 
   origin null"
