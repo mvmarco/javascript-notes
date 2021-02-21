@@ -2,7 +2,12 @@ const baseEndpoint = 'http://www.recipepuppy.com/api';
 const proxy = `https://cors-anywhere.herokuapp.com/`;
 
 const form = document.querySelector('form.search');
+const recipesGrid = document.querySelector('.recipes');
 // if you check the link, on top of the JSON viewer you see how the ?q= is built (the query)
+/* 
+  all the time we use async - everything is a promise - and await converts it into a value.
+  Here things are done asynchronously so that it doesn't block anything else in the browser.
+*/
 async function fetchRecipes(query) {
   const res = await fetch(`${proxy}${baseEndpoint}?q=${query}`);
   const data = await res.json();
@@ -18,10 +23,26 @@ async function handleSubmit(event) {
   // turn the form off as soon as the user submit
   formTarget.submit.disabled = true;
   // submit the search calling fetchRecipes() function
-  const recipes = await fetchRecipes(formTarget.query.value); // which is pizza, but in a promise format
+  const recipes = await fetchRecipes(formTarget.query.value); // which is pizza, but in a promise format because it is an async function
   console.log(recipes);
   // turn the form on after the submission
   formTarget.submit.disabled = false;
+}
+
+function displayRecipes(recipes) {
+  console.log('Creating HTML');
+  const html = recipes.map(
+    (recipe) => `<div class="recipe">
+      <h2>${recipe.title}</h2>
+      <p>${recipe.ingredients}</p>
+      ${
+        recipe.thumbnail &&
+        `<img src="${recipe.thumbnail}" alt="${recipe.title}"/>`
+      }
+      <a href="${recipe.href}">View Recipe →</a>
+    </div>`
+  );
+  recipesGrid.innerHTML = html.join('');
 }
 
 form.addEventListener('submit', handleSubmit);
