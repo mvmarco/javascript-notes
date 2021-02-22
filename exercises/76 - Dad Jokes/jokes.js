@@ -53,12 +53,31 @@ async function fetchJoke() {
   return data;
 }
 
+// make a button change for each joke randomly
+function randomItemFromArray(array, whatShouldNotBe) {
+  // we take the array that was passed in and take a random index get the value of one array item
+  /* 
+    Math.floor(Math.random() * array.length) so if the array is 5 items
+    we multiply it to a random number from 0 to 1 so you get max 4.99 with floor you go
+    down to 4. Since the array start at 0 - you still have 0 1 2 3 4 5
+
+    we gonna take the search for the index
+
+    the reason why we do not pass the "buttonText" array is because we want
+    the "randomItemFromArray" to be an utility function. A function that can be used
+    with any data, any array:-)
+  */
+  const item = array[Math.floor(Math.random() * array.length)];
+  buttonText;
+}
+
 async function handleClick() {
   /* 
     const joke = await fetchJoke()
   */
   const joke = await fetchJoke();
   console.log(joke); // we get every single joke all the time we click it
+  jokeHolder.textContent = joke;
 }
 
 jokeButton.addEventListener('click', handleClick);
