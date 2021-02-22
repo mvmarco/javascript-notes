@@ -24,7 +24,8 @@ async function fetchJoke() {
   });
   console.log(response);
   // then we convert the reponse in something more readable
-  const data = await response.json(); // it is just a single joke
+  const data = await response.json(); // it is info about a joke, its id and other info
+  // here we take all the info, later on we just select the joke in handle click
   console.log(data); // we get an error initially without the additional object on response:
   // Uncaught (in promise) SyntaxError: Unexpected token < in JSON at position 0
   /* 
@@ -68,16 +69,34 @@ function randomItemFromArray(array, whatShouldNotBe) {
     with any data, any array:-)
   */
   const item = array[Math.floor(Math.random() * array.length)];
-  buttonText;
+  // sometimes it would run the same exact same index and value, to prevent this we could:
+  if (item === whatShouldNotBe) {
+    // "whatShouldNotBe" meaning the last version of the index
+    // if it is equal we run it again
+    // check the handle click
+    console.log('aah we used that one last time, look again');
+    return randomItemFromArray(array, whatShouldNotBe); // recursion: a function that call itself
+  }
+  return item;
 }
 
 async function handleClick() {
   /* 
-    const joke = await fetchJoke()
+    const { joke } = await fetchJoke();
+
+    would become without destructuring it:
+    const data = await fetchJoke();
+    console.log(data.joke);
+
   */
-  const joke = await fetchJoke();
+  const { joke } = await fetchJoke();
   console.log(joke); // we get every single joke all the time we click it
   jokeHolder.textContent = joke;
+
+  jokeButton.textContent = randomItemFromArray(
+    buttonText,
+    jokeButton.textContent
+  );
 }
 
 jokeButton.addEventListener('click', handleClick);
