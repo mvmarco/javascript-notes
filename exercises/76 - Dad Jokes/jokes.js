@@ -17,6 +17,8 @@ const buttonText = [
 // here we fetch/retrieve the URL with the jokes
 
 async function fetchJoke() {
+  // when we fetch something we turn on the loader icon
+  loader.classList.remove('hidden');
   const response = await fetch('https://icanhazdadjoke.com', {
     headers: {
       Accept: 'application/json',
@@ -51,6 +53,8 @@ async function fetchJoke() {
     2 application/json - JSON response
     3 text/plain - Plain text response
   */
+  // turn the loader off when the data is coming
+  loader.classList.add('hidden');
   return data;
 }
 
@@ -93,9 +97,9 @@ async function handleClick() {
   console.log(joke); // we get every single joke all the time we click it
   jokeHolder.textContent = joke;
 
-  jokeButton.textContent = randomItemFromArray(
+  jokeButtonSpan.textContent = randomItemFromArray(
     buttonText,
-    jokeButton.textContent
+    jokeButtonSpan.textContent
   );
 }
 
