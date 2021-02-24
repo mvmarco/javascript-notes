@@ -139,6 +139,49 @@ async function fetchRates(base = 'DKK') {
   just imaging everytime the user types a number we are calling the converting function
   then automatically we have to fetch the data. If the user types 5 numbers we fetch 5 times
   and first gets slow, secondly there are limits of request per hour that a user can make according
-  to most of the APIs
+  to most of the APIs.
+
+  The solution would be to "cache" the rates meaning that you need to hold on to them
+  if you already have them and there are different techniques you can do that. 
+  What we are gonna do is create an object (check above) const ratesByBase = {};
+  and what it does is storing all the rates in it.
 */
-function convert(amount, from, to) {}
+function convert(amount, from, to) {
+  // first check if we even have the rates to convert from that currency.
+  /* 
+    the way that works is, we take the "ratesByBase" object and we put in the "base" which
+    is another object containing all the currencies converted with the correspective value,
+    1 DKK = 1 DKK ~ 1DKK = 0,13 EUR etc etc 
+
+    ratesByBase = {
+      DKK: {
+        DKK: 1,
+        EUR: 0.13,
+      }
+    };
+
+    and as soon as someone change the "base", "their from" we will:
+
+    ratesByBase = {
+      DKK: {
+        DKK: 1,
+        EUR: 0.13,
+      },
+      SEK: {
+        SEK: 1,
+        EUR: 0.09,
+      },
+    };
+
+    so eventually if the user will cycle over this we'll have a massive "ratesByBase" object
+    that will contain all of the rates by their "base" or "from value"
+  */
+
+  // first check if we even have the rates to convert from that currency.
+  // if (!ratesByBase.DKK) but we do not know if it is DKK so we do:
+  if (!ratesByBase[from]) {
+    console.log(
+      `oh no, we don't have ${from} to convert to ${to}. So gets go get it`
+    );
+  }
+}
