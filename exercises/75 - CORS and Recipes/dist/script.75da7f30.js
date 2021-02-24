@@ -186,11 +186,21 @@ function displayRecipes(recipes) {
       <h2>${recipe.title}</h2>
       <p>${recipe.ingredients}</p>
       ${// if the recipe.thumbnail is present we will put the img
-  recipe.thumbnail && `<img src="${recipe.thumbnail}" alt="${recipe.title}"/>`}
+  recipe.thumbnail && `<img src="${recipe.thumbnail}" alt="${recipe.title}"/>
+        <br>`} 
       <a href="${recipe.href}">View Recipe →</a>
     </div>`);
   recipesGrid.innerHTML = html.join(''); // if you do not join will put a comma between the array and you want text, join converts array into text
 }
+/*  you can add this after the href on the div in displayRecipes but looks awful
+      ${
+        // if the recipe.thumbnail is present we will put the img
+        recipe.thumbnail &&
+        `<img src="${recipe.thumbnail}" alt="${recipe.title}"/>`
+      }
+
+*/
+
 
 form.addEventListener('submit', handleSubmit); // fetchRecipes('pizza'); // here you populate the fetchRecipes. But we do get an error
 // on page load run pizza

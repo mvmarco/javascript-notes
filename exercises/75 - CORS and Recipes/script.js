@@ -66,13 +66,23 @@ function displayRecipes(recipes) {
       ${
         // if the recipe.thumbnail is present we will put the img
         recipe.thumbnail &&
-        `<img src="${recipe.thumbnail}" alt="${recipe.title}"/>`
-      }
+        `<img src="${recipe.thumbnail}" alt="${recipe.title}"/>
+        <br>`
+      } 
       <a href="${recipe.href}">View Recipe →</a>
     </div>`
   );
   recipesGrid.innerHTML = html.join(''); // if you do not join will put a comma between the array and you want text, join converts array into text
 }
+
+/*  you can add this after the href on the div in displayRecipes but looks awful
+      ${
+        // if the recipe.thumbnail is present we will put the img
+        recipe.thumbnail &&
+        `<img src="${recipe.thumbnail}" alt="${recipe.title}"/>`
+      }
+
+*/
 
 form.addEventListener('submit', handleSubmit);
 
