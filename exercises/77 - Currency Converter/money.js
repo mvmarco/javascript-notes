@@ -128,3 +128,9 @@ async function fetchRates(base = 'DKK') {
 
   */
 }
+
+// ##############################
+// STEP 4
+// ##############################
+
+// make a convert function
