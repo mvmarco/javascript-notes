@@ -3,6 +3,7 @@ const fromSelect = document.querySelector('[name="from_currency"]');
 const toSelect = document.querySelector('[name="to_currency"]');
 const toEl = document.querySelector('.to_amount');
 const form = document.querySelector('.app form');
+const endpoint = 'https://api.exchangeratesapi.io/latest';
 const ratesByBase = {};
 
 // currecy codes to understand what code stands for, we use it to populate the drop down list
@@ -48,7 +49,7 @@ const currencies = {
 // function that generate options, that populate the drop down
 // option is gonna be an object (curreciens), the object that has the currencies
 function generateOptions(options) {
-  console.log(options); // we see the object, we can loop over with for or loop, object.entries object.value object.keys
+  console.log('HERE THE OBJECT CURRECIES ITSELF', options); // we see the object, we can loop over with for or loop, object.entries object.value object.keys
   // we turn the object into an array with "Object.entries"
   /* 
     return Object.entries(options); **
@@ -87,7 +88,7 @@ function generateOptions(options) {
 }
 
 const optionsHTML = generateOptions(currencies);
-console.log(optionsHTML); // ****
+console.log('HERE THE HTML COMING FROM THE OBJECT', optionsHTML); // ****
 
 // ##############################
 // STEP 2
@@ -110,5 +111,20 @@ toSelect.innerHTML = optionsHTML;
 // ##############################
 
 // get the data with a function that fetch retrieve the rates
+/* 
+  the way that the endpoint: 'https://api.exchangeratesapi.io/latest' works is that you can
+  add ?base=DKK and it will convert all the currencies in the correspective amount of "DKK"
+  offocurse you can change it. Here the example: 'https://api.exchangeratesapi.io/latest?base=DKK';
+*/
 
-async function fetchRates(base = 'DKK') {}
+async function fetchRates(base = 'DKK') {
+  const response = await fetch(`${endpoint}?base=${base}`);
+  const dataRates = await response.json();
+  console.log('HERE THE FETCHED DATA', dataRates);
+  /*
+    you can call the fetchRates(); like this in the broswer and you can see that 
+    "dataRates" is a Promise, since it is an async function, and by clicking "rates"
+    you get all the "rates" converted with the existing value of our base
+
+  */
+}
