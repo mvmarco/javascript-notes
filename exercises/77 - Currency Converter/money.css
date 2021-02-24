@@ -10,10 +10,14 @@ body {
   align-items: center;
   min-height: 100vh;
 }
-
+.currency h1 {
+  margin: inherit;
+}
 .app {
   max-width: 800px;
   background: white;
+  margin: auto;
+  margin-bottom: 100px;
 }
 
 .app form {
@@ -38,7 +42,7 @@ body {
 }
 
 .app :is(button, input, select, textarea):focus {
-  outline-color: violet;
+  outline-color: rgb(130, 198, 238);
 }
 
 .app input {

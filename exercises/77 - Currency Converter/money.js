@@ -41,6 +41,10 @@ const currencies = {
   EUR: 'Euro',
 };
 
+// ##############################
+// STEP 1
+// ##############################
+
 // function that generate options, that populate the drop down
 // option is gonna be an object (curreciens), the object that has the currencies
 function generateOptions(options) {
@@ -85,6 +89,10 @@ function generateOptions(options) {
 const optionsHTML = generateOptions(currencies);
 console.log(optionsHTML); // ****
 
+// ##############################
+// STEP 2
+// ##############################
+
 // now we gotta populate the options element
 fromSelect.innerHTML = optionsHTML;
 toSelect.innerHTML = optionsHTML;
@@ -96,3 +104,11 @@ toSelect.innerHTML = optionsHTML;
   then you'd run the function twice which is unnecessary and bad practice. So just run it once
   store it into a variable and pop it in
 */
+
+// ##############################
+// STEP 3
+// ##############################
+
+// get the data with a function that fetch retrieve the rates
+
+async function fetchRates(base = 'DKK') {}
