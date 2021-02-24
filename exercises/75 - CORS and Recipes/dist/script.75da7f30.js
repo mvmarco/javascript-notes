@@ -118,6 +118,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"script.js":[function(require,module,exports) {
+// ###########################################################
+// IMPORTANT REQUEST ACCESS HERE: https://cors-anywhere.herokuapp.com/corsdemo
+// ###########################################################
 const baseEndpoint = 'http://www.recipepuppy.com/api';
 const proxy = `https://cors-anywhere.herokuapp.com/`;
 const form = document.querySelector('form.search');
@@ -303,7 +306,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37615" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34487" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

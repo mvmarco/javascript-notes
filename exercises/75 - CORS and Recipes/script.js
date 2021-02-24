@@ -1,3 +1,7 @@
+// ###########################################################
+// IMPORTANT REQUEST ACCESS HERE: https://cors-anywhere.herokuapp.com/corsdemo
+// ###########################################################
+
 const baseEndpoint = 'http://www.recipepuppy.com/api';
 const proxy = `https://cors-anywhere.herokuapp.com/`;
 
