@@ -47,15 +47,51 @@ function generateOptions(options) {
   console.log(options); // we see the object, we can loop over with for or loop, object.entries object.value object.keys
   // we turn the object into an array with "Object.entries"
   /* 
-  return Object.entries(options); // **** if we log this result
-  outside of the function when we call it
-  with got an array were each element is another array with code and name of the code
-  so we for each element we can create another array
+    return Object.entries(options); **
+    if we log this result ** outside of the function when we call generateOptions(currencies)
+    we got an "array" were each element is another array with ["code" and "name of the code"]
+    so for this big array with can create a new array were we take from
+    each element the key and the value and we put it into the HTML:
+
+    .map((array)  => {
+      const currencyCode = array[0];
+      const currencyName = array[1];
+      return `<option value="${currencyCode}">${currencyCode} ${currencyCode} ${currencyName}</option>`
+    }).join('');
+
+    remembering that Map(): takes in a function where the params can be, value, index and array.
+    by descructuring the above map() on line 56 you can pass insted of the array the const
+    names that are reffering to the corresponding indexes of each element.
+    But they have to be inside a square!!!!!!!!!!!brakets []. In the same way we do:
+
+    const guitars = ["gretsch", strat", "tele"] // array
+
+    instead of saying: example: gretsch = guitars[0]  // without descructing
+    you can say: const [gretsch] = guitars // any name ~~ const [firstGuitar] = guitars
+
+    another example: const [a, b, c] = guitars;
+
+    anyway as result in both cases of the usage of map() we get a new big array
   */
-  return Object.entries(options).map((array) => {
-    console.log(array);
-  });
+  return Object.entries(options)
+    .map(
+      ([code, name]) =>
+        // console.log(code, name)
+        `<option value="${code}">${code} - ${name}</option>`
+    )
+    .join(''); // we turn the array into string so into HTML
 }
 
 const optionsHTML = generateOptions(currencies);
 console.log(optionsHTML); // ****
+
+// now we gotta populate the options element
+fromSelect.innerHTML = optionsHTML;
+toSelect.innerHTML = optionsHTML;
+/* 
+  if we were to do:
+  fromSelect.innerHTML = generateOptions(currencies);
+  toSelect.innerHTML = generateOptions(currencies);
+
+  then you'd run the function twice which is unnecessary and bad practice
+*/
