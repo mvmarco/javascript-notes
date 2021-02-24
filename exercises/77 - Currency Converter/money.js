@@ -134,3 +134,11 @@ async function fetchRates(base = 'DKK') {
 // ##############################
 
 // make a convert function
+/* 
+  we could fetch the data each time but it could be a little bit slow:
+  just imaging everytime the user types a number we are calling the converting function
+  then automatically we have to fetch the data. If the user types 5 numbers we fetch 5 times
+  and first gets slow, secondly there are limits of request per hour that a user can make according
+  to most of the APIs
+*/
+function convert(amount, from, to) {}
