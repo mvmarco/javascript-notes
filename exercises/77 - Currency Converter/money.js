@@ -93,5 +93,6 @@ toSelect.innerHTML = optionsHTML;
   fromSelect.innerHTML = generateOptions(currencies);
   toSelect.innerHTML = generateOptions(currencies);
 
-  then you'd run the function twice which is unnecessary and bad practice
+  then you'd run the function twice which is unnecessary and bad practice. So just run it once
+  store it into a variable and pop it in
 */
