@@ -87,8 +87,6 @@ function generateOptions(options) {
     .join(''); // we turn the array into string so into HTML
 }
 
-console.log('HERE THE HTML COMING FROM THE OBJECT', optionsHTML); // ****
-
 // ##############################
 // STEP 3
 // ##############################
