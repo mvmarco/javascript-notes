@@ -37,11 +37,16 @@ const names = 'Marco';
 
   If we try we get: "Uncaught ReferenceError: returnHi is not defined"
  
-  FIRST STEP: put the "utils.js" into the html file before the "script.js"
+  THE NOT SO GOOD SOLUTION: put the "utils.js" into the html file before the "script.js"
   the only reason why it works it is because "utils.js" comes first and
   returnHi() is a globally scoped. But it is really bad practice. just imaging having
   30 script files one connected to each other and they have to be ordered properly in the html.
   it is a mess.
+
+  THE REAL SOLUTION: using "modules", so when we need a function like returnHi() we can simply
+  import it, from the funciton, or module or file that has that function in it. In this case
+  the file or module is "utils.js". Then we do not have to worry about things loading before
+  another thing because we are simply going to import that value beforehand.
 */
 
 console.log(returnHi(names));
