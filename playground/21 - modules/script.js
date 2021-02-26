@@ -81,7 +81,31 @@
 
   import {returnHi} from './utils.js
 */
-import { returnHi, last2, last3 } from './utils.js';
+import first, { returnHi, last2, last3 } from './utils.js'; // named exports
+
+import marco from './marco.js'; // default export check the file name, utils for more info and here
+
+console.log(marco);
+
+/* 
+
+  EXPORTS DEFAULT METHODS: FIRST AND MARCO
+  you could rename the above as you wish: and still works:
+  
+  import nameee from './marco.js'; // default export check the file name, utils for more info and here
+
+  console.log(nammee);
+  
+  the difference is that "named exports", you must know what they've exported as.
+  But "default exports" since there is one per file, you can name them as you want
+  and you do not use {}. if that module does one thing, you use default - if that module
+  does multiple things use the named
+
+  here: import first, { returnHi, last2, last3 } from './utils.js'; // named exports
+  the first was a default export from ./utils.js it is just a way to show how to mix the two exports
+*/
+
+console.log(first);
 
 const name = 'Marco';
 

@@ -7,6 +7,8 @@ const last3 =
 export function returnHi(name) {
   return `hi ${name} ${last}`;
 }
+
+const first = 'marco'; // we export this as default
 // #####################################################
 // NAMED EXPORTS - we can have as many items as we want
 // #####################################################
@@ -31,3 +33,12 @@ export { last3 };
 // #########################################################
 
 // check the file "marco.js"
+
+/* 
+  the difference is that "named exports", you must know what they've exported as.
+  But "default exports" since there is one per file, you can name them as you want
+  and you do not use {}. if that module does one thing, you use default - if that module
+  does multiple things use the named
+*/
+
+export default first;
