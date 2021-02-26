@@ -80,12 +80,21 @@
   "from ./thefile we want to import from":
 
   import {returnHi} from './utils.js
+  check this out: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 */
-import first, { returnHi, last2, last3 } from './utils.js'; // named exports
+import first, { returnHi, last2, last3 } from './utils.js'; // named exports, first is a default
+/* 
+  you can rename a named export like this:
+  import first, { returnHi as sayHi, last2, last3 } from './utils.js'; 
 
-import marco from './marco.js'; // default export check the file name, utils for more info and here
+  and then you call sayHi(name)
 
+*/
+import marco from './marco.js'; // default export check the file name, check utils for more info
+import * as everything from './exportWays.js'; // a way to import everything from a module
+// it means take everything * as 'some name
 console.log(marco);
+console.log(everything); // we get a sort of an object called module
 
 /* 
 
@@ -102,7 +111,9 @@ console.log(marco);
   does multiple things use the named
 
   here: import first, { returnHi, last2, last3 } from './utils.js'; // named exports
-  the first was a default export from ./utils.js it is just a way to show how to mix the two exports
+  the first was a default export from ./utils.js it is just a way to show how to mix the two exports.
+  first goes outside of {} because it is a default exports. and default methods can also be renamed
+  as you want when exporting them.
 */
 
 console.log(first);

@@ -38,7 +38,8 @@ export { last3 };
   the difference is that "named exports", you must know what they've exported as.
   But "default exports" since there is one per file, you can name them as you want
   and you do not use {}. if that module does one thing, you use default - if that module
-  does multiple things use the named
+  does multiple things use the named. And wehn you export as default, is without {} while the
+  named is always inside the {}
 */
 
 export default first;
