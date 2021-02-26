@@ -4,10 +4,16 @@
 
 /*
   there is also something called "on-demand import"
-  basically it for when you want to import things only when you need them
+  basically it for when you want to import things only when you need them.
+
+  if you have a button that you click and displays all the currencies, one problem is that
+  the currencies object if it is on scripts can be to heavy and load the page slowly. In other words,
+  you load on-demand, when you click the button, the heavy object and not when the page is loading
+  itself, like in the script file for instance. So basically you get the data when you need it and 
+  not in one sip.
 */
 
-const currencies = {
+export const currencies = {
   USD: 'United States Dollar',
   AUD: 'Australian Dollar',
   BGN: 'Bulgarian Lev',
