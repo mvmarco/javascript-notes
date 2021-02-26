@@ -22,7 +22,7 @@
   verbage that people use to refer to them.
 */
 
-const names = 'Marco';
+// EXAMPLE: const names = 'Marco';
 
 /*
   now in utils.js we have this function:
@@ -65,6 +65,40 @@ const names = 'Marco';
   instance a <link rel="stylesheet" href="../../base.css">  - so we can just copy this CSS file 
   and put it inside our modules folder, so it is inside the root folder.
 
+
+  now that works, we gotta export from the module file, or the file that includes the function we need,
+  the actual function. and then Import it into the file we want.
+  
+  EXPORT: the export works just putting the word "export" in front of your function:
+  
+  export function returnHi(name) {
+    return `hi ${name}`;
+  }
+  
+
+  IMPORT: we import by putting "import {name of the function we want to import}" on top of the page
+  "from ./thefile we want to import from":
+
+  import {returnHi} from './utils.js
 */
+import { returnHi } from './utils.js';
+
+const name = 'Marco';
 
 console.log('it works');
+returnHi(name);
+
+/*
+  as we said modules are scoped. if in utils.js we have: const surname = 'buddy'
+  if you console.log(surname) into script.js you get the error: "surname not defined"
+  but if you do in utils:
+
+  const sursname = "buddy"
+  export function returnHi(name) {
+    return `hi ${name} ${surname}`;
+  }
+
+  now the returnHi(name); will log in the console: marco buddy
+
+
+*/
