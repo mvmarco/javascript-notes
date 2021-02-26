@@ -81,6 +81,7 @@
 
   import {returnHi} from './utils.js
   check this out: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+  check this out: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
 */
 import first, { returnHi, last2, last3 } from './utils.js'; // named exports, first is a default
 /* 
@@ -166,3 +167,12 @@ console.log(last2);
 */
 
 console.log(last3);
+
+// ####################################
+// IMPORT ON-DEMAND
+// ####################################
+
+/* 
+  there is also something called "on-demand import"
+  basically it for when you want to import things only when you need them
+*/
