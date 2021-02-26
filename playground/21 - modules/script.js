@@ -21,3 +21,27 @@
   "Modules" can be also called "ESM" or "ECMAScript modules" or "ES6 modules" as the 
   verbage that people use to refer to them.
 */
+
+const names = 'Marco';
+
+/*
+  now in utils.js we have this function:
+  
+  function returnHi(name) {
+    return `hi ${name}`;
+  }
+  
+  can we just call that function here in this file?
+
+  returnHi(name);
+
+  If we try we get: "Uncaught ReferenceError: returnHi is not defined"
+ 
+  FIRST STEP: put the "utils.js" into the html file before the "script.js"
+  the only reason why it works it is because "utils.js" comes first and
+  returnHi() is a globally scoped. But it is really bad practice. just imaging having
+  30 script files one connected to each other and they have to be ordered properly in the html.
+  it is a mess.
+*/
+
+console.log(returnHi(names));
