@@ -81,24 +81,53 @@
 
   import {returnHi} from './utils.js
 */
-import { returnHi } from './utils.js';
+import { returnHi, last2, last3 } from './utils.js';
 
 const name = 'Marco';
 
 console.log('it works');
-returnHi(name);
+console.log(returnHi(name));
 
 /*
   as we said modules are scoped. if in utils.js we have: const surname = 'buddy'
   if you console.log(surname) into script.js you get the error: "surname not defined"
-  but if you do in utils:
+  because it is in a different module.
 
-  const sursname = "buddy"
+  but if you do in utils.js:
+
+  const surname = "buddy"
   export function returnHi(name) {
     return `hi ${name} ${surname}`;
   }
 
   now the returnHi(name); will log in the console: marco buddy
 
+  the sum is: you can use variables inside of the modules and they will not leak out otuside of it
+  but if you put them into a function in the original module,
+  when you call that function (exported/imported) outside the variable be inside of it. 
+  Because has been defined and used inside of the original module and inside the original function.
+  so the variables are scoped inside the actual file they are defined. 
+
+  we can also export variables, check the file utils.js:
+  export const surname2 = 'surname2';
+  and import it here: import { returnHi, last2 } from './utils.js';
+*/
+
+console.log(last2);
+
+/* 
+  there are two types of exports
+  DEFAULT EXPORT: on top of the module file
+  NAMED EXPORT: on the bottom of the module file
+
+  check the utils.js file
+
+
+  const last3 =
+  "svanholm: this is surname as exported variable with 'named export' - bottom of the page";
+
+  export { last3 }; // you could export multiple variables into the "NAMED export"
 
 */
+
+console.log(last3);
