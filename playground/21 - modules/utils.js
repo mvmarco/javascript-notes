@@ -7,8 +7,9 @@ const last3 =
 export function returnHi(name) {
   return `hi ${name} ${last}`;
 }
-
-// NAMED exports
+// #####################################################
+// NAMED EXPORTS - we can have as many items as we want
+// #####################################################
 
 export { last3 };
 
@@ -24,3 +25,9 @@ export { last3 };
 
   export {last, last2, last3}
 */
+
+// #########################################################
+// DEFAULT EXPORTS a module can also have one default thing
+// #########################################################
+
+// check the file "marco.js"

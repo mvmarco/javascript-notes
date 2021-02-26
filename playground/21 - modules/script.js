@@ -117,7 +117,7 @@ console.log(last2);
 
 /* 
   there are two types of exports
-  DEFAULT EXPORT: on top of the module file
+  DEFAULT EXPORT: a module can also have one default thing, check the file "marco.js"
   NAMED EXPORT: on the bottom of the module file
 
   check the utils.js file
