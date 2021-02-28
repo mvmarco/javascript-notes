@@ -109,7 +109,7 @@
          "author": "",
          "license": "ISC",
          "devDependencies": {
-         "parcel-bundler": "^1.12.4"  // ******** result of "npm install parcel-bundler --save-dev"
+         "parcel-bundler": "^1.12.4"
          }
         }
     
@@ -128,7 +128,6 @@
         },
         "scripts": {
           "start": "parcel index.html",
-          "build": "parcel build index.html"
         },
         "author": "",
         "license": "ISC",
@@ -144,3 +143,44 @@
 // ##############################
 // ERRORS
 // ##############################
+
+/* 
+  if we have some errors and we do know how to fix it, a solution could be to go to
+  the project folder where we have the package.json, find the folder named "cache"
+  and the folder named "dist" and delete them. Then run again "npm start" and it will
+  regenerate them again. It will reload all the files. 
+*/
+
+// #################################################
+// DONE DEVELOPING AND PUT A BUNDLED PROJECT ONLINE
+// #################################################
+
+/* 
+  after developing you can build a compiled version of your JavaScript file. So when you want
+  to put the project online. What you do is to write another "script" into the "package.json"
+  called "build": "parcel build":
+
+
+  {
+  "name": "dadjokes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "jokes.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "browserslist": [
+    "last 1 chrome versions" *************************
+  ]
+  }
+
+*/
