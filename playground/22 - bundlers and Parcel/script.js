@@ -34,9 +34,39 @@
   1. step: go to the folder of the project you want to bundle
   2. first thing we need is the "package.json" which is a file that contains information about
      your dependencies, and about what script you have and a bunch of information about your
-     project. And if you don't have a package.json. And if you do not have one you can simply
-     get one by typying: "npm init"
+     project. And if you don't have a "package.json". And if you do not have one you can simply
+     get one by typying: "npm init" and it is gonna ask what's the name of your package. Which
+     is the "project name", like "dadjokes". and it ask other bunch of questions that you can
+     skip if the project is not that huge by clicking enter. So if you go inside your "package.json"
+     you see all the information, for dadjokes would be:
 
+     {
+      "name": "dadjokes",
+      "version": "1.0.0",
+      "description": "",
+      "main": "jokes.js",
+      "directories": {
+        "lib": "lib"
+      },
+      "scripts": {
+        "start": "parcel index.html",
+        "build": "parcel build index.html"
+      },
+      "author": "",
+      "license": "ISC",
+      "devDependencies": {
+        "parcel-bundler": "^1.12.4"
+      },
+      "browserslist": [
+        "last 1 chrome versions"
+      ]
+    }
+
+    3. After getting the "package.json" you can go ahead and install "parcel". You could either
+       install it globally when you need a quick server up and running, but any project that is
+       going on for more than a couple of days it is recommended to install "parcel" into that
+       project folder as well. In that way, co-workers or who dowload the repo from GitHub will
+       have the same "parcel" version. 
 
 
 */
