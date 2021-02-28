@@ -49,8 +49,7 @@
         "lib": "lib"
       },
       "scripts": {
-        "start": "parcel index.html",
-        "build": "parcel build index.html"
+        "test": "echo \"Error: no test specified\" && exit 1"
       },
       "author": "",
       "license": "ISC",
@@ -81,7 +80,6 @@
          "lib": "lib"
          },
          "scripts": {
-         "start": "parcel index.html",
          "build": "parcel build index.html"
          },
          "author": "",
@@ -92,5 +90,58 @@
         }
 
     4. now in order to run parcel we need to add a script to the package.json that will use it.
-       
+       we could run "parcel index.html" for instance but it will be connected  automatically
+       to the global package.json and not the project we added our package.json. So if you want
+       it there, you gotta go inside the package.json and add inside the "script":
+       "start": "parcel index.html" // index.html it is our entry point //////////////
+
+        {
+         "name": "dadjokes",
+         "version": "1.0.0",
+         "description": "",
+         "main": "jokes.js",
+         "directories": {
+         "lib": "lib"
+         },
+         "scripts": {
+            "start": "parcel index.html" //////////////
+         },
+         "author": "",
+         "license": "ISC",
+         "devDependencies": {
+         "parcel-bundler": "^1.12.4"  // ******** result of "npm install parcel-bundler --save-dev"
+         }
+        }
+    
+    5. if we get an error saying: "Uncaught ReferenceError: regeneratorRuntime is not defined
+       at ........." it means it is because we are using Async - await an we need to add something
+       else on our pacakge.json which is: "browserslist": ["last 1 chrome versions"].
+       it is a super popular error. Here the package json updated: *************************
+
+       {
+        "name": "dadjokes",
+        "version": "1.0.0",
+        "description": "",
+        "main": "jokes.js",
+        "directories": {
+          "lib": "lib"
+        },
+        "scripts": {
+          "start": "parcel index.html",
+          "build": "parcel build index.html"
+        },
+        "author": "",
+        "license": "ISC",
+        "devDependencies": {
+          "parcel-bundler": "^1.12.4"
+        },
+        "browserslist": [
+          "last 1 chrome versions" *************************
+        ]
+       }
+*/
+
+/* 
+  
+
 */
