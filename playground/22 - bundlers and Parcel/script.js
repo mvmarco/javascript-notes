@@ -216,4 +216,7 @@
   "npm run build". The dist file will remain the same, the one that will change are the one
   where we changed something into the original file. For more info, about the "npm run build"
   check here: https://parceljs.org/production.html
+
+  for more info about this example with "DadJokes" check the exercise folder and exercise folder
+  number 81
 */
