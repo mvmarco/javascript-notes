@@ -80,7 +80,7 @@
          "lib": "lib"
          },
          "scripts": {
-         "build": "parcel build index.html"
+           "test": "echo \"Error: no test specified\" && exit 1"
          },
          "author": "",
          "license": "ISC",
@@ -135,7 +135,7 @@
           "parcel-bundler": "^1.12.4"
         },
         "browserslist": [
-          "last 1 chrome versions" *************************
+          "last 1 chrome versions" // *************************
         ]
        }
 */
@@ -158,7 +158,7 @@
 /* 
   after developing you can build a compiled version of your JavaScript file. So when you want
   to put the project online. What you do is to write another "script" into the "package.json"
-  called "build": "parcel build":
+  called "build": "parcel build index.html" check below **********************
 
 
   {
@@ -171,7 +171,7 @@
   },
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html" // **********************
   },
   "author": "",
   "license": "ISC",
@@ -179,7 +179,7 @@
     "parcel-bundler": "^1.12.4"
   },
   "browserslist": [
-    "last 1 chrome versions" *************************
+    "last 1 chrome versions" 
   ]
   }
 
