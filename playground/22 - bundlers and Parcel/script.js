@@ -62,7 +62,9 @@
        project folder as well. In that way, co-workers or who dowload the repo from GitHub will
        have the same "parcel" version. And it is to let them get up and running with "npm start".
        So for installing it we want to "npm install parcel-bundler" and you can save it as 
-       a "dev-dependency" by running: "npm install parcel-bundler --save-dev" what that would do
+       a "dev-dependency" by running: 
+                                         "npm install parcel-bundler --save-dev" 
+       what that would do
        is to put it as dependency in our "package.json", under "dev-dependency" and this are
        things not needed to let the application works/run but they are needed for someone to
        work on the application itself. That is the difference between dependency, something like
@@ -88,4 +90,7 @@
          "parcel-bundler": "^1.12.4"  // ******** result of "npm install parcel-bundler --save-dev"
          }
         }
+
+    4. now in order to run parcel we need to add a script to the package.json that will use it.
+       
 */
