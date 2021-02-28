@@ -151,6 +151,15 @@
   regenerate them again. It will reload all the files. 
 */
 
+/* 
+  another one is that sometimes we gotta delete from the
+    <script src="./script.js" type="module"></script>
+  the type="module"> so something like that should solve something:
+    <script src="./script.js"></script>
+
+
+*/
+
 // #################################################
 // DONE DEVELOPING AND PUT A BUNDLED PROJECT ONLINE
 // #################################################
@@ -159,6 +168,8 @@
   after developing you can build a compiled version of your JavaScript file. So when you want
   to put the project online. What you do is to write another "script" into the "package.json"
   called "build": "parcel build index.html" check below **********************
+
+  then you gotta run:                     then you gotta run "npm run build"
 
 
   {
@@ -183,4 +194,15 @@
   ]
   }
 
+  what this will do is to build all of our JS files and create some "dist" folders. Which are
+  basically compiled, minified, compressed versions of our project files. All the time you change
+  a file, the dist will be updated after you run "npm run build"
+
+  we also see some ".map" files, basically if there is an error in the compiled files, alredy
+  online is not gonna tell me what error would be there, like in the dist file.
+  Because it would be not easy to decipher where the error would be since it is a compressed code 
+  version of what you wrote. So the what the ".map" would do is mapping back the compiled,
+  compressed version back to the original version. the ".map" files will point to which module
+  they're in, the original version, and the broswer is able to decipher those map files, and
+  give back good errors and tell us where they happened.
 */
