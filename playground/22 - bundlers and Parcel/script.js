@@ -206,3 +206,14 @@
   they're in, the original version, and the broswer is able to decipher those map files, and
   give back good errors and tell us where they happened.
 */
+
+// ##############
+// IMPORTANT
+// ##############
+
+/* 
+  all the time you have changed something in your application you gotta run again
+  "npm run build". The dist file will remain the same, the one that will change are the one
+  where we changed something into the original file. For more info, about the "npm run build"
+  check here: https://parceljs.org/production.html
+*/
