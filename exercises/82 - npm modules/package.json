@@ -16,7 +16,10 @@
     "axios": "^0.21.1",
     "date-fns": "^2.17.0",
     "faker": "^5.4.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "waait": "^1.0.5"
   },
-  "browserslist": ["last 1 chrome versions"]
+  "browserslist": [
+    "last 1 chrome versions"
+  ]
 }
