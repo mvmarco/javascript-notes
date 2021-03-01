@@ -220,6 +220,46 @@
 // DEPENDENCY INFO: AXIOS
 // #################################
 
+/* 
+  So axios is a library for working with, basically, it's the same thing as fetch,
+  but A, it has a bunch of nice, little defaults in it ,B, it doesn't have the weird double await
+  that our promises do, because of the JSON default. And then also, it works in node js.
+  Right now, at the time of writing, fetch is not available on node js.
+  You either have to polyfill it or using something like axios.
+  And there's all kinds of plugins for axios as well, for caching and things like that, 
+  which is pretty neat.
+*/
+
+// EXAMPLE 1
+
+import axios from 'axios';
+
+// async function getJoke() {
+//   const response = await axios.get('https://icanhazdadjoke.com', {
+//     // headers is the second parameter
+//     headers: {
+//       Accept: 'application/json',
+//     },
+//   });
+//   console.log(response); // we get an object called data
+// }
+
+/* 
+  So, if you're also doing like some lower level, network stuff, you can use axios for that
+  or doing uploads, streaming uploads, makes a lot of that sort of more advanced stuff passed
+  just doing a simple get request, it makes it really easy.#
+  So in our case, we want data, which is a key of the object "data"
+  so we could do destructure that data, and just console log data to get the joke info.
+*/
+async function getJoke() {
+  const { data } = await axios.get('https://icanhazdadjoke.com', {
+    headers: {
+      Accept: 'application/json',
+    },
+  });
+  console.log(data.joke);
+}
+console.log(getJoke());
 // #################################
 // DEPENDENCY INFO: LODASH
 // #################################
