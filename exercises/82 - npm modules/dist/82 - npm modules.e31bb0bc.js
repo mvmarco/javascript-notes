@@ -340,6 +340,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 // #################################
 // DEPENDENCY INFO: AWAIT-TO-JS
 // #################################
+// 20.16
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
