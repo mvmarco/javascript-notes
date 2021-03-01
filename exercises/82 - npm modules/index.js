@@ -77,7 +77,7 @@
 */
 
 // #################################
-// INSTALLING OTHER
+// INSTALLING OTHER: WAAIT
 // #################################
 
 /* 
@@ -99,16 +99,47 @@
     console.log('200ms later');
   }
 
-  so we can create a function as follow and import the "wait" with any name as it is a default
-  export. This is the smallest idea of what a package does, as small as a little function.
+  so we can create a function as follow (go function) and import the "wait". 
+  In import "wait" can be any name since originally it is a default export.
+  This is the smallest idea of what a package does, even with a small as a little function
+  such as wait, that we could write over and over and over. Instead, we use a package. Sometimes
+  it is usuful have someome deploy something on npm and you simply just npm install it and
+  import it, then use it.
 */
 
-import wait from 'waait';
+/*
+  import wait from 'waait';
 
-async function go() {
-  console.log('Going');
-  await wait(200);
-  console.log('ending');
-}
+  async function go() {
+    console.log('Going');
+    await wait(200);
+    console.log('ending');
+  }
 
-go();
+  go();
+*/
+// #################################
+// DEPENDENCY INFO: FAKER
+// #################################
+
+/* 
+  check info here: https://www.npmjs.com/package/faker 
+  in sum faker.js generate massive amounts of fake data, for instance:
+
+  let randomName = faker.name.findName(); // Caitlyn Kerluke
+  let randomEmail = faker.internet.email(); // Rusty@arne.info
+  let randomCard = faker.helpers.createCard(); // random contact card containing many properties
+
+  sometimes the doc, does not really tell yoy how to import it and you see something like:
+                          var faker = require('faker/locale/de'); 
+  which is the older node.js syntax. Which is referred to common.js while the:
+                          import faker from 'faker';
+  it is the new one, Which is referred to as ECMAScript modules.
+*/
+
+import faker from 'faker';
+
+// import { name } from 'faker'; // here you can import a subset of faker with just names
+
+console.log(faker); // you see a bunch of keys of an object with fake data
+console.log(`hello ${faker.name.firstName()}`);
