@@ -191,25 +191,39 @@
     way you can search for "format".
 */
 
-// EXAMPLE 1
-import { formatDistance, format } from 'date-fns'; // similar to moment.js but shorter, take what you want
+/* 
+  // EXAMPLE 1
+  import { formatDistance, format } from 'date-fns'; // similar to moment.js but shorter, take what you want
 
-const diff = formatDistance(
-  new Date(1986, 3, 4, 11, 32, 0),
-  new Date(1986, 3, 4, 10, 32, 0),
-  { addSuffix: true }
-); //= > 'in about 1 hour'
-console.log(diff);
+  const diff = formatDistance(
+    new Date(1986, 3, 4, 11, 32, 0),
+    new Date(1986, 3, 4, 10, 32, 0),
+    { addSuffix: true }
+  ); //= > 'in about 1 hour'
+  console.log(diff);
 
-// EXAMPLE 2
-const diff2 = formatDistance(new Date(), new Date(2021, 3, 4, 10, 32, 0), {
-  addSuffix: true,
-}); //= > 'in about 1 month'
-console.log(diff2);
+  // EXAMPLE 2
+  const diff2 = formatDistance(new Date(), new Date(2021, 3, 4, 10, 32, 0), {
+    addSuffix: true,
+  }); //= > 'in about 1 month'
+  console.log(diff2);
 
-// EXAMPLE 3
-// we want the date of today that looks like this: March the 1st 2021
-// the syntax says that takes: formatDistance(date, baseDate, [options])
-const date = new Date(); // today's date
-const formatted = format(date, `LLLL 'the' do y`); // check the doc for this
-console.log(formatted);
+  // EXAMPLE 3
+  // we want the date of today that looks like this: March the 1st 2021
+  // the syntax says that takes: formatDistance(date, baseDate, [options])
+  const date = new Date(); // today's date
+  const formatted = format(date, `LLLL 'the' do y`); // check the doc for this
+  console.log(formatted); 
+*/
+
+// #################################
+// DEPENDENCY INFO: AXIOS
+// #################################
+
+// #################################
+// DEPENDENCY INFO: LODASH
+// #################################
+
+// #################################
+// DEPENDENCY INFO: AWAIT-TO-JS
+// #################################
