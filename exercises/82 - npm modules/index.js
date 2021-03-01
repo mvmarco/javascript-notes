@@ -137,9 +137,79 @@
   it is the new one, Which is referred to as ECMAScript modules.
 */
 
-import faker from 'faker';
+/* 
+  EXAMPLE 1: 
+  import faker from 'faker';
 
-// import { name } from 'faker'; // here you can import a subset of faker with just names
+  console.log(faker); // you see a bunch of keys of an object with fake data
+  console.log(`hello ${faker.name.firstName()}`); 
+*/
 
-console.log(faker); // you see a bunch of keys of an object with fake data
-console.log(`hello ${faker.name.firstName()}`);
+/* 
+  EXAMPLE 2:
+  import { name } from 'faker'; // here you can import a subset of faker with just names
+  console.log(name);
+
+
+  // how do we get an array with 10 fake names?
+
+  // we use Array.from. Array.from({length: 10}) takes something that has a length and return 
+  // an empty array with that length if you don't pass a second params. The second params is 
+  // a sort of map function that returns what you want.
+
+  const fakeNames = Array.from({ from: 10 }, name.firstName());
+  console.log(fakeNames); // 10 fake names
+
+  // if you want a full name you can pass your call back function
+
+  const fakeFullNames = Array.from(
+    { from: 10 },
+    () => `${name.firstName()} ${name.lastName()}`
+  );
+  console.log(fakeFullNames);
+*/
+
+// #################################
+// DEPENDENCY INFO: DATE-FNS
+// #################################
+
+/* 
+    check info here: https://date-fns.org/ 
+    usually the big dependency have their own website.
+
+    they have different methods to work with it such as:
+    import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+    and it allows you to format and work with dates in a much nicer way than having to work 
+    with just the regular date library that's built into the browser.
+
+    if we click to the documentation: https://date-fns.org/docs/Getting-Started
+    if I wanna say like, something minus three days was how long ago? we go to search
+    and search for "time ago" > "formatDistance" we find "formatDistance".
+    if you have two dates and you wanna know what the difference is between those two dates, 
+    you can import "formatDistance". If you want the date from now and the future you can 
+    search for "formatDistanceToNow". If you have a date and you wanna format it in a specific
+    way you can search for "format".
+*/
+
+// EXAMPLE 1
+import { formatDistance, format } from 'date-fns'; // similar to moment.js but shorter, take what you want
+
+const diff = formatDistance(
+  new Date(1986, 3, 4, 11, 32, 0),
+  new Date(1986, 3, 4, 10, 32, 0),
+  { addSuffix: true }
+); //= > 'in about 1 hour'
+console.log(diff);
+
+// EXAMPLE 2
+const diff2 = formatDistance(new Date(), new Date(2021, 3, 4, 10, 32, 0), {
+  addSuffix: true,
+}); //= > 'in about 1 month'
+console.log(diff2);
+
+// EXAMPLE 3
+// we want the date of today that looks like this: March the 1st 2021
+// the syntax says that takes: formatDistance(date, baseDate, [options])
+const date = new Date(); // today's date
+const formatted = format(date, `LLLL 'the' do y`); // check the doc for this
+console.log(formatted);
