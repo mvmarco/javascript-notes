@@ -25,6 +25,17 @@
   to install other depencies like "faker", "date-fns", "await-to-js", "lodash", "axios"
   we can install them all together by putting a space between them as follow:
   "npm i faker date-fns await-to-js lodash axios" and then "npm start"
+
+  notice that we do not add -D (put them in dev-dependencies) as they are just "dependecies".
+  Dependecies that make our project easy to develop and make our project run in production
+  and they are necessary to make the project work. without them the production wont work. It
+  will only work with a manual code of these dependencies but it is harder to code. And not
+  an easy package. check the example below.
+
+  while "devDependencies" are required only when developing our project and 
+  will not be necessary for the production. Like Parcel: The browser does not care if we 
+  use parcel or not for the final live code (in production).Build tools (webpack, parcel, snowpack)
+  are only that, build tools. They do not run in production when you host a website.
 */
 
 // #################################
