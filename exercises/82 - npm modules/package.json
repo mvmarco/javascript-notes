@@ -4,11 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "parcel-bundler": "^1.12.4"
-  }
+  },
+  "dependencies": {
+    "await-to-js": "^2.1.1",
+    "axios": "^0.21.1",
+    "date-fns": "^2.17.0",
+    "faker": "^5.4.0",
+    "lodash": "^4.17.21"
+  },
+  "browserslist": ["last 1 chrome versions"]
 }
