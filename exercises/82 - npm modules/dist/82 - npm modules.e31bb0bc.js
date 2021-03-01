@@ -129,6 +129,43 @@ var _waait = _interopRequireDefault(require("waait"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* 
+  // #################################
+  // WTH IS NPM
+  // #################################
+
+  The letters npm stand for “node package manager”. When you are working on a JavaScript project, 
+  you can use npm to install other people’s code packages into your own project.
+
+  npm is a tool you install on your computer. It’s part of node, so install the LTS version of Node 
+  (https://nodejs.org/en/)to get both the node and npm commands in your command line.
+
+  You use npm from the command line to install, uninstall or update packages. By “package” I mean 
+  any piece of code which someone has chosen to publish on npm.
+
+  Some examples of npm packages are:
+  Angular
+  React
+  jQuery
+  Express
+  Socket.io
+
+  There are thousands of packages published on npm. You can browse them on https://www.npmjs.com/
+  To use npm packages in a project, your project must contain a file called "package.json". 
+  This file keeps a list of all the packages you are using, and which version of each one you 
+  have chosen to use.
+
+  Each time you open your project on a different computer, you may have to reinstall all your 
+  packages. This is especially true if you are moving between Mac and Windows. This is because 
+  not all packages are cross-compatible, and sometimes need a version downloaded for the specific 
+  system you are using it on. When you open a project for the first time or on a different computer, 
+  reinstall all your packages: cd "to your project" and then run "npm install" 
+
+  After running npm install there will be a new folder in your project called node_modules. 
+  This folder contains all the code for all the packages you have installed.
+  Check below for more:
+
+*/
 // #################################
 // STEPS FOR PACKAGE JSON AND PARCEL
 // #################################
