@@ -436,10 +436,64 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   So I've had a couple of values on there, that will do a check of all of the values on it.
   Spending 2 hours in "lodash" to check the methods, because it will take less time to solve
   some problems in the future.  
- */
+*/
 // #################################
 // DEPENDENCY INFO: AWAIT-TO-JS
 // #################################
+
+/* 
+  info here: https://www.npmjs.com/package/await-to-js
+
+  import to from 'await-to-js';
+
+  function checkIfNameIsCool(firstName) {
+    return new Promise(function (resolve, reject) {
+      if (firstName === 'Marco') {
+        return resolve('cool name');
+      }
+      reject(new Error('BAD NAME 📛'));
+    });
+  }
+
+  async function checkName() {
+    const nameDesc = await checkIfNameIsCool('Marco');
+    console.log(nameDesc); // we get "cool name"
+  }
+
+  checkName();
+
+  async function checkName2() {
+    const nameDesc = await checkIfNameIsCool('Richard');
+    console.log(nameDesc); // we get error: Uncaught (in promise) Error:'BAD NAME 📛'
+  }
+  checkName2();
+
+  // if we put "to" after await
+  async function checkName3() {
+    const nameDesc = await to(checkIfNameIsCool('Richard'));
+    console.log(nameDesc);
+    // the console log will give us an array with 1st item: error, 2nd item: value
+  }
+  checkName3();
+
+  // so we can desctructure it as follow:
+
+  async function checkName4() {
+    const [err, successValue] = await to(checkIfNameIsCool('M'));
+    if (err) {
+      // deal with it
+      console.log(err);
+    } else {
+      console.log(successValue);
+    }
+  }
+  checkName4();
+
+  So that's kind of a cool way to deal with things where if you wanna deal with the error 
+  right up front, before you keep going in the function, then all you need to do is to wrap it
+  in a "to" function and that will return an array of either an error or the regularly
+  resolved value.
+*/
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
