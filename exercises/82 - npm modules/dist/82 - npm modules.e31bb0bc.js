@@ -385,10 +385,61 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 // #################################
 // DEPENDENCY INFO: LODASH
 // #################################
+
+/*
+  Check info here: https://lodash.com/
+  Lodash is a utility library for working with arrays, objects, and other interesting things.
+  In some cases, you can solve the problem without "lodash" by using with a map filter reduce, 
+  but there is use many used cases. Like if something is really complicated with a reduce function
+  you can just reach for whatever the equivalent lodash is.
+
+  if you go to the link and then under "intersection", just a random example.
+  What it does: If you've got two pieces of data and you want to know what are 
+  the same values in them, we can just import it.
+
+  In the examples of the documentation the code has always, an underscore dot _.
+  And that just assumes that you import the entire library.
+  We can just go ahead and import one method as we want: "intersection" just as we did with
+  date functions in "date-fns"
+
+
+  import { intersection } from 'lodash';
+
+  const a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const b = [5, 3, 8, 3, 7, 353, 34];
+
+  // Now we wanna know what the the same numbers that exist in both of these arrays?
+
+  const sameValues = intersection(a, b);
+  console.log(sameValues); // we get a new array with the values that exist in both of them: 3,5,7,8
+
+
+  there is also "_.cloneDeep" which is a kind of spread, or object data sign.
+  with "cloneDeep" you can tell it how many levels deep you would like to clone.
+  Rembembering we covered "reference versus value" when we compare objects we reference 
+  the object itself and not the values inside of it. If there are two separate objects 
+  even though they may have the same content inside. so if you wanna close a deep part of
+  an object you can with "cloneDeep"
+
+  there is also "_.isEqual", if you wanna check if two objects have equal values.
+  Objects are always different no matter if they have the same value, check "reference vs value"
+
+
+  import { isFuture } from 'date-fns';
+  import { intersection, isEqual } from 'lodash';
+
+  const person1 = { name: 'marco' };
+  const person2 = { name: 'marco' };
+
+  console.log(isEqual(person1, person2)); // we get true
+
+  So I've had a couple of values on there, that will do a check of all of the values on it.
+  Spending 2 hours in "lodash" to check the methods, because it will take less time to solve
+  some problems in the future.  
+ */
 // #################################
 // DEPENDENCY INFO: AWAIT-TO-JS
 // #################################
-// 20.25
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -417,7 +468,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45395" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34521" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
